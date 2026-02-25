@@ -1,0 +1,5 @@
+increase the size of the skillzza logo
+
+from the below of second navbar we have our hero section see the ss 
+also many has there own meta data so
+use this data to get exact same result
