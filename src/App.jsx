@@ -18,13 +18,13 @@ function App() {
       <SecondNavbar />
       <Hero />
       <Challenge />
+      <SkillzzaEcosystem />
+      <SolutionSkillStudio />
       <SchoolOfTechnology />
       <Partnerships />
       <OurPartners />
       <PartnerForm />
       <Insights />
-      <SkillzzaEcosystem />
-      <SolutionSkillStudio />
       {/* Other sections will be added here */}
     </div>
   )
