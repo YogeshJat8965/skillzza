@@ -91,19 +91,52 @@ const SolutionSkillStudio = () => {
     const activeTabColor = '#713593';
 
     return (
-        <section className="w-full py-16 lg:py-24" style={{ background: '#FFFFFF' }}>
+        <section className="w-full py-24 lg:py-32" style={{ background: '#FFFFFF' }}>
             {/* Hover style for tab buttons */}
             <style>{`
                 .tab-btn {
-                    transition: all 0.3s ease;
+                    position: relative;
+                    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                    overflow: hidden;
                 }
+                
+                .tab-btn::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
+                    opacity: 0;
+                    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                    pointer-events: none;
+                }
+                
                 .tab-btn:hover {
-                    box-shadow: 0 6px 24px #EFEFF0, 0 0 0 3px #EFEFF0;
-                    transform: translateY(-2px) scale(1.03);
+                    transform: translateY(-4px);
+                    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12), 
+                                0 6px 12px rgba(0, 0, 0, 0.08),
+                                0 0 0 1px rgba(113, 53, 147, 0.1);
+                    filter: brightness(1.05);
+                }
+                
+                .tab-btn:hover::before {
+                    opacity: 1;
+                }
+                
+                .tab-btn:active {
+                    transform: translateY(-2px);
+                    transition-duration: 0.1s;
+                }
+                
+                .tab-btn-active {
+                    box-shadow: 0 8px 16px rgba(113, 53, 147, 0.25),
+                                0 4px 8px rgba(113, 53, 147, 0.15);
                 }
             `}</style>
             {/* Section Title */}
-            <div className="max-w-[1920px] mx-auto px-6 sm:px-12 lg:px-24 xl:px-32 text-center mb-10 lg:mb-14">
+            <div className="w-[1580px] mx-auto px-6 sm:px-12 lg:px-24 xl:px-32 text-center mb-12 lg:mb-16">
                 <h2
                     style={{
                         fontFamily: "'DM Sans', sans-serif",
@@ -133,7 +166,7 @@ const SolutionSkillStudio = () => {
                         <button
                             key={index}
                             onClick={() => setActiveTab(index)}
-                            className="tab-btn transition-all duration-300"
+                            className={`tab-btn transition-all duration-300 ${activeTab === index ? 'tab-btn-active' : ''}`}
                             style={{
                                 fontFamily: "'DM Sans', sans-serif",
                                 fontSize: 'clamp(13px, 1.5vw, 16px)',
@@ -156,10 +189,10 @@ const SolutionSkillStudio = () => {
 
             {/* Tab Content - Box 2 */}
             <div
-                className="max-w-[1580px] mx-auto px-4 sm:px-8 lg:px-[173px] mt-6"
+                className="max-w-[1580px] mx-auto px-4 sm:px-8 lg:px-[173px] mt-8"
             >
                 <div
-                    className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16 p-8 sm:p-10 lg:p-14"
+                    className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16 p-12 sm:p-16 lg:p-20"
                     style={{
                         background: '#F4F4F5',
                         mixBlendMode: 'multiply',

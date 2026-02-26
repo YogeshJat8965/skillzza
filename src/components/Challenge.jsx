@@ -69,34 +69,35 @@ const Challenge = () => {
                 opacity: 1,
                 width: '487px',
                 height: '366px',
-                padding: '32px 24px',
+                padding: '32px 40px 40px 48px',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'flex-start',
                 textAlign: 'left',
+                letterSpacing: '-0.5px',
               }}
             >
               <h4 
-                className="mb-3"
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '72px',
+                  fontSize: '96px',
                   fontWeight: 700,
                   lineHeight: '1',
                   color: '#FFFFFF',
+                  marginBottom: '14px',
                 }}
               >
                 69%
               </h4>
               <h5 
-                className="mb-4"
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '24px',
+                  fontSize: '32px',
                   fontWeight: 600,
                   lineHeight: '1.2',
                   color: '#FFFFFF',
+                  marginBottom: '24px',
                 }}
               >
                 The Recruitment Crisis
@@ -104,13 +105,13 @@ const Challenge = () => {
               <p 
                 style={{
                   fontFamily: "'Lato', sans-serif",
-                  fontSize: '16px',
+                  fontSize: '20px',
                   fontWeight: 400,
                   lineHeight: '1.5',
                   color: '#FFFFFF',
                 }}
               >
-                Nearly 69% of organizations report ongoing difficulties recruiting for full-time roles reflecting persistent hiring challenges across sectors.
+                Nearly 69% of organizations report <br /> ongoing difficulties recruiting for full-time <br /> roles reflecting persistent hiring <br /> challenges across sectors.
               </p>
             </div>
 
@@ -122,7 +123,7 @@ const Challenge = () => {
                 opacity: 1,
                 width: '487px',
                 height: '366px',
-                padding: '32px 24px',
+                padding: '32px 40px 40px 48px',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
@@ -131,25 +132,25 @@ const Challenge = () => {
               }}
             >
               <h4 
-                className="mb-3"
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '72px',
+                  fontSize: '96px',
                   fontWeight: 700,
                   lineHeight: '1',
                   color: '#FFFFFF',
+                  marginBottom: '14px',
                 }}
               >
                 74%
               </h4>
               <h5 
-                className="mb-4"
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '24px',
+                  fontSize: '32px',
                   fontWeight: 600,
                   lineHeight: '1.2',
                   color: '#FFFFFF',
+                  marginBottom: '24px',
                 }}
               >
                 The AI Training Gap
@@ -157,13 +158,13 @@ const Challenge = () => {
               <p 
                 style={{
                   fontFamily: "'Lato', sans-serif",
-                  fontSize: '16px',
+                  fontSize: '20px',
                   fontWeight: 400,
                   lineHeight: '1.5',
                   color: '#FFFFFF',
                 }}
               >
-                Although 74% of employees use AI tools at work, only 33% have received formal training to use them effectively and safely.
+                Although 74% of employees use AI tools  at work, only 33% have received formal training to use them effectively and safely.
               </p>
             </div>
 
@@ -175,7 +176,7 @@ const Challenge = () => {
                 opacity: 1,
                 width: '487px',
                 height: '366px',
-                padding: '32px 24px',
+                padding: '32px 40px 40px 48px',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
@@ -184,25 +185,25 @@ const Challenge = () => {
               }}
             >
               <h4 
-                className="mb-3"
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '72px',
+                  fontSize: '96px',
                   fontWeight: 700,
                   lineHeight: '1',
                   color: '#FFFFFF',
+                  marginBottom: '14px',
                 }}
               >
                 59%
               </h4>
               <h5 
-                className="mb-4"
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '24px',
+                  fontSize: '32px',
                   fontWeight: 600,
                   lineHeight: '1.2',
                   color: '#FFFFFF',
+                  marginBottom: '24px',
                 }}
               >
                 The Reskilling Imperative
@@ -210,7 +211,7 @@ const Challenge = () => {
               <p 
                 style={{
                   fontFamily: "'Lato', sans-serif",
-                  fontSize: '16px',
+                  fontSize: '20px',
                   fontWeight: 400,
                   lineHeight: '1.5',
                   color: '#FFFFFF',
@@ -228,7 +229,7 @@ const Challenge = () => {
                 opacity: 1,
                 width: '487px',
                 height: '366px',
-                padding: '32px 24px',
+                padding: '32px 40px 40px 48px',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
@@ -237,25 +238,25 @@ const Challenge = () => {
               }}
             >
               <h4 
-                className="mb-3"
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '72px',
+                  fontSize: '96px',
                   fontWeight: 700,
                   lineHeight: '1',
                   color: '#FFFFFF',
+                  marginBottom: '14px',
                 }}
               >
                 63%
               </h4>
               <h5 
-                className="mb-4"
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '24px',
+                  fontSize: '32px',
                   fontWeight: 600,
                   lineHeight: '1.2',
                   color: '#FFFFFF',
+                  marginBottom: '24px',
                 }}
               >
                 Skills Are the Biggest Barrier
@@ -263,7 +264,7 @@ const Challenge = () => {
               <p 
                 style={{
                   fontFamily: "'Lato', sans-serif",
-                  fontSize: '16px',
+                  fontSize: '20px',
                   fontWeight: 400,
                   lineHeight: '1.5',
                   color: '#FFFFFF',
