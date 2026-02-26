@@ -86,7 +86,7 @@ const Hero = () => {
           </div>
 
           {/* Right Side - Image */}
-          <div className="flex-1 relative flex justify-center lg:justify-end">
+          <div className="flex-1 relative flex justify-center lg:justify-end" style={{ zIndex: 20 }}>
             <div 
               className="relative"
               style={{
@@ -95,6 +95,7 @@ const Hero = () => {
                 height: '918px',
                 opacity: 1,
                 backgroundSize: 'contain',
+                zIndex: 20,
               }}
             >
             </div>

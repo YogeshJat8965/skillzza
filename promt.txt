@@ -3,3 +3,22 @@ increase the size of the skillzza logo
 from the below of second navbar we have our hero section see the ss 
 also many has there own meta data so
 use this data to get exact same result
+
+the color blue should be this "#D2ECFA"
+
+see the ss all 4 cards are not placed normally they are
+placed as shown in the ss i want exactly same placement
+
+first line 5 cards image used in 1st line is "Group 23862.png, Group 34185.png, Group 23863.png, Mask Group 30.png, Group 23839.png "
+second line 5 cards image used in 2nd line is "Group 23838.png, Group 23867.png, Group 23868.png, Group 23869.png, Group 23864.png"
+
+see the ss the background img is "Group 37835" the main image is "businesspeople-having-discussion-office.png"
+
+this content color "Connect with our industry experts for a personalised consultation. Let's explore how our solutions can revolutionise your growth." should be "#414040" 
+
+
+images are "Mask Group 96.png,Mask Group 112.png, Mask Group 98.png, Group 34199.png"
+
+
+purple color is "#F8EDFF", cream color is "#F4E3CC", pink or red color "#F7C9C9",
+blue color "#B6DFF5", podcast background color "#1C97D4", 

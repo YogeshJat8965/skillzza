@@ -3,6 +3,11 @@ import Navbar from './components/Navbar'
 import SecondNavbar from './components/SecondNavbar'
 import Hero from './components/Hero'
 import Challenge from './components/Challenge'
+import SchoolOfTechnology from './components/SchoolOfTechnology'
+import Partnerships from './components/Partnerships'
+import OurPartners from './components/OurPartners'
+import PartnerForm from './components/PartnerForm'
+import Insights from './components/Insights'
 
 function App() {
   return (
@@ -11,6 +16,11 @@ function App() {
       <SecondNavbar />
       <Hero />
       <Challenge />
+      <SchoolOfTechnology />
+      <Partnerships />
+      <OurPartners />
+      <PartnerForm />
+      <Insights />
       {/* Other sections will be added here */}
     </div>
   )

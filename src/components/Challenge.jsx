@@ -2,7 +2,7 @@ import React from 'react';
 
 const Challenge = () => {
   return (
-    <section className="w-full bg-white py-16 lg:py-20">
+    <section className="w-full bg-white pb-16 lg:pb-20 relative" style={{ marginTop: '-80px', paddingTop: '80px', zIndex: 10 }}>
       {/* Heading and Description */}
       <div className="max-w-[1920px] mx-auto px-12 lg:px-24 xl:px-32">
         <div className="text-center mb-12 lg:mb-16">
@@ -70,6 +70,11 @@ const Challenge = () => {
                 width: '487px',
                 height: '366px',
                 padding: '32px 24px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'flex-start',
+                textAlign: 'left',
               }}
             >
               <h4 
@@ -118,6 +123,11 @@ const Challenge = () => {
                 width: '487px',
                 height: '366px',
                 padding: '32px 24px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'flex-start',
+                textAlign: 'left',
               }}
             >
               <h4 
@@ -166,6 +176,11 @@ const Challenge = () => {
                 width: '487px',
                 height: '366px',
                 padding: '32px 24px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'flex-start',
+                textAlign: 'left',
               }}
             >
               <h4 
@@ -214,6 +229,11 @@ const Challenge = () => {
                 width: '487px',
                 height: '366px',
                 padding: '32px 24px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'flex-start',
+                textAlign: 'left',
               }}
             >
               <h4 
