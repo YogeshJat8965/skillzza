@@ -4,10 +4,10 @@ const Insights = () => {
   return (
     <section className="w-full bg-white py-20">
       <div className="max-w-[1920px] mx-auto px-12 lg:px-24 xl:px-32">
-        {/* Header Row */}
-        <div className="flex justify-between items-center mb-12">
-          {/* Heading */}
-          <h2 
+        {/* Header - Stacked vertically, left aligned */}
+        <div className="mb-12">
+          <h2
+            className="mb-4"
             style={{
               fontFamily: "'DM Sans', sans-serif",
               fontSize: '48px',
@@ -22,13 +22,13 @@ const Insights = () => {
           {/* View all resources button */}
           <button
             style={{
-              width: '240px',
-              height: '48px',
+              height: '44px',
+              padding: '0 24px',
               background: 'transparent',
               border: '1px solid #0F1114',
               borderRadius: '8px',
-              fontFamily: "'Lato', sans-serif",
-              fontSize: '16px',
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: '14px',
               fontWeight: 500,
               color: '#0F1114',
               cursor: 'pointer',
@@ -47,10 +47,10 @@ const Insights = () => {
           </button>
         </div>
 
-        {/* Main Layout - 2 Columns */}
-        <div className="grid grid-cols-12 gap-6">
-          {/* Left Column - Purple Card */}
-          <div className="col-span-3">
+        {/* Main Layout - flex row */}
+        <div style={{ display: 'flex', gap: '24px', alignItems: 'stretch' }}>
+          {/* Left Column - Tall Purple Card */}
+          <div style={{ width: '25%', flexShrink: 0 }}>
             <div
               style={{
                 background: '#F4F4FF',
@@ -62,9 +62,9 @@ const Insights = () => {
               }}
             >
               {/* Image */}
-              <div style={{ width: '100%', height: '350px', overflow: 'hidden' }}>
-                <img 
-                  src="/img/Mask%20Group%2096.png" 
+              <div style={{ width: '100%', height: '280px', overflow: 'hidden', flexShrink: 0 }}>
+                <img
+                  src="/img/Mask%20Group%2096.png"
                   alt="AI Assistant"
                   style={{
                     width: '100%',
@@ -75,48 +75,50 @@ const Insights = () => {
               </div>
 
               {/* Content */}
-              <div style={{ padding: '32px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+              <div style={{ padding: '24px', flex: 1, display: 'flex', flexDirection: 'column' }}>
                 {/* Icon */}
-                <div className="mb-6">
-                  <img 
-                    src="/img/Group%2034192.svg" 
+                <div style={{ marginBottom: '16px' }}>
+                  <img
+                    src="/img/Group%2034192.svg"
                     alt="Icon"
                     style={{
-                      width: '64px',
-                      height: '64px',
+                      width: '48px',
+                      height: '48px',
                     }}
                   />
                 </div>
 
                 {/* Title */}
                 <h3
-                  className="mb-auto"
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
-                    fontSize: '20px',
+                    fontSize: '18px',
                     fontWeight: 600,
                     lineHeight: '1.4',
                     color: '#0F1114',
                     marginBottom: '24px',
+                    flex: 1,
                   }}
                 >
                   Skill Gaps to Skill Maps: The Future of Adaptive Career Assessment with AI
                 </h3>
 
-                {/* Button */}
+                {/* Button - auto width */}
                 <button
                   style={{
-                    width: '100%',
-                    height: '48px',
+                    alignSelf: 'flex-start',
+                    height: '44px',
+                    padding: '0 24px',
                     background: 'transparent',
                     border: '1px solid #0F1114',
                     borderRadius: '8px',
-                    fontFamily: "'Lato', sans-serif",
+                    fontFamily: "'DM Sans', sans-serif",
                     fontSize: '14px',
                     fontWeight: 500,
                     color: '#0F1114',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
+                    whiteSpace: 'nowrap',
                   }}
                   onMouseEnter={(e) => {
                     e.target.style.background = '#0F1114';
@@ -134,12 +136,13 @@ const Insights = () => {
           </div>
 
           {/* Right Column - 2 Cards on top, Podcast card below */}
-          <div className="col-span-9">
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '24px' }}>
             {/* Top Row - 2 Cards */}
-            <div className="grid grid-cols-2 gap-6 mb-6">
+            <div style={{ display: 'flex', gap: '24px' }}>
               {/* Card 2 - AI Talent Report (Robot - Beige) */}
               <div
                 style={{
+                  flex: 1,
                   background: '#F4E3CC',
                   borderRadius: '12px',
                   overflow: 'hidden',
@@ -148,9 +151,9 @@ const Insights = () => {
                 }}
               >
                 {/* Image */}
-                <div style={{ width: '100%', height: '300px', overflow: 'hidden' }}>
-                  <img 
-                    src="/img/Mask%20Group%20112.png" 
+                <div style={{ width: '100%', height: '320px', overflow: 'hidden', flexShrink: 0 }}>
+                  <img
+                    src="/img/Mask%20Group%20112.png"
                     alt="AI Robot"
                     style={{
                       width: '100%',
@@ -170,7 +173,7 @@ const Insights = () => {
                       padding: '6px 16px',
                       background: '#E87444',
                       borderRadius: '20px',
-                      fontFamily: "'Lato', sans-serif",
+                      fontFamily: "'DM Sans', sans-serif",
                       fontSize: '14px',
                       fontWeight: 500,
                       color: '#FFFFFF',
@@ -182,7 +185,6 @@ const Insights = () => {
 
                   {/* Title */}
                   <h3
-                    className="mb-auto"
                     style={{
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: '20px',
@@ -190,25 +192,28 @@ const Insights = () => {
                       lineHeight: '1.3',
                       color: '#0F1114',
                       marginBottom: '20px',
+                      flex: 1,
                     }}
                   >
                     2025 AI Talent & Salary Benchmark Report
                   </h3>
 
-                  {/* Button */}
+                  {/* Button - auto width */}
                   <button
                     style={{
-                      width: '100%',
-                      height: '48px',
+                      alignSelf: 'flex-start',
+                      height: '44px',
+                      padding: '0 24px',
                       background: 'transparent',
                       border: '1px solid #0F1114',
                       borderRadius: '8px',
-                      fontFamily: "'Lato', sans-serif",
+                      fontFamily: "'DM Sans', sans-serif",
                       fontSize: '14px',
                       fontWeight: 500,
                       color: '#0F1114',
                       cursor: 'pointer',
                       transition: 'all 0.3s ease',
+                      whiteSpace: 'nowrap',
                     }}
                     onMouseEnter={(e) => {
                       e.target.style.background = '#0F1114';
@@ -227,6 +232,7 @@ const Insights = () => {
               {/* Card 3 - Skill Blueprint (Digital Interface - Pink) */}
               <div
                 style={{
+                  flex: 1,
                   background: '#F7C9C9',
                   borderRadius: '12px',
                   overflow: 'hidden',
@@ -235,9 +241,9 @@ const Insights = () => {
                 }}
               >
                 {/* Image */}
-                <div style={{ width: '100%', height: '300px', overflow: 'hidden' }}>
-                  <img 
-                    src="/img/Mask%20Group%2098.png" 
+                <div style={{ width: '100%', height: '320px', overflow: 'hidden', flexShrink: 0 }}>
+                  <img
+                    src="/img/Mask%20Group%2098.png"
                     alt="Digital Interface"
                     style={{
                       width: '100%',
@@ -257,7 +263,7 @@ const Insights = () => {
                       padding: '6px 16px',
                       background: '#D02C2F',
                       borderRadius: '20px',
-                      fontFamily: "'Lato', sans-serif",
+                      fontFamily: "'DM Sans', sans-serif",
                       fontSize: '14px',
                       fontWeight: 500,
                       color: '#FFFFFF',
@@ -269,7 +275,6 @@ const Insights = () => {
 
                   {/* Title */}
                   <h3
-                    className="mb-auto"
                     style={{
                       fontFamily: "'DM Sans', sans-serif",
                       fontSize: '20px',
@@ -277,26 +282,29 @@ const Insights = () => {
                       lineHeight: '1.3',
                       color: '#0F1114',
                       marginBottom: '20px',
+                      flex: 1,
                     }}
                   >
                     The Skill Blueprint<br />
                     AI & The Future of Work
                   </h3>
 
-                  {/* Button */}
+                  {/* Button - auto width */}
                   <button
                     style={{
-                      width: '100%',
-                      height: '48px',
+                      alignSelf: 'flex-start',
+                      height: '44px',
+                      padding: '0 24px',
                       background: 'transparent',
                       border: '1px solid #0F1114',
                       borderRadius: '8px',
-                      fontFamily: "'Lato', sans-serif",
+                      fontFamily: "'DM Sans', sans-serif",
                       fontSize: '14px',
                       fontWeight: 500,
                       color: '#0F1114',
                       cursor: 'pointer',
                       transition: 'all 0.3s ease',
+                      whiteSpace: 'nowrap',
                     }}
                     onMouseEnter={(e) => {
                       e.target.style.background = '#0F1114';
@@ -321,7 +329,6 @@ const Insights = () => {
                 padding: '32px 40px',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '40px',
               }}
             >
               {/* Left Content */}
@@ -333,7 +340,7 @@ const Insights = () => {
                     padding: '6px 16px',
                     background: '#4A9FD8',
                     borderRadius: '20px',
-                    fontFamily: "'Lato', sans-serif",
+                    fontFamily: "'DM Sans', sans-serif",
                     fontSize: '14px',
                     fontWeight: 500,
                     color: '#FFFFFF',
@@ -345,13 +352,13 @@ const Insights = () => {
 
                 {/* Title */}
                 <h3
-                  className="mb-4"
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
                     fontSize: '24px',
                     fontWeight: 600,
                     lineHeight: '1.3',
                     color: '#0F1114',
+                    marginBottom: '16px',
                   }}
                 >
                   Skills DECODED:<br />
@@ -360,33 +367,44 @@ const Insights = () => {
 
                 {/* Description */}
                 <p
-                  className="mb-6"
                   style={{
-                    fontFamily: "'Lato', sans-serif",
+                    fontFamily: "'DM Sans', sans-serif",
                     fontSize: '15px',
                     fontWeight: 400,
                     lineHeight: '1.6',
                     color: '#0F1114',
+                    margin: 0,
                   }}
                 >
                   Tune in to The Skillzza Talks podcast where leaders, innovators, and changemakers unpack the skills reshaping careers, industries, and societies. Practical, insightful, and future-ready.
                 </p>
+              </div>
 
-                {/* Button */}
+              {/* Right - Icon + Listen Button */}
+              <div style={{ width: '195px', flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
+                <img
+                  src="/img/Group%2034199.svg"
+                  alt="Microphone"
+                  style={{
+                    width: '80px',
+                    height: '112px',
+                    objectFit: 'contain',
+                  }}
+                />
                 <button
                   style={{
-                    minWidth: '160px',
                     height: '44px',
                     padding: '0 24px',
                     background: 'transparent',
                     border: '1px solid #0F1114',
                     borderRadius: '8px',
-                    fontFamily: "'Lato', sans-serif",
+                    fontFamily: "'DM Sans', sans-serif",
                     fontSize: '14px',
                     fontWeight: 500,
                     color: '#0F1114',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
+                    whiteSpace: 'nowrap',
                   }}
                   onMouseEnter={(e) => {
                     e.target.style.background = '#0F1114';
@@ -399,18 +417,6 @@ const Insights = () => {
                 >
                   Listen now
                 </button>
-              </div>
-
-              {/* Right Icon */}
-              <div style={{ flexShrink: 0 }}>
-                <img 
-                  src="/img/Group%2034199.svg" 
-                  alt="Microphone"
-                  style={{
-                    width: '120px',
-                    height: '120px',
-                  }}
-                />
               </div>
             </div>
           </div>
