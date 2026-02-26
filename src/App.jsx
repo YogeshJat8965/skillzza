@@ -8,6 +8,8 @@ import Partnerships from './components/Partnerships'
 import OurPartners from './components/OurPartners'
 import PartnerForm from './components/PartnerForm'
 import Insights from './components/Insights'
+import SkillzzaEcosystem from './components/SkillzzaEcosystem'
+import SolutionSkillStudio from './components/SolutionSkillStudio'
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
       <OurPartners />
       <PartnerForm />
       <Insights />
+      <SkillzzaEcosystem />
+      <SolutionSkillStudio />
       {/* Other sections will be added here */}
     </div>
   )
