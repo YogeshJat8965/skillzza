@@ -119,8 +119,7 @@ const SolutionSkillStudio = () => {
 
             {/* Tabs Bar - Box 1 */}
             <div
-                className="max-w-[1200px] mx-auto px-4 sm:px-8"
-                style={{ position: 'relative', zIndex: 2 }}
+                className="max-w-[1580px] mx-auto px-4 sm:px-8 lg:px-[173px]"
             >
                 <div
                     className="flex flex-wrap justify-center gap-3 sm:gap-4 py-4 px-4 sm:px-6"
@@ -157,7 +156,7 @@ const SolutionSkillStudio = () => {
 
             {/* Tab Content - Box 2 */}
             <div
-                className="max-w-[1200px] mx-auto px-4 sm:px-8 mt-6"
+                className="max-w-[1580px] mx-auto px-4 sm:px-8 lg:px-[173px] mt-6"
             >
                 <div
                     className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16 p-8 sm:p-10 lg:p-14"
@@ -186,12 +185,11 @@ const SolutionSkillStudio = () => {
                         <p
                             className="mb-6"
                             style={{
-                                fontFamily: "'Lato', sans-serif",
+                                fontFamily: "'DM Sans', sans-serif",
                                 fontSize: 'clamp(14px, 1.6vw, 17px)',
                                 fontWeight: 600,
                                 lineHeight: 1.5,
                                 color: '#374151',
-                                fontStyle: 'italic',
                             }}
                         >
                             {activeData.subtitle}
@@ -203,9 +201,9 @@ const SolutionSkillStudio = () => {
                                     key={i}
                                     className="flex items-start gap-3 mb-4"
                                     style={{
-                                        fontFamily: "'Lato', sans-serif",
+                                        fontFamily: "'DM Sans', sans-serif",
                                         fontSize: 'clamp(14px, 1.5vw, 16px)',
-                                        fontWeight: 400,
+                                        fontWeight: 600,
                                         lineHeight: 1.6,
                                         color: '#4B5563',
                                     }}
