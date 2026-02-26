@@ -10,6 +10,7 @@ import PartnerForm from './components/PartnerForm'
 import Insights from './components/Insights'
 import SkillzzaEcosystem from './components/SkillzzaEcosystem'
 import SolutionSkillStudio from './components/SolutionSkillStudio'
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
       <OurPartners />
       <PartnerForm />
       <Insights />
-      {/* Other sections will be added here */}
+      <Footer />
     </div>
   )
 }
