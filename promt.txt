@@ -22,3 +22,8 @@ images are "Mask Group 96.png,Mask Group 112.png, Mask Group 98.png, Group 34199
 
 purple color is "#F8EDFF", cream color is "#F4E3CC", pink or red color "#F7C9C9",
 blue color "#B6DFF5", podcast background color "#1C97D4", 
+
+
+whenever the number comes in the viewport then it should runs from 0 to therefinal value
+it should runs every time not a single time
+

@@ -100,6 +100,84 @@ const Footer = () => {
           </div>
         </div>
       </div>
+
+      {/* Bottom Section - Red Bar */}
+      <div
+        style={{
+          width: '100%',
+          background: '#A21515',
+          paddingTop: '16px',
+          paddingBottom: '16px',
+          marginTop: '40px',
+        }}
+      >
+        <div className="max-w-[1920px] mx-auto px-12 lg:px-24 xl:px-32">
+          <div className="flex items-center justify-between">
+            {/* Left Side - Links */}
+            <div className="flex items-center gap-8">
+              <a
+                href="#"
+                style={{
+                  fontFamily: "'Lato', sans-serif",
+                  fontSize: '14px',
+                  fontWeight: 400,
+                  color: '#FFFFFF',
+                  textDecoration: 'none',
+                  transition: 'opacity 0.3s ease',
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.opacity = '0.8'}
+                onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
+              >
+                Terms & Conditions
+              </a>
+              <a
+                href="#"
+                style={{
+                  fontFamily: "'Lato', sans-serif",
+                  fontSize: '14px',
+                  fontWeight: 400,
+                  color: '#FFFFFF',
+                  textDecoration: 'none',
+                  transition: 'opacity 0.3s ease',
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.opacity = '0.8'}
+                onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
+              >
+                Disclaimer
+              </a>
+              <a
+                href="#"
+                style={{
+                  fontFamily: "'Lato', sans-serif",
+                  fontSize: '14px',
+                  fontWeight: 400,
+                  color: '#FFFFFF',
+                  textDecoration: 'none',
+                  transition: 'opacity 0.3s ease',
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.opacity = '0.8'}
+                onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
+              >
+                Privacy Policy
+              </a>
+            </div>
+
+
+
+            {/* Right Side - Company Name */}
+            <div
+              style={{
+                fontFamily: "'Lato', sans-serif",
+                fontSize: '14px',
+                fontWeight: 400,
+                color: '#FFFFFF',
+              }}
+            >
+              Edgespark IT Ventures Pvt.
+            </div>
+          </div>
+        </div>
+      </div>
     </footer>
   );
 };
