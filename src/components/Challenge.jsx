@@ -94,10 +94,10 @@ const Challenge = () => {
           }
         }
         
-        @keyframes slideInRight {
+        @keyframes slideInFromRight {
           from {
             opacity: 0;
-            transform: translateX(80px);
+            transform: translateX(120px);
           }
           to {
             opacity: 1;
@@ -116,21 +116,6 @@ const Challenge = () => {
           }
         }
         
-        @keyframes cardSlideIn {
-          0% {
-            opacity: 0;
-            transform: translateX(100px) translateY(30px) scale(0.85) rotate(3deg);
-          }
-          60% {
-            opacity: 1;
-            transform: translateX(-5px) translateY(-5px) scale(1.02) rotate(-1deg);
-          }
-          100% {
-            opacity: 1;
-            transform: translateX(0) translateY(0) scale(1) rotate(0deg);
-          }
-        }
-        
         .animate-fade-in-up {
           animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
         }
@@ -143,16 +128,12 @@ const Challenge = () => {
           animation: slideInLeft 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
         }
         
-        .animate-slide-in-right {
-          animation: slideInRight 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        .animate-slide-from-right {
+          animation: slideInFromRight 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
         
         .animate-scale-in {
           animation: scaleIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
-        
-        .animate-card-slide {
-          animation: cardSlideIn 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
         }
         
         .delay-100 {
@@ -160,7 +141,7 @@ const Challenge = () => {
         }
         
         .delay-200 {
-          animation-delay: 0.25s;
+          animation-delay: 0.2s;
         }
         
         .delay-300 {
@@ -168,7 +149,7 @@ const Challenge = () => {
         }
         
         .delay-400 {
-          animation-delay: 0.5s;
+          animation-delay: 0.4s;
         }
         
         .delay-500 {
@@ -176,7 +157,7 @@ const Challenge = () => {
         }
         
         .delay-600 {
-          animation-delay: 0.75s;
+          animation-delay: 0.6s;
         }
       `}</style>
     <section 
@@ -262,7 +243,7 @@ const Challenge = () => {
             {/* Card 1: 69% */}
             <div 
               ref={card1Ref}
-              className={isVisible.card1 ? 'animate-card-slide' : 'opacity-0'}
+              className={isVisible.card1 ? 'animate-slide-from-right' : 'opacity-0'}
               style={{
                 background: '#D02C2F 0% 0% no-repeat padding-box',
                 borderRadius: '8px',
@@ -318,7 +299,7 @@ const Challenge = () => {
             {/* Card 2: 74% */}
             <div 
               ref={card2Ref}
-              className={isVisible.card2 ? 'animate-card-slide delay-200' : 'opacity-0'}
+              className={isVisible.card2 ? 'animate-slide-from-right delay-200' : 'opacity-0'}
               style={{
                 background: '#D02C2F 0% 0% no-repeat padding-box',
                 borderRadius: '8px',
@@ -373,7 +354,7 @@ const Challenge = () => {
             {/* Card 3: 59% */}
             <div 
               ref={card3Ref}
-              className={isVisible.card3 ? 'animate-card-slide delay-400' : 'opacity-0'}
+              className={isVisible.card3 ? 'animate-slide-from-right delay-400' : 'opacity-0'}
               style={{
                 background: '#D02C2F 0% 0% no-repeat padding-box',
                 borderRadius: '8px',
@@ -428,7 +409,7 @@ const Challenge = () => {
             {/* Card 4: 63% */}
             <div 
               ref={card4Ref}
-              className={isVisible.card4 ? 'animate-card-slide delay-600' : 'opacity-0'}
+              className={isVisible.card4 ? 'animate-slide-from-right delay-600' : 'opacity-0'}
               style={{
                 background: '#D02C2F 0% 0% no-repeat padding-box',
                 borderRadius: '8px',
