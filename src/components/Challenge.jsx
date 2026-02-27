@@ -1,277 +1,60 @@
 import React from 'react';
 
 const Challenge = () => {
+  const cards = [
+    { stat: '69%', title: 'The Recruitment Crisis', desc: 'Nearly 69% of organizations report ongoing difficulties recruiting for full-time roles reflecting persistent hiring challenges across sectors.' },
+    { stat: '74%', title: 'The AI Training Gap', desc: 'Although 74% of employees use AI tools at work, only 33% have received formal training to use them effectively and safely.' },
+    { stat: '59%', title: 'The Reskilling Imperative', desc: 'By 2030, an estimated 59% of employees will need reskilling or upskilling, marking a continued upward trend from the 50% forecast for 2025.' },
+    { stat: '63%', title: 'Skills Are the Biggest Barrier', desc: 'With 63% of employers citing skill gaps as the top barrier to transformation, 85% plan to prioritize workforce upskilling.' },
+  ];
+
   return (
-    <section className="w-full bg-white pb-16 lg:pb-20 relative" style={{ marginTop: '-80px', paddingTop: '80px', zIndex: 10 }}>
-      {/* Heading and Description */}
-      <div className="max-w-[1920px] mx-auto px-12 lg:px-24 xl:px-32">
-        <div className="text-center mb-12 lg:mb-16">
-          <h2 
-            className="mb-4"
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: '48px',
-              fontWeight: 700,
-              lineHeight: '1.2',
-              color: '#0F1114',
-            }}
-          >
+    <section className="w-full bg-white pb-12 sm:pb-16 lg:pb-20 relative" style={{ marginTop: '-80px', paddingTop: '80px', zIndex: 10 }}>
+      {/* Heading */}
+      <div className="max-w-[1920px] mx-auto px-4 sm:px-6 md:px-8 lg:px-24 xl:px-32">
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+          <h2 className="mb-3 sm:mb-4 font-[DM_Sans] text-[#0F1114] font-bold leading-tight text-2xl sm:text-3xl md:text-4xl lg:text-[48px]">
             The Challenge
           </h2>
-          <h3 
-            className="mb-6"
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: '42px',
-              fontWeight: 700,
-              lineHeight: '1.2',
-              color: '#0F1114',
-            }}
-          >
+          <h3 className="mb-4 sm:mb-6 font-[DM_Sans] text-[#0F1114] font-bold leading-tight text-xl sm:text-2xl md:text-3xl lg:text-[42px]">
             A Widening Skill Gap
           </h3>
-          <p 
-            className="max-w-4xl mx-auto"
-            style={{
-              fontFamily: "'Lato', sans-serif",
-              fontSize: '18px',
-              fontWeight: 400,
-              lineHeight: '1.6',
-              color: '#71717B',
-            }}
-          >
+          <p className="max-w-4xl mx-auto font-[Lato] text-[#71717B] font-normal leading-relaxed text-sm sm:text-[15px] md:text-base lg:text-lg">
             As industries rapidly transform, the gap between workforce skills and employer demands continues to widen. This growing disparity limits career progress, restricts opportunities, and creates major obstacles for individuals worldwide leaving many struggling to keep pace with the fast-evolving job market.
           </p>
         </div>
       </div>
 
       {/* Content Grid */}
-      <div className="max-w-[1920px] mx-auto">
-        <div className="flex gap-6 items-start">
-          {/* Left Side - Image */}
-          <div 
-            style={{
-              background: 'transparent url(/img/Group%2037831.png) 0% 0% no-repeat padding-box',
-              width: '778px',
-              height: '756px',
-              opacity: 1,
-            }}
-          >
+      <div className="max-w-[1920px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-0">
+        <div className="flex flex-col lg:flex-row gap-6 items-start">
+          {/* Left — Image (actual img, hidden on mobile) */}
+          <div className="hidden lg:block flex-shrink-0 w-[40%] xl:w-auto">
+            <img
+              src="/img/Group%2037831.png"
+              alt="Skill gap illustration"
+              className="w-full max-w-[778px] h-auto object-contain"
+            />
           </div>
 
-          {/* Right Side - Stats Cards */}
-          <div className="grid grid-cols-2 gap-6" style={{ width: '998px' }}>
-            {/* Card 1: 69% */}
-            <div 
-              style={{
-                background: '#D02C2F 0% 0% no-repeat padding-box',
-                borderRadius: '8px',
-                opacity: 1,
-                width: '487px',
-                height: '366px',
-                padding: '32px 24px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'flex-start',
-                textAlign: 'left',
-              }}
-            >
-              <h4 
-                className="mb-3"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '72px',
-                  fontWeight: 700,
-                  lineHeight: '1',
-                  color: '#FFFFFF',
-                }}
+          {/* Right — Stats Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 lg:gap-6 flex-1 w-full">
+            {cards.map((card, index) => (
+              <div
+                key={index}
+                className="bg-[#D02C2F] rounded-lg p-5 sm:p-6 lg:p-7 xl:p-8 flex flex-col justify-center items-start text-left min-h-[220px] sm:min-h-[250px] lg:min-h-[300px] xl:min-h-[366px]"
               >
-                69%
-              </h4>
-              <h5 
-                className="mb-4"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '24px',
-                  fontWeight: 600,
-                  lineHeight: '1.2',
-                  color: '#FFFFFF',
-                }}
-              >
-                The Recruitment Crisis
-              </h5>
-              <p 
-                style={{
-                  fontFamily: "'Lato', sans-serif",
-                  fontSize: '16px',
-                  fontWeight: 400,
-                  lineHeight: '1.5',
-                  color: '#FFFFFF',
-                }}
-              >
-                Nearly 69% of organizations report ongoing difficulties recruiting for full-time roles reflecting persistent hiring challenges across sectors.
-              </p>
-            </div>
-
-            {/* Card 2: 74% */}
-            <div 
-              style={{
-                background: '#D02C2F 0% 0% no-repeat padding-box',
-                borderRadius: '8px',
-                opacity: 1,
-                width: '487px',
-                height: '366px',
-                padding: '32px 24px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'flex-start',
-                textAlign: 'left',
-              }}
-            >
-              <h4 
-                className="mb-3"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '72px',
-                  fontWeight: 700,
-                  lineHeight: '1',
-                  color: '#FFFFFF',
-                }}
-              >
-                74%
-              </h4>
-              <h5 
-                className="mb-4"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '24px',
-                  fontWeight: 600,
-                  lineHeight: '1.2',
-                  color: '#FFFFFF',
-                }}
-              >
-                The AI Training Gap
-              </h5>
-              <p 
-                style={{
-                  fontFamily: "'Lato', sans-serif",
-                  fontSize: '16px',
-                  fontWeight: 400,
-                  lineHeight: '1.5',
-                  color: '#FFFFFF',
-                }}
-              >
-                Although 74% of employees use AI tools at work, only 33% have received formal training to use them effectively and safely.
-              </p>
-            </div>
-
-            {/* Card 3: 59% */}
-            <div 
-              style={{
-                background: '#D02C2F 0% 0% no-repeat padding-box',
-                borderRadius: '8px',
-                opacity: 1,
-                width: '487px',
-                height: '366px',
-                padding: '32px 24px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'flex-start',
-                textAlign: 'left',
-              }}
-            >
-              <h4 
-                className="mb-3"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '72px',
-                  fontWeight: 700,
-                  lineHeight: '1',
-                  color: '#FFFFFF',
-                }}
-              >
-                59%
-              </h4>
-              <h5 
-                className="mb-4"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '24px',
-                  fontWeight: 600,
-                  lineHeight: '1.2',
-                  color: '#FFFFFF',
-                }}
-              >
-                The Reskilling Imperative
-              </h5>
-              <p 
-                style={{
-                  fontFamily: "'Lato', sans-serif",
-                  fontSize: '16px',
-                  fontWeight: 400,
-                  lineHeight: '1.5',
-                  color: '#FFFFFF',
-                }}
-              >
-                By 2030, an estimated 59% of employees will need reskilling or upskilling, marking a continued upward trend from the 50% forecast for 2025.
-              </p>
-            </div>
-
-            {/* Card 4: 63% */}
-            <div 
-              style={{
-                background: '#D02C2F 0% 0% no-repeat padding-box',
-                borderRadius: '8px',
-                opacity: 1,
-                width: '487px',
-                height: '366px',
-                padding: '32px 24px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'flex-start',
-                textAlign: 'left',
-              }}
-            >
-              <h4 
-                className="mb-3"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '72px',
-                  fontWeight: 700,
-                  lineHeight: '1',
-                  color: '#FFFFFF',
-                }}
-              >
-                63%
-              </h4>
-              <h5 
-                className="mb-4"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '24px',
-                  fontWeight: 600,
-                  lineHeight: '1.2',
-                  color: '#FFFFFF',
-                }}
-              >
-                Skills Are the Biggest Barrier
-              </h5>
-              <p 
-                style={{
-                  fontFamily: "'Lato', sans-serif",
-                  fontSize: '16px',
-                  fontWeight: 400,
-                  lineHeight: '1.5',
-                  color: '#FFFFFF',
-                }}
-              >
-                With 63% of employers citing skill gaps as the top barrier to transformation, 85% plan to prioritize workforce upskilling.
-              </p>
-            </div>
+                <h4 className="mb-2 sm:mb-3 font-[DM_Sans] text-white font-bold leading-none text-[36px] sm:text-5xl md:text-6xl lg:text-[72px]">
+                  {card.stat}
+                </h4>
+                <h5 className="mb-3 sm:mb-4 font-[DM_Sans] text-white font-semibold leading-tight text-base sm:text-lg md:text-xl lg:text-2xl">
+                  {card.title}
+                </h5>
+                <p className="font-[Lato] text-white font-normal leading-normal text-sm sm:text-[15px] lg:text-base">
+                  {card.desc}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

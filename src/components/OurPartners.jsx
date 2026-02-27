@@ -18,124 +18,49 @@ const OurPartners = () => {
   ];
 
   return (
-    <section className="w-full bg-white py-16 lg:py-20 overflow-hidden">
-      <div className="max-w-[1920px] mx-auto px-12 lg:px-24 xl:px-32">
+    <section className="w-full bg-white py-12 sm:py-16 lg:py-20 overflow-hidden">
+      <div className="max-w-[1920px] mx-auto px-4 sm:px-6 md:px-8 lg:px-24 xl:px-32">
         {/* Heading */}
-        <div className="text-center mb-12">
-          <h2 
-            className="mb-4"
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: '48px',
-              fontWeight: 700,
-              lineHeight: '1.2',
-              color: '#0F1114',
-            }}
-          >
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="mb-3 sm:mb-4 font-[DM_Sans] text-[#0F1114] font-bold leading-tight text-2xl sm:text-3xl md:text-4xl lg:text-[48px]">
             Our Partners
           </h2>
-          <p 
-            style={{
-              fontFamily: "'Lato', sans-serif",
-              fontSize: '20px',
-              fontWeight: 400,
-              lineHeight: '1.6',
-              color: '#71717B',
-            }}
-          >
+          <p className="font-[Lato] text-[#71717B] font-normal leading-relaxed text-base sm:text-lg lg:text-xl">
             Take your skill transformation to the next level.
           </p>
         </div>
 
-        {/* First Row - Scrolling Right to Left */}
-        <div className="relative mb-8" style={{ height: '112px' }}>
-          <div 
-            className="absolute flex gap-8"
-            style={{
-              animation: 'scrollRightToLeft 30s linear infinite',
-            }}
-          >
-            {/* Duplicate for seamless loop */}
-            {[...firstRowPartners, ...firstRowPartners, ...firstRowPartners].map((partner, index) => (
-              <div
-                key={`first-${index}`}
-                style={{
-                  width: '293px',
-                  height: '112px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0,
-                }}
-              >
-                <img 
-                  src={partner.img} 
-                  alt={partner.alt}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'contain',
-                  }}
-                />
+        {/* Row 1 — Scrolling Right to Left */}
+        <div className="relative mb-6 sm:mb-8 h-[70px] sm:h-[90px] lg:h-[112px]">
+          <div className="absolute flex gap-4 sm:gap-6 lg:gap-8 animate-[scrollRTL_30s_linear_infinite]">
+            {[...firstRowPartners, ...firstRowPartners, ...firstRowPartners].map((partner, i) => (
+              <div key={`r1-${i}`} className="w-[180px] sm:w-[230px] lg:w-[293px] h-[70px] sm:h-[90px] lg:h-[112px] flex items-center justify-center flex-shrink-0">
+                <img src={partner.img} alt={partner.alt} className="w-full h-full object-contain" />
               </div>
             ))}
           </div>
         </div>
 
-        {/* Second Row - Scrolling Left to Right */}
-        <div className="relative" style={{ height: '112px' }}>
-          <div 
-            className="absolute flex gap-8"
-            style={{
-              animation: 'scrollLeftToRight 30s linear infinite',
-            }}
-          >
-            {/* Duplicate for seamless loop */}
-            {[...secondRowPartners, ...secondRowPartners, ...secondRowPartners].map((partner, index) => (
-              <div
-                key={`second-${index}`}
-                style={{
-                  width: '293px',
-                  height: '112px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0,
-                }}
-              >
-                <img 
-                  src={partner.img} 
-                  alt={partner.alt}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'contain',
-                  }}
-                />
+        {/* Row 2 — Scrolling Left to Right */}
+        <div className="relative h-[70px] sm:h-[90px] lg:h-[112px]">
+          <div className="absolute flex gap-4 sm:gap-6 lg:gap-8 animate-[scrollLTR_30s_linear_infinite]">
+            {[...secondRowPartners, ...secondRowPartners, ...secondRowPartners].map((partner, i) => (
+              <div key={`r2-${i}`} className="w-[180px] sm:w-[230px] lg:w-[293px] h-[70px] sm:h-[90px] lg:h-[112px] flex items-center justify-center flex-shrink-0">
+                <img src={partner.img} alt={partner.alt} className="w-full h-full object-contain" />
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* CSS Animations */}
       <style>{`
-        @keyframes scrollRightToLeft {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-33.333%);
-          }
+        @keyframes scrollRTL {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-33.333%); }
         }
-
-        @keyframes scrollLeftToRight {
-          0% {
-            transform: translateX(-33.333%);
-          }
-          100% {
-            transform: translateX(0);
-          }
+        @keyframes scrollLTR {
+          0% { transform: translateX(-33.333%); }
+          100% { transform: translateX(0); }
         }
       `}</style>
     </section>

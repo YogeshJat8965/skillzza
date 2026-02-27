@@ -3,48 +3,25 @@ import React from 'react';
 const SkillzzaEcosystem = () => {
   return (
     <section
-      className="w-full py-16 lg:py-24 overflow-hidden"
-      style={{
-        background: 'linear-gradient(180deg, #FFFFFF 0%, #F3EBF9 35%, #E8D8F0 55%, #F3EBF9 80%, #FFFFFF 100%)',
-      }}
+      className="w-full py-12 sm:py-16 lg:py-20 xl:py-24 overflow-hidden"
+      style={{ background: 'linear-gradient(180deg, #FFFFFF 0%, #F3EBF9 35%, #E8D8F0 55%, #F3EBF9 80%, #FFFFFF 100%)' }}
     >
-      {/* Section Header */}
-      <div className="max-w-[1920px] mx-auto px-6 sm:px-12 lg:px-24 xl:px-32 text-center mb-10 lg:mb-14">
-        <h2
-          className="mb-3"
-          style={{
-            fontFamily: "'DM Sans', sans-serif",
-            fontSize: 'clamp(32px, 4vw, 48px)',
-            fontWeight: 700,
-            lineHeight: 1.2,
-            color: '#0F1114',
-          }}
-        >
+      {/* Header */}
+      <div className="max-w-[1920px] mx-auto px-4 sm:px-6 md:px-8 lg:px-24 xl:px-32 text-center mb-8 sm:mb-10 lg:mb-14">
+        <h2 className="mb-3 font-[DM_Sans] text-[#0F1114] font-bold leading-tight text-2xl sm:text-3xl md:text-4xl lg:text-[48px]">
           Skillzza Ecosystem
         </h2>
-        <p
-          style={{
-            fontFamily: "'Lato', sans-serif",
-            fontSize: 'clamp(16px, 2vw, 20px)',
-            fontWeight: 400,
-            lineHeight: 1.6,
-            color: '#71717B',
-            fontStyle: 'italic',
-          }}
-        >
+        <p className="font-[Lato] text-[#71717B] font-normal italic leading-relaxed text-base sm:text-lg lg:text-xl">
           Empowering Every Learner, Every Step of the Way
         </p>
       </div>
 
-      {/* Ecosystem Diagram - Using the actual design SVG */}
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12">
+      {/* Diagram */}
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
         <img
           src="/img/Group 37832.svg"
-          alt="Skillzza Ecosystem diagram showing five interconnected platforms: The Potential Meter (AI Skill Engine), Xperience Platform (Immersive Learning Labs), Talent Transformation (Career Mobility Pipeline), AI HackNex (Talent Marketplace), and Hirenest (Career Mobility Pipeline). Bottom process flow shows Assessment, Mentoring, Simulations, Project Showcase, and Get Hired."
-          className="w-full h-auto"
-          style={{
-            maxWidth: '100%',
-          }}
+          alt="Skillzza Ecosystem diagram showing five interconnected platforms"
+          className="w-full h-auto max-w-full"
         />
       </div>
     </section>
