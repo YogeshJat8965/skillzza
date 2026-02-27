@@ -4,359 +4,69 @@ const Partnerships = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
 
   const cards = [
-    {
-      id: 1,
-      icon: '/img/g2475.svg',
-      title: 'Schools / Universities',
-      description: 'Partnering to Cultivate the Next Generation of Leaders',
-      bgColor: '#E6E6E6',
-      borderRadius: '8px',
-    },
-    {
-      id: 2,
-      icon: '/img/corporation.svg',
-      title: 'Corporates',
-      description: 'Driving Business Success through Workforce',
-      bgColor: '#E6E6E6',
-      borderRadius: '20px',
-    },
-    {
-      id: 3,
-      icon: '/img/government.svg',
-      title: 'Government',
-      description: 'Building a Skilled Workforce for a Stronger',
-      bgColor: '#E6E6E6',
-      borderRadius: '20px',
-    },
-    {
-      id: 4,
-      icon: '/img/Group%2023779.svg',
-      title: 'Become our upskilling partner',
-      description: 'Join Us in Shaping the Future of Work',
-      bgColor: '#EAE8E8',
-      borderRadius: '20px',
-    },
+    { id: 1, icon: '/img/g2475.svg', title: 'Schools / Universities', description: 'Partnering to Cultivate the Next Generation of Leaders', bgColor: '#E6E6E6' },
+    { id: 2, icon: '/img/corporation.svg', title: 'Corporates', description: 'Driving Business Success through Workforce', bgColor: '#E6E6E6' },
+    { id: 3, icon: '/img/government.svg', title: 'Government', description: 'Building a Skilled Workforce for a Stronger', bgColor: '#E6E6E6' },
+    { id: 4, icon: '/img/Group%2023779.svg', title: 'Become our upskilling partner', description: 'Join Us in Shaping the Future of Work', bgColor: '#EAE8E8' },
   ];
 
   return (
-    <section 
-      className="w-full relative flex items-center justify-center"
-      style={{
-        width: '100%',
-        height: '873px',
-        background: 'transparent url(/img/Group%2037834.png) 0% 0% no-repeat padding-box',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        opacity: 1,
-      }}
+    <section
+      className="w-full relative flex items-center justify-center bg-cover bg-center bg-no-repeat min-h-[600px] sm:min-h-[700px] lg:min-h-[800px] xl:min-h-[873px]"
+      style={{ backgroundImage: 'url(/img/Group%2037834.png)' }}
     >
-      <div className="max-w-[1920px] mx-auto px-12 lg:px-24 xl:px-32 h-full flex items-center pt-20">
-        <div className="flex gap-12 w-full">
-          {/* Left Side - Content */}
+      <div className="max-w-[1920px] mx-auto px-4 sm:px-6 md:px-8 lg:px-24 xl:px-32 w-full py-12 sm:py-16 lg:py-20">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 w-full items-center">
+          {/* Left — Content */}
           <div className="flex-1 max-w-xl">
-            <h2 
-              className="mb-6"
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: '48px',
-                fontWeight: 700,
-                lineHeight: '1.2',
-                color: '#0F1114',
-              }}
-            >
-              Partnerships For <br /> Impact
+            <h2 className="mb-4 sm:mb-6 font-[DM_Sans] text-[#0F1114] font-bold leading-tight text-2xl sm:text-3xl md:text-4xl lg:text-[48px]">
+              Partnerships For <br className="hidden sm:block" />Impact
             </h2>
-            <p 
-              className="mb-6"
-              style={{
-                fontFamily: "'Lato', sans-serif",
-                fontSize: '18px',
-                fontWeight: 400,
-                lineHeight: '1.6',
-                color: '#71717B',
-              }}
-            >
+            <p className="mb-4 sm:mb-6 font-[Lato] text-[#71717B] font-normal leading-relaxed text-sm sm:text-[15px] md:text-base lg:text-lg">
               At Skillzza, we believe that collaboration is the cornerstone of impactful change. By joining forces, we aim to bridge skill gaps and create a future-ready workforce.
             </p>
-            <p 
-              style={{
-                fontFamily: "'Lato', sans-serif",
-                fontSize: '18px',
-                fontWeight: 400,
-                lineHeight: '1.6',
-                color: '#71717B',
-              }}
-            >
+            <p className="font-[Lato] text-[#71717B] font-normal leading-relaxed text-sm sm:text-[15px] md:text-base lg:text-lg">
               Together, we can shape a world where education and skills are accessible to all, fostering innovation and sustainable growth.
             </p>
           </div>
 
-          {/* Right Side - Cards Grid */}
-          <div className="relative flex items-center" style={{ width: '650px', height: '520px' }}>
-            <div className="relative" style={{ width: '650px', height: '520px' }}>
-            {/* Card 1: Schools/Universities - Top Left */}
-            <div
-              onMouseEnter={() => setHoveredCard(1)}
-              onMouseLeave={() => setHoveredCard(null)}
-              style={{
-                position: 'absolute',
-                top: '0px',
-                left: '0px',
-                width: '310px',
-                height: '215px',
-                background: hoveredCard === 1 ? '#9268A8 0% 0% no-repeat padding-box' : '#E6E6E6 0% 0% no-repeat padding-box',
-                boxShadow: '0px 3px 6px #00000029',
-                borderRadius: '8px',
-                opacity: 1,
-                padding: '32px 24px',
-                cursor: 'pointer',
-                transition: 'background 0.3s ease',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'flex-start',
-              }}
-            >
-              {/* Icon */}
-              <div className="mb-4">
-                <img 
-                  src={cards[0].icon} 
-                  alt={cards[0].title}
+          {/* Right — Cards */}
+          <div className="flex-1 w-full max-w-[650px] mx-auto lg:mx-0">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+              {cards.map((card, index) => (
+                <div
+                  key={card.id}
+                  onMouseEnter={() => setHoveredCard(card.id)}
+                  onMouseLeave={() => setHoveredCard(null)}
+                  className={`cursor-pointer transition-colors duration-300 flex flex-col justify-start p-5 sm:p-6 lg:p-7 min-h-[180px] sm:min-h-[200px] ${index === 1 || index === 3 ? 'sm:mt-[60px]' : ''}`}
                   style={{
-                    width: '50px',
-                    height: '50px',
-                    filter: hoveredCard === 1 ? 'brightness(0) invert(1)' : 'brightness(0) saturate(100%)',
-                    transition: 'filter 0.3s ease',
+                    background: hoveredCard === card.id ? '#9268A8' : card.bgColor,
+                    boxShadow: '0px 3px 6px #00000029',
+                    borderRadius: index === 0 ? '8px' : '20px',
                   }}
-                />
-              </div>
-
-              {/* Title */}
-              <h3 
-                className="mb-3"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '20px',
-                  fontWeight: 600,
-                  lineHeight: '1.2',
-                  color: hoveredCard === 1 ? '#FFFFFF' : '#0F1114',
-                  transition: 'color 0.3s ease',
-                }}
-              >
-                {cards[0].title}
-              </h3>
-
-              {/* Description */}
-              <p 
-                style={{
-                  fontFamily: "'Lato', sans-serif",
-                  fontSize: '16px',
-                  fontWeight: 400,
-                  lineHeight: '1.5',
-                  color: hoveredCard === 1 ? '#FFFFFF' : '#71717B',
-                  transition: 'color 0.3s ease',
-                }}
-              >
-                {cards[0].description}
-              </p>
-            </div>
-
-            {/* Card 2: Corporates - Top Right (offset down) */}
-            <div
-              onMouseEnter={() => setHoveredCard(2)}
-              onMouseLeave={() => setHoveredCard(null)}
-              style={{
-                position: 'absolute',
-                top: '60px',
-                left: '340px',
-                width: '310px',
-                height: '215px',
-                background: hoveredCard === 2 ? '#9268A8 0% 0% no-repeat padding-box' : '#E6E6E6 0% 0% no-repeat padding-box',
-                boxShadow: '0px 3px 6px #00000029',
-                borderRadius: '20px',
-                opacity: 1,
-                padding: '32px 24px',
-                cursor: 'pointer',
-                transition: 'background 0.3s ease',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'flex-start',
-              }}
-            >
-              {/* Icon */}
-              <div className="mb-4">
-                <img 
-                  src={cards[1].icon} 
-                  alt={cards[1].title}
-                  style={{
-                    width: '50px',
-                    height: '50px',
-                    filter: hoveredCard === 2 ? 'brightness(0) invert(1)' : 'brightness(0) saturate(100%)',
-                    transition: 'filter 0.3s ease',
-                  }}
-                />
-              </div>
-
-              {/* Title */}
-              <h3 
-                className="mb-3"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '20px',
-                  fontWeight: 600,
-                  lineHeight: '1.2',
-                  color: hoveredCard === 2 ? '#FFFFFF' : '#0F1114',
-                  transition: 'color 0.3s ease',
-                }}
-              >
-                {cards[1].title}
-              </h3>
-
-              {/* Description */}
-              <p 
-                style={{
-                  fontFamily: "'Lato', sans-serif",
-                  fontSize: '16px',
-                  fontWeight: 400,
-                  lineHeight: '1.5',
-                  color: hoveredCard === 2 ? '#FFFFFF' : '#71717B',
-                  transition: 'color 0.3s ease',
-                }}
-              >
-                {cards[1].description}
-              </p>
-            </div>
-
-            {/* Card 3: Government - Bottom Left */}
-            <div
-              onMouseEnter={() => setHoveredCard(3)}
-              onMouseLeave={() => setHoveredCard(null)}
-              style={{
-                position: 'absolute',
-                top: '235px',
-                left: '0px',
-                width: '310px',
-                height: '215px',
-                background: hoveredCard === 3 ? '#9268A8 0% 0% no-repeat padding-box' : '#E6E6E6 0% 0% no-repeat padding-box',
-                boxShadow: '0px 3px 6px #00000029',
-                borderRadius: '20px',
-                opacity: 1,
-                padding: '32px 24px',
-                cursor: 'pointer',
-                transition: 'background 0.3s ease',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'flex-start',
-              }}
-            >
-              {/* Icon */}
-              <div className="mb-4">
-                <img 
-                  src={cards[2].icon} 
-                  alt={cards[2].title}
-                  style={{
-                    width: '50px',
-                    height: '50px',
-                    filter: hoveredCard === 3 ? 'brightness(0) invert(1)' : 'brightness(0) saturate(100%)',
-                    transition: 'filter 0.3s ease',
-                  }}
-                />
-              </div>
-
-              {/* Title */}
-              <h3 
-                className="mb-3"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '20px',
-                  fontWeight: 600,
-                  lineHeight: '1.2',
-                  color: hoveredCard === 3 ? '#FFFFFF' : '#0F1114',
-                  transition: 'color 0.3s ease',
-                }}
-              >
-                {cards[2].title}
-              </h3>
-
-              {/* Description */}
-              <p 
-                style={{
-                  fontFamily: "'Lato', sans-serif",
-                  fontSize: '16px',
-                  fontWeight: 400,
-                  lineHeight: '1.5',
-                  color: hoveredCard === 3 ? '#FFFFFF' : '#71717B',
-                  transition: 'color 0.3s ease',
-                }}
-              >
-                {cards[2].description}
-              </p>
-            </div>
-
-            {/* Card 4: Become our upskilling partner - Bottom Right */}
-            <div
-              onMouseEnter={() => setHoveredCard(4)}
-              onMouseLeave={() => setHoveredCard(null)}
-              style={{
-                position: 'absolute',
-                top: '295px',
-                left: '340px',
-                width: '310px',
-                height: '215px',
-                background: hoveredCard === 4 ? '#9268A8 0% 0% no-repeat padding-box' : '#EAE8E8 0% 0% no-repeat padding-box',
-                boxShadow: '0px 3px 6px #00000029',
-                borderRadius: '20px',
-                opacity: 1,
-                padding: '32px 24px',
-                cursor: 'pointer',
-                transition: 'background 0.3s ease',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'flex-start',
-              }}
-            >
-              {/* Icon */}
-              <div className="mb-4">
-                <img 
-                  src={cards[3].icon} 
-                  alt={cards[3].title}
-                  style={{
-                    width: '50px',
-                    height: '50px',
-                    filter: hoveredCard === 4 ? 'brightness(0) invert(1)' : 'brightness(0) saturate(100%)',
-                    transition: 'filter 0.3s ease',
-                  }}
-                />
-              </div>
-
-              {/* Title */}
-              <h3 
-                className="mb-3"
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '20px',
-                  fontWeight: 600,
-                  lineHeight: '1.2',
-                  color: hoveredCard === 4 ? '#FFFFFF' : '#0F1114',
-                  transition: 'color 0.3s ease',
-                }}
-              >
-                {cards[3].title}
-              </h3>
-
-              {/* Description */}
-              <p 
-                style={{
-                  fontFamily: "'Lato', sans-serif",
-                  fontSize: '16px',
-                  fontWeight: 400,
-                  lineHeight: '1.5',
-                  color: hoveredCard === 4 ? '#FFFFFF' : '#71717B',
-                  transition: 'color 0.3s ease',
-                }}
-              >
-                {cards[3].description}
-              </p>
-            </div>
+                >
+                  <div className="mb-3 sm:mb-4">
+                    <img
+                      src={card.icon}
+                      alt={card.title}
+                      className="w-10 h-10 sm:w-11 sm:h-11 transition-all duration-300"
+                      style={{ filter: hoveredCard === card.id ? 'brightness(0) invert(1)' : 'brightness(0) saturate(100%)' }}
+                    />
+                  </div>
+                  <h3
+                    className="mb-2 sm:mb-3 font-[DM_Sans] font-semibold leading-tight text-base sm:text-lg lg:text-xl transition-colors duration-300"
+                    style={{ color: hoveredCard === card.id ? '#FFFFFF' : '#0F1114' }}
+                  >
+                    {card.title}
+                  </h3>
+                  <p
+                    className="font-[Lato] font-normal leading-normal text-sm sm:text-[15px] lg:text-base transition-colors duration-300"
+                    style={{ color: hoveredCard === card.id ? '#FFFFFF' : '#71717B' }}
+                  >
+                    {card.description}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
