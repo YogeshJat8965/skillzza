@@ -1,7 +1,129 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const Insights = () => {
+  const [isVisible, setIsVisible] = useState({
+    heading: false,
+    button: false,
+    card1: false,
+    card2: false,
+    card3: false,
+    card4: false,
+    card5: false,
+  });
+  
+  const headingRef = useRef(null);
+  const buttonRef = useRef(null);
+  const card1Ref = useRef(null);
+  const card2Ref = useRef(null);
+  const card3Ref = useRef(null);
+  const card4Ref = useRef(null);
+  const card5Ref = useRef(null);
+
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.15,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach(entry => {
+        const elementType = entry.target.dataset.elementType;
+        // Toggle visibility - animations run every time element enters viewport
+        setIsVisible(prev => ({ ...prev, [elementType]: entry.isIntersecting }));
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    const refs = [
+      { ref: headingRef, type: 'heading' },
+      { ref: buttonRef, type: 'button' },
+      { ref: card1Ref, type: 'card1' },
+      { ref: card2Ref, type: 'card2' },
+      { ref: card3Ref, type: 'card3' },
+      { ref: card4Ref, type: 'card4' },
+      { ref: card5Ref, type: 'card5' },
+    ];
+
+    refs.forEach(({ ref, type }) => {
+      if (ref.current) {
+        ref.current.dataset.elementType = type;
+        observer.observe(ref.current);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
+    <>
+      <style>{`
+        @keyframes fadeInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-60px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes fadeInScale {
+          from {
+            opacity: 0;
+            transform: scale(0.85);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        
+        @keyframes flipInX {
+          from {
+            opacity: 0;
+            transform: perspective(400px) rotateX(-90deg);
+          }
+          to {
+            opacity: 1;
+            transform: perspective(400px) rotateX(0deg);
+          }
+        }
+        
+        .animate-fade-in-left {
+          animation: fadeInLeft 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        
+        .animate-fade-in-up {
+          animation: fadeInUp 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        
+        .animate-fade-in-scale {
+          animation: fadeInScale 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        
+        .animate-flip-in-x {
+          animation: flipInX 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+      `}</style>
     <section className="w-full bg-white py-20">
       <div className="max-w-[1920px] mx-auto px-12 lg:px-24 xl:px-32">
         {/* Main Content - 2 Columns */}
@@ -10,7 +132,8 @@ const Insights = () => {
           <div style={{ width: 'auto' }}>
             {/* Heading */}
             <h2
-              className="mb-6"
+              ref={headingRef}
+              className={`mb-6 ${isVisible.heading ? 'animate-fade-in-left' : 'opacity-0'}`}
               style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: '48px',
@@ -25,7 +148,8 @@ const Insights = () => {
 
             {/* View all resources button */}
             <button
-              className="mb-8"
+              ref={buttonRef}
+              className={`mb-8 ${isVisible.button ? 'animate-fade-in-up delay-200' : 'opacity-0'}`}
               style={{
                 height: '48px',
                 padding: '0 24px',
@@ -55,6 +179,8 @@ const Insights = () => {
 
             {/* Purple Card */}
             <div
+              ref={card1Ref}
+              className={isVisible.card1 ? 'animate-fade-in-scale delay-300' : 'opacity-0'}
               style={{
                 width: '505px',
                 height: '861px',
@@ -144,6 +270,8 @@ const Insights = () => {
           <div style={{ flex: 1, display: 'flex', gap: '24px' }}>
             {/* Card 2 - AI Talent Report (Robot - Beige) */}
             <div
+              ref={card2Ref}
+              className={isVisible.card2 ? 'animate-fade-in-up delay-100' : 'opacity-0'}
               style={{
                 width: '491px',
                 height: '776px',
@@ -239,6 +367,8 @@ const Insights = () => {
 
             {/* Card 3 - Skill Blueprint (Digital Interface - Pink) */}
             <div
+              ref={card3Ref}
+              className={isVisible.card3 ? 'animate-fade-in-up delay-300' : 'opacity-0'}
               style={{
                 // bottom: '0',
                 marginTop: '60px',
@@ -339,6 +469,8 @@ const Insights = () => {
 
         {/* Bottom - Full Width Podcast Card */}
         <div
+          ref={card4Ref}
+          className={isVisible.card4 ? 'animate-flip-in-x delay-400' : 'opacity-0'}
           style={{
             marginTop: '-370px',
             width: '1023px',
@@ -445,6 +577,7 @@ const Insights = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 

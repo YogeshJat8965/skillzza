@@ -1,7 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const SolutionSkillStudio = () => {
     const [activeTab, setActiveTab] = useState(0);
+    const [isVisible, setIsVisible] = useState({
+        title: false,
+        tabs: false,
+        content: false,
+    });
+    
+    const titleRef = useRef(null);
+    const tabsRef = useRef(null);
+    const contentRef = useRef(null);
+
+    useEffect(() => {
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observerCallback = (entries) => {
+            entries.forEach(entry => {
+                const elementType = entry.target.dataset.elementType;
+                // Toggle visibility - animations run every time element enters viewport
+                setIsVisible(prev => ({ ...prev, [elementType]: entry.isIntersecting }));
+            });
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+        const refs = [
+            { ref: titleRef, type: 'title' },
+            { ref: tabsRef, type: 'tabs' },
+            { ref: contentRef, type: 'content' },
+        ];
+
+        refs.forEach(({ ref, type }) => {
+            if (ref.current) {
+                ref.current.dataset.elementType = type;
+                observer.observe(ref.current);
+            }
+        });
+
+        return () => observer.disconnect();
+    }, []);
 
     const tabs = [
         {
@@ -91,10 +132,53 @@ const SolutionSkillStudio = () => {
     const activeTabColor = '#713593';
 
     return (
-        <section className="w-full py-24 lg:py-32" style={{ background: '#FFFFFF' }}>
+        <section className="w-full pt-24 lg:pt-32 pb-15" style={{ background: '#FFFFFF' }}>
             {/* Hover style for tab buttons */}
-            <style>{`
-                .tab-btn {
+            <style>{`                @keyframes fadeInDown {
+                    from {
+                        opacity: 0;
+                        transform: translateY(-40px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+                
+                @keyframes scaleInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(30px) scale(0.95);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0) scale(1);
+                    }
+                }
+                
+                @keyframes slideInUp {
+                    from {
+                        opacity: 0;
+                        transform: translateY(60px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+                
+                .animate-fade-in-down {
+                    animation: fadeInDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+                }
+                
+                .animate-scale-in-up {
+                    animation: scaleInUp 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+                }
+                
+                .animate-slide-in-up {
+                    animation: slideInUp 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+                }
+                                .tab-btn {
                     position: relative;
                     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                     overflow: hidden;
@@ -136,7 +220,10 @@ const SolutionSkillStudio = () => {
                 }
             `}</style>
             {/* Section Title */}
-            <div className="w-[1580px] mx-auto px-6 sm:px-12 lg:px-24 xl:px-32 text-center mb-12 lg:mb-16">
+            <div 
+                ref={titleRef}
+                className={`w-[1580px] mx-auto px-6 sm:px-12 lg:px-24 xl:px-32 text-center mb-12 lg:mb-16 ${isVisible.title ? 'animate-fade-in-down' : 'opacity-0'}`}
+            >
                 <h2
                     style={{
                         fontFamily: "'DM Sans', sans-serif",
@@ -152,7 +239,8 @@ const SolutionSkillStudio = () => {
 
             {/* Tabs Bar - Box 1 */}
             <div
-                className="max-w-[1580px] mx-auto px-4 sm:px-8 lg:px-[173px]"
+                ref={tabsRef}
+                className={`max-w-[1580px] mx-auto px-4 sm:px-8 lg:px-[173px] ${isVisible.tabs ? 'animate-scale-in-up' : 'opacity-0'}`}
             >
                 <div
                     className="flex flex-wrap justify-center gap-3 sm:gap-4 py-4 px-4 sm:px-6"
@@ -189,7 +277,8 @@ const SolutionSkillStudio = () => {
 
             {/* Tab Content - Box 2 */}
             <div
-                className="max-w-[1580px] mx-auto px-4 sm:px-8 lg:px-[173px] mt-8"
+                ref={contentRef}
+                className={`max-w-[1580px] mx-auto px-4 sm:px-8 lg:px-[173px] mt-8 ${isVisible.content ? 'animate-slide-in-up' : 'opacity-0'}`}
             >
                 <div
                     className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16 p-12 sm:p-16 lg:p-20"

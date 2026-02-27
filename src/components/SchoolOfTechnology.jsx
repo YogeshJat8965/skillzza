@@ -1,12 +1,133 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const SchoolOfTechnology = () => {
+  const [isVisible, setIsVisible] = useState({
+    image: false,
+    heading: false,
+    subheading: false,
+    description: false,
+    expertiseHeading: false,
+    tags: false,
+  });
+  
+  const imageRef = useRef(null);
+  const headingRef = useRef(null);
+  const subheadingRef = useRef(null);
+  const descriptionRef = useRef(null);
+  const expertiseHeadingRef = useRef(null);
+  const tagsRef = useRef(null);
+
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach(entry => {
+        const elementType = entry.target.dataset.elementType;
+        // Toggle visibility - animations run every time element enters viewport
+        setIsVisible(prev => ({ ...prev, [elementType]: entry.isIntersecting }));
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    const refs = [
+      { ref: imageRef, type: 'image' },
+      { ref: headingRef, type: 'heading' },
+      { ref: subheadingRef, type: 'subheading' },
+      { ref: descriptionRef, type: 'description' },
+      { ref: expertiseHeadingRef, type: 'expertiseHeading' },
+      { ref: tagsRef, type: 'tags' },
+    ];
+
+    refs.forEach(({ ref, type }) => {
+      if (ref.current) {
+        ref.current.dataset.elementType = type;
+        observer.observe(ref.current);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="w-full bg-white py-16 lg:py-20">
+    <>
+      <style>{`
+        @keyframes slideInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-80px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        @keyframes fadeInRight {
+          from {
+            opacity: 0;
+            transform: translateX(60px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+        
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(40px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes popIn {
+          from {
+            opacity: 0;
+            transform: scale(0.8);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        
+        .animate-slide-in-left {
+          animation: slideInLeft 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        
+        .animate-fade-in-right {
+          animation: fadeInRight 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        
+        .animate-fade-in-up {
+          animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        
+        .animate-pop-in {
+          animation: popIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+      `}</style>
+    <section className="w-full bg-white pt-0 pb-16 lg:pb-20">
       <div className="max-w-[1920px] mx-auto">
         <div className="flex items-center gap-12">
           {/* Left Side - Image */}
           <div 
+            ref={imageRef}
+            className={isVisible.image ? 'animate-slide-in-left' : 'opacity-0'}
             style={{
               left: '0px',
               width: '650px',
@@ -22,7 +143,8 @@ const SchoolOfTechnology = () => {
           <div className="flex-1 px-12 lg:px-24 xl:px-32">
             {/* Main Heading */}
             <h2 
-              className="mb-4"
+              ref={headingRef}
+              className={`mb-4 ${isVisible.heading ? 'animate-fade-in-right' : 'opacity-0'}`}
               style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: '48px',
@@ -36,7 +158,8 @@ const SchoolOfTechnology = () => {
 
             {/* Subheading */}
             <h3 
-              className="mb-6"
+              ref={subheadingRef}
+              className={`mb-6 ${isVisible.subheading ? 'animate-fade-in-right delay-100' : 'opacity-0'}`}
               style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: '24px',
@@ -50,7 +173,8 @@ const SchoolOfTechnology = () => {
 
             {/* Description */}
             <p 
-              className="mb-12"
+              ref={descriptionRef}
+              className={`mb-12 ${isVisible.description ? 'animate-fade-in-up delay-200' : 'opacity-0'}`}
               style={{
                 fontFamily: "'Lato', sans-serif",
                 fontSize: '18px',
@@ -64,7 +188,8 @@ const SchoolOfTechnology = () => {
 
             {/* Areas of Expertise */}
             <h4 
-              className="mb-6"
+              ref={expertiseHeadingRef}
+              className={`mb-6 ${isVisible.expertiseHeading ? 'animate-fade-in-right delay-300' : 'opacity-0'}`}
               style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: '24px',
@@ -77,7 +202,10 @@ const SchoolOfTechnology = () => {
             </h4>
 
             {/* Tags/Pills */}
-            <div className="flex flex-wrap gap-4">
+            <div 
+              ref={tagsRef}
+              className={`flex flex-wrap gap-4 ${isVisible.tags ? 'animate-pop-in delay-400' : 'opacity-0'}`}
+            >
               <div 
                 style={{
                   background: '#D4EDFA',
@@ -148,6 +276,7 @@ const SchoolOfTechnology = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 

@@ -1,9 +1,53 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FaFacebookF, FaLinkedinIn, FaInstagram, FaTwitter, FaYoutube, FaPinterestP } from 'react-icons/fa';
 
 const Footer = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const footerRef = useRef(null);
+
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach(entry => {
+        // Toggle visibility - animation runs every time footer enters viewport
+        setIsVisible(entry.isIntersecting);
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    if (footerRef.current) {
+      observer.observe(footerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
+    <>
+      <style>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(40px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-fade-in-up {
+          animation: fadeInUp 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+      `}</style>
     <footer 
+      ref={footerRef}
+      className={isVisible ? 'animate-fade-in-up' : 'opacity-0'} 
       style={{
         width: '100%',
         background: '#F4F4F5',
@@ -457,6 +501,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
+    </>
   );
 };
 

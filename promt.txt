@@ -24,6 +24,16 @@ purple color is "#F8EDFF", cream color is "#F4E3CC", pink or red color "#F7C9C9"
 blue color "#B6DFF5", podcast background color "#1C97D4", 
 
 
-whenever the number comes in the viewport then it should runs from 0 to therefinal value
-it should runs every time not a single time
+whenever the number comes in the viewport then it should runs from 0 to there final value
+it should runs every time not for a single time
 
+in this section "The Solution–Skill Studio" the buttons "The potential Meter,
+Xperience platform,
+Talent Transformation,
+Al HackNex,
+Hirenest" should be auto scale up one by one and at a time only one scale with a smooth and good effects
+also remove the hovering effects for the buttons
+
+now i want that when user scrolls down then each element should comes with 
+different different smooth animations giving a amazing look to the whole website
+and making it modern and very very attractive make a proper todos to implement this 

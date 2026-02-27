@@ -1,7 +1,78 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const SkillzzaEcosystem = () => {
+  const [isVisible, setIsVisible] = useState({
+    header: false,
+    diagram: false,
+  });
+  
+  const headerRef = useRef(null);
+  const diagramRef = useRef(null);
+
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach(entry => {
+        const elementType = entry.target.dataset.elementType;
+        // Toggle visibility - animations run every time element enters viewport
+        setIsVisible(prev => ({ ...prev, [elementType]: entry.isIntersecting }));
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    const refs = [
+      { ref: headerRef, type: 'header' },
+      { ref: diagramRef, type: 'diagram' },
+    ];
+
+    refs.forEach(({ ref, type }) => {
+      if (ref.current) {
+        ref.current.dataset.elementType = type;
+        observer.observe(ref.current);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
+    <>
+      <style>{`
+        @keyframes fadeInZoom {
+          from {
+            opacity: 0;
+            transform: scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        
+        @keyframes slideInFromBottom {
+          from {
+            opacity: 0;
+            transform: translateY(80px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-fade-in-zoom {
+          animation: fadeInZoom 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        
+        .animate-slide-in-from-bottom {
+          animation: slideInFromBottom 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+      `}</style>
     <section
       className="w-full py-16 lg:py-24 overflow-hidden"
       style={{
@@ -33,7 +104,11 @@ const SkillzzaEcosystem = () => {
         }}
       />
       {/* Section Header */}
-      <div className="max-w-[1920px] mx-auto px-6 sm:px-12 lg:px-24 xl:px-32 text-center mb-10 lg:mb-14" style={{ position: 'relative', zIndex: 1 }}>
+      <div 
+        ref={headerRef}
+        className={`max-w-[1920px] mx-auto px-6 sm:px-12 lg:px-24 xl:px-32 text-center mb-10 lg:mb-14 ${isVisible.header ? 'animate-fade-in-zoom' : 'opacity-0'}`}
+        style={{ position: 'relative', zIndex: 1 }}
+      >
         <h2
           className="mb-3"
           style={{
@@ -61,7 +136,11 @@ const SkillzzaEcosystem = () => {
       </div>
 
       {/* Ecosystem Diagram - Using the actual design SVG */}
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12" style={{ position: 'relative', zIndex: 1 }}>
+      <div 
+        ref={diagramRef}
+        className={`max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 ${isVisible.diagram ? 'animate-slide-in-from-bottom' : 'opacity-0'}`}
+        style={{ position: 'relative', zIndex: 1 }}
+      >
         <img
           src="/img/Group 37832.svg"
           alt="Skillzza Ecosystem diagram showing five interconnected platforms: The Potential Meter (AI Skill Engine), Xperience Platform (Immersive Learning Labs), Talent Transformation (Career Mobility Pipeline), AI HackNex (Talent Marketplace), and Hirenest (Career Mobility Pipeline). Bottom process flow shows Assessment, Mentoring, Simulations, Project Showcase, and Get Hired."
@@ -72,6 +151,7 @@ const SkillzzaEcosystem = () => {
         />
       </div>
     </section>
+    </>
   );
 };
 
