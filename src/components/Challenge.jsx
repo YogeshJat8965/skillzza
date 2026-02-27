@@ -2,19 +2,20 @@ import React, { useState, useEffect, useRef } from 'react';
 
 const Challenge = () => {
   const [isVisible, setIsVisible] = useState({
-    title: false,
-    subtitle: false,
-    description: false,
     image: false,
     card1: false,
     card2: false,
     card3: false,
     card4: false,
   });
+
+  const [counters, setCounters] = useState({
+    card1: 0,
+    card2: 0,
+    card3: 0,
+    card4: 0,
+  });
   
-  const titleRef = useRef(null);
-  const subtitleRef = useRef(null);
-  const descriptionRef = useRef(null);
   const imageRef = useRef(null);
   const card1Ref = useRef(null);
   const card2Ref = useRef(null);
@@ -38,9 +39,6 @@ const Challenge = () => {
     const observer = new IntersectionObserver(observerCallback, observerOptions);
 
     const refs = [
-      { ref: titleRef, type: 'title' },
-      { ref: subtitleRef, type: 'subtitle' },
-      { ref: descriptionRef, type: 'description' },
       { ref: imageRef, type: 'image' },
       { ref: card1Ref, type: 'card1' },
       { ref: card2Ref, type: 'card2' },
@@ -55,38 +53,64 @@ const Challenge = () => {
       }
     });
 
-    return () =>observer.disconnect();
+    return () => observer.disconnect();
   }, []);
+
+  // Animate counters when cards become visible
+  useEffect(() => {
+    const targetValues = {
+      card1: 69,
+      card2: 74,
+      card3: 59,
+      card4: 63,
+    };
+
+    const animateCounter = (cardKey, targetValue) => {
+      if (!isVisible[cardKey]) {
+        // Reset counter when card leaves viewport
+        setCounters(prev => ({ ...prev, [cardKey]: 0 }));
+        return;
+      }
+
+      const duration = 2000; // 2 seconds
+      const steps = 60;
+      const increment = targetValue / steps;
+      const stepDuration = duration / steps;
+      let currentStep = 0;
+
+      const timer = setInterval(() => {
+        currentStep++;
+        if (currentStep >= steps) {
+          setCounters(prev => ({ ...prev, [cardKey]: targetValue }));
+          clearInterval(timer);
+        } else {
+          setCounters(prev => ({ ...prev, [cardKey]: Math.floor(increment * currentStep) }));
+        }
+      }, stepDuration);
+
+      return () => clearInterval(timer);
+    };
+
+    const cleanup1 = animateCounter('card1', targetValues.card1);
+    const cleanup2 = animateCounter('card2', targetValues.card2);
+    const cleanup3 = animateCounter('card3', targetValues.card3);
+    const cleanup4 = animateCounter('card4', targetValues.card4);
+
+    return () => {
+      cleanup1 && cleanup1();
+      cleanup2 && cleanup2();
+      cleanup3 && cleanup3();
+      cleanup4 && cleanup4();
+    };
+  }, [isVisible.card1, isVisible.card2, isVisible.card3, isVisible.card4]);
 
   return (
     <>
       <style>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(40px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        @keyframes fadeInDown {
-          from {
-            opacity: 0;
-            transform: translateY(-40px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
         @keyframes slideInLeft {
           from {
             opacity: 0;
-            transform: translateX(-80px);
+            transform: translateX(-150px);
           }
           to {
             opacity: 1;
@@ -97,7 +121,7 @@ const Challenge = () => {
         @keyframes slideInFromRight {
           from {
             opacity: 0;
-            transform: translateX(120px);
+            transform: translateX(400px);
           }
           to {
             opacity: 1;
@@ -105,59 +129,28 @@ const Challenge = () => {
           }
         }
         
-        @keyframes scaleIn {
-          from {
-            opacity: 0;
-            transform: scale(0.8);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-        
-        .animate-fade-in-up {
-          animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
-        
-        .animate-fade-in-down {
-          animation: fadeInDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
-        
         .animate-slide-in-left {
-          animation: slideInLeft 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+          animation: slideInLeft 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
         
         .animate-slide-from-right {
-          animation: slideInFromRight 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-        }
-        
-        .animate-scale-in {
-          animation: scaleIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
-        
-        .delay-100 {
-          animation-delay: 0.1s;
-        }
-        
-        .delay-200 {
-          animation-delay: 0.2s;
+          animation: slideInFromRight 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
         
         .delay-300 {
           animation-delay: 0.3s;
         }
         
-        .delay-400 {
-          animation-delay: 0.4s;
-        }
-        
-        .delay-500 {
-          animation-delay: 0.5s;
-        }
-        
         .delay-600 {
           animation-delay: 0.6s;
+        }
+        
+        .delay-900 {
+          animation-delay: 0.9s;
+        }
+        
+        .delay-1200 {
+          animation-delay: 1.2s;
         }
       `}</style>
     <section 
@@ -174,34 +167,31 @@ const Challenge = () => {
       <div className="max-w-[1920px] mx-auto px-12 lg:px-24 xl:px-32">
         <div className="text-center mb-12 lg:mb-16">
           <h2 
-            ref={titleRef}
-            className={`mb-4 ${isVisible.title ? 'animate-fade-in-down' : 'opacity-0'}`}
             style={{
               fontFamily: "'DM Sans', sans-serif",
               fontSize: '48px',
               fontWeight: 700,
               lineHeight: '1.2',
               color: '#0F1114',
+              marginBottom: '16px',
             }}
           >
             The Challenge
           </h2>
           <h3 
-            ref={subtitleRef}
-            className={`mb-6 ${isVisible.subtitle ? 'animate-fade-in-up delay-100' : 'opacity-0'}`}
             style={{
               fontFamily: "'DM Sans', sans-serif",
               fontSize: '42px',
               fontWeight: 700,
               lineHeight: '1.2',
               color: '#0F1114',
+              marginBottom: '24px',
             }}
           >
             A Widening Skill Gap
           </h3>
           <p 
-            ref={descriptionRef}
-            className={`max-w-4xl mx-auto ${isVisible.description ? 'animate-scale-in delay-200' : 'opacity-0'}`}
+            className="max-w-4xl mx-auto"
             style={{
               fontFamily: "'Lato', sans-serif",
               fontSize: '18px',
@@ -269,7 +259,7 @@ const Challenge = () => {
                   marginBottom: '14px',
                 }}
               >
-                69%
+                {counters.card1}%
               </h4>
               <h5 
                 style={{
@@ -299,7 +289,7 @@ const Challenge = () => {
             {/* Card 2: 74% */}
             <div 
               ref={card2Ref}
-              className={isVisible.card2 ? 'animate-slide-from-right delay-200' : 'opacity-0'}
+              className={isVisible.card2 ? 'animate-slide-from-right delay-300' : 'opacity-0'}
               style={{
                 background: '#D02C2F 0% 0% no-repeat padding-box',
                 borderRadius: '8px',
@@ -324,7 +314,7 @@ const Challenge = () => {
                   marginBottom: '14px',
                 }}
               >
-                74%
+                {counters.card2}%
               </h4>
               <h5 
                 style={{
@@ -354,7 +344,7 @@ const Challenge = () => {
             {/* Card 3: 59% */}
             <div 
               ref={card3Ref}
-              className={isVisible.card3 ? 'animate-slide-from-right delay-400' : 'opacity-0'}
+              className={isVisible.card3 ? 'animate-slide-from-right delay-600' : 'opacity-0'}
               style={{
                 background: '#D02C2F 0% 0% no-repeat padding-box',
                 borderRadius: '8px',
@@ -379,7 +369,7 @@ const Challenge = () => {
                   marginBottom: '14px',
                 }}
               >
-                59%
+                {counters.card3}%
               </h4>
               <h5 
                 style={{
@@ -409,7 +399,7 @@ const Challenge = () => {
             {/* Card 4: 63% */}
             <div 
               ref={card4Ref}
-              className={isVisible.card4 ? 'animate-slide-from-right delay-600' : 'opacity-0'}
+              className={isVisible.card4 ? 'animate-slide-from-right delay-900' : 'opacity-0'}
               style={{
                 background: '#D02C2F 0% 0% no-repeat padding-box',
                 borderRadius: '8px',
@@ -434,7 +424,7 @@ const Challenge = () => {
                   marginBottom: '14px',
                 }}
               >
-                63%
+                {counters.card4}%
               </h4>
               <h5 
                 style={{

@@ -18,7 +18,7 @@ const OurPartners = () => {
   ];
 
   return (
-    <section className="w-full bg-white py-12 sm:py-16 lg:py-20 overflow-hidden">
+    <section className="w-full bg-white py-12 sm:py-16 lg:py-20 overflow-hidden relative">
       <div className="max-w-[1920px] mx-auto px-4 sm:px-6 md:px-8 lg:px-24 xl:px-32">
         {/* Heading */}
         <div className="text-center mb-8 sm:mb-12">
@@ -29,28 +29,40 @@ const OurPartners = () => {
             Take your skill transformation to the next level.
           </p>
         </div>
+      </div>
 
-        {/* Row 1 — Scrolling Right to Left */}
-        <div className="relative mb-6 sm:mb-8 h-[70px] sm:h-[90px] lg:h-[112px]">
-          <div className="absolute flex gap-4 sm:gap-6 lg:gap-8 animate-[scrollRTL_30s_linear_infinite]">
-            {[...firstRowPartners, ...firstRowPartners, ...firstRowPartners].map((partner, i) => (
-              <div key={`r1-${i}`} className="w-[180px] sm:w-[230px] lg:w-[293px] h-[70px] sm:h-[90px] lg:h-[112px] flex items-center justify-center flex-shrink-0">
-                <img src={partner.img} alt={partner.alt} className="w-full h-full object-contain" />
-              </div>
-            ))}
-          </div>
+      {/* Row 1 — Scrolling Right to Left */}
+      <div className="relative mb-6 sm:mb-8 h-[70px] sm:h-[90px] lg:h-[112px] w-full">
+        <div className="absolute flex gap-4 sm:gap-6 lg:gap-8 animate-[scrollRTL_30s_linear_infinite]">
+          {[...firstRowPartners, ...firstRowPartners, ...firstRowPartners].map((partner, i) => (
+            <div key={`r1-${i}`} className="w-[180px] sm:w-[230px] lg:w-[293px] h-[70px] sm:h-[90px] lg:h-[112px] flex items-center justify-center flex-shrink-0">
+              <img src={partner.img} alt={partner.alt} className="w-full h-full object-contain" />
+            </div>
+          ))}
         </div>
+        {/* Left Fade - extends to viewport edge */}
+        <div className="absolute left-0 top-0 w-48 sm:w-56 lg:w-64 h-full pointer-events-none z-10" 
+             style={{ background: 'linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%)' }}></div>
+        {/* Right Fade - extends to viewport edge */}
+        <div className="absolute right-0 top-0 w-48 sm:w-56 lg:w-64 h-full pointer-events-none z-10" 
+             style={{ background: 'linear-gradient(to left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%)' }}></div>
+      </div>
 
-        {/* Row 2 — Scrolling Left to Right */}
-        <div className="relative h-[70px] sm:h-[90px] lg:h-[112px]">
-          <div className="absolute flex gap-4 sm:gap-6 lg:gap-8 animate-[scrollLTR_30s_linear_infinite]">
-            {[...secondRowPartners, ...secondRowPartners, ...secondRowPartners].map((partner, i) => (
-              <div key={`r2-${i}`} className="w-[180px] sm:w-[230px] lg:w-[293px] h-[70px] sm:h-[90px] lg:h-[112px] flex items-center justify-center flex-shrink-0">
-                <img src={partner.img} alt={partner.alt} className="w-full h-full object-contain" />
-              </div>
-            ))}
-          </div>
+      {/* Row 2 — Scrolling Left to Right */}
+      <div className="relative h-[70px] sm:h-[90px] lg:h-[112px] w-full">
+        <div className="absolute flex gap-4 sm:gap-6 lg:gap-8 animate-[scrollLTR_30s_linear_infinite]">
+          {[...secondRowPartners, ...secondRowPartners, ...secondRowPartners].map((partner, i) => (
+            <div key={`r2-${i}`} className="w-[180px] sm:w-[230px] lg:w-[293px] h-[70px] sm:h-[90px] lg:h-[112px] flex items-center justify-center flex-shrink-0">
+              <img src={partner.img} alt={partner.alt} className="w-full h-full object-contain" />
+            </div>
+          ))}
         </div>
+        {/* Left Fade - extends to viewport edge */}
+        <div className="absolute left-0 top-0 w-48 sm:w-56 lg:w-64 h-full pointer-events-none z-10" 
+             style={{ background: 'linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%)' }}></div>
+        {/* Right Fade - extends to viewport edge */}
+        <div className="absolute right-0 top-0 w-48 sm:w-56 lg:w-64 h-full pointer-events-none z-10" 
+             style={{ background: 'linear-gradient(to left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%)' }}></div>
       </div>
 
       <style>{`

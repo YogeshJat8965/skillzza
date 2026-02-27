@@ -93,7 +93,33 @@ const Hero = () => {
           50% { transform: rotate(2deg); }
         }
         
+        @keyframes scrollLeft {
+          0% {
+            transform: translateX(100%);
+          }
+          100% {
+            transform: translateX(-100%);
+          }
+        }
+        
+        .scroll-container {
+          overflow: hidden;
+          position: relative;
+          width: 100%;
+        }
+        
+        .scroll-content {
+          display: flex;
+          animation: scrollLeft 30s linear infinite;
+          animation-delay: -15s;
+        }
+        
+        .scroll-content:hover {
+          animation-play-state: paused;
+        }
+        
         .animate-float {
+
           animation: float 8s ease-in-out infinite;
         }
         
@@ -148,35 +174,39 @@ const Hero = () => {
       `}</style>
       
       <section 
-        className="w-full relative overflow-hidden"
+        className="w-full relative"
         style={{
           backgroundImage: 'url(/img/Group%2037827.png)',
           backgroundPosition: 'center center',
           backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
+          backgroundSize: '100% 100%',
           minHeight: '907px',
           opacity: Math.max(1 - scrollY * 0.0015, 0),
           transition: 'opacity 0.1s ease-out',
         }}
       >
       <div 
-        className="max-w-[1920px] mx-auto px-12 lg:px-24 xl:px-32 pt-0 pb-16 lg:pb-20 relative z-10"
+        className="max-w-[1920px] mx-auto px-12 lg:px-24 xl:px-32 pt-0 relative z-10 "
+        style={{ paddingBottom: '200px' }}
       >
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12   ">
           {/* Left Side - Content */}
           <div 
-            className="flex-1 max-w-2xl"
+            className="flex-1 max-w-2xl ml-[40px] "
           >
             {/* Main Heading */}
             <h1 
               className={`mb-6 ${isLoaded ? 'animate-slide-in-left' : 'opacity-0'}`}
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: '56px',
+                fontSize: '70px',
                 fontWeight: 700,
                 lineHeight: '1.2',
+                
                 color: '#0F1114',
                 animationDelay: '0.2s',
+                marginTop: '-194px',
+                
               }}
             >
               The AI-Powered Career Engine for Tomorrow's Talent
@@ -187,7 +217,7 @@ const Hero = () => {
               className={`mb-8 ${isLoaded ? 'animate-fade-in-up' : 'opacity-0'}`}
               style={{
                 fontFamily: "'Lato', sans-serif",
-                fontSize: '18px',
+                fontSize: '24px',
                 fontWeight: 400,
                 lineHeight: '1.6',
                 color: '#71717B',
@@ -256,6 +286,395 @@ const Hero = () => {
                 animation: 'gentleRotate 6s ease-in-out infinite',
               }}
             >
+            </div>
+          </div>
+        </div>
+
+        {/* Scrolling Strips Section - Full Width */}
+        <div className="scroll-container" style={{ position: 'relative', zIndex: 30, width: '100vw', marginLeft: 'calc(-50vw + 50%)', marginTop: '-220px' }}>
+          <div className="scroll-content">
+            {/* First set of strips */}
+            <div style={{ display: 'flex', gap: '24px', paddingRight: '24px' }}>
+              {/* Strip 1 - Assessments */}
+              <div style={{ 
+                width: '606px', 
+                height: '82px', 
+                borderRadius: '8px',
+                background: 'rgba(255, 255, 255, 0.9)',
+                display: 'flex',
+                alignItems: 'center',
+                padding: '16px 24px',
+                gap: '16px',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)'
+              }}>
+                <img 
+                  src="/img/Group 37828.svg" 
+                  alt="Assessments" 
+                  style={{ 
+                    width: '50px', 
+                    height: '50px',
+                    flexShrink: 0
+                  }} 
+                />
+                <span style={{ 
+                  fontSize: '18px',
+                  fontWeight: '500',
+                  color: '#6B7280',
+                  lineHeight: '1.4'
+                }}>
+                  Discover your strengths through smart assessments
+                </span>
+              </div>
+
+              {/* Strip 2 - Simulations */}
+              <div style={{ 
+                width: '606px', 
+                height: '82px', 
+                borderRadius: '8px',
+                background: 'rgba(255, 255, 255, 0.9)',
+                display: 'flex',
+                alignItems: 'center',
+                padding: '16px 24px',
+                gap: '16px',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)'
+              }}>
+                <img 
+                  src="/img/Group 37829.svg" 
+                  alt="Simulations" 
+                  style={{ 
+                    width: '50px', 
+                    height: '50px',
+                    flexShrink: 0
+                  }} 
+                />
+                <span style={{ 
+                  fontSize: '18px',
+                  fontWeight: '500',
+                  color: '#6B7280',
+                  lineHeight: '1.4'
+                }}>
+                  Simulate real-world roles to sharpen your edge
+                </span>
+              </div>
+
+              {/* Strip 3 - Portfolio */}
+              <div style={{ 
+                width: '606px', 
+                height: '82px', 
+                borderRadius: '8px',
+                background: 'rgba(255, 255, 255, 0.9)',
+                display: 'flex',
+                alignItems: 'center',
+                padding: '16px 24px',
+                gap: '16px',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)'
+              }}>
+                <img 
+                  src="/img/Group 37830.svg" 
+                  alt="Portfolio" 
+                  style={{ 
+                    width: '50px', 
+                    height: '50px',
+                    flexShrink: 0
+                  }} 
+                />
+                <span style={{ 
+                  fontSize: '18px',
+                  fontWeight: '500',
+                  color: '#6B7280',
+                  lineHeight: '1.4'
+                }}>
+                  Build a portfolio that proves your potential
+                </span>
+              </div>
+            </div>
+
+            {/* Duplicate set for seamless loop */}
+            <div style={{ display: 'flex', gap: '24px', paddingRight: '24px' }}>
+              {/* Strip 1 - Assessments */}
+              <div style={{ 
+                width: '606px', 
+                height: '82px', 
+                borderRadius: '8px',
+                background: 'rgba(255, 255, 255, 0.9)',
+                display: 'flex',
+                alignItems: 'center',
+                padding: '16px 24px',
+                gap: '16px',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)'
+              }}>
+                <img 
+                  src="/img/Group 37828.svg" 
+                  alt="Assessments" 
+                  style={{ 
+                    width: '50px', 
+                    height: '50px',
+                    flexShrink: 0
+                  }} 
+                />
+                <span style={{ 
+                  fontSize: '18px',
+                  fontWeight: '500',
+                  color: '#6B7280',
+                  lineHeight: '1.4'
+                }}>
+                  Discover your strengths through smart assessments
+                </span>
+              </div>
+
+              {/* Strip 2 - Simulations */}
+              <div style={{ 
+                width: '606px', 
+                height: '82px', 
+                borderRadius: '8px',
+                background: 'rgba(255, 255, 255, 0.9)',
+                display: 'flex',
+                alignItems: 'center',
+                padding: '16px 24px',
+                gap: '16px',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)'
+              }}>
+                <img 
+                  src="/img/Group 37829.svg" 
+                  alt="Simulations" 
+                  style={{ 
+                    width: '50px', 
+                    height: '50px',
+                    flexShrink: 0
+                  }} 
+                />
+                <span style={{ 
+                  fontSize: '18px',
+                  fontWeight: '500',
+                  color: '#6B7280',
+                  lineHeight: '1.4'
+                }}>
+                  Simulate real-world roles to sharpen your edge
+                </span>
+              </div>
+
+              {/* Strip 3 - Portfolio */}
+              <div style={{ 
+                width: '606px', 
+                height: '82px', 
+                borderRadius: '8px',
+                background: 'rgba(255, 255, 255, 0.9)',
+                display: 'flex',
+                alignItems: 'center',
+                padding: '16px 24px',
+                gap: '16px',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)'
+              }}>
+                <img 
+                  src="/img/Group 37830.svg" 
+                  alt="Portfolio" 
+                  style={{ 
+                    width: '50px', 
+                    height: '50px',
+                    flexShrink: 0
+                  }} 
+                />
+                <span style={{ 
+                  fontSize: '18px',
+                  fontWeight: '500',
+                  color: '#6B7280',
+                  lineHeight: '1.4'
+                }}>
+                  Build a portfolio that proves your potential
+                </span>
+              </div>
+            </div>
+
+            {/* Third set for seamless loop */}
+            <div style={{ display: 'flex', gap: '24px', paddingRight: '24px' }}>
+              {/* Strip 1 - Assessments */}
+              <div style={{ 
+                width: '606px', 
+                height: '82px', 
+                borderRadius: '8px',
+                background: 'rgba(255, 255, 255, 0.9)',
+                display: 'flex',
+                alignItems: 'center',
+                padding: '16px 24px',
+                gap: '16px',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)'
+              }}>
+                <img 
+                  src="/img/Group 37828.svg" 
+                  alt="Assessments" 
+                  style={{ 
+                    width: '50px', 
+                    height: '50px',
+                    flexShrink: 0
+                  }} 
+                />
+                <span style={{ 
+                  fontSize: '18px',
+                  fontWeight: '500',
+                  color: '#6B7280',
+                  lineHeight: '1.4'
+                }}>
+                  Discover your strengths through smart assessments
+                </span>
+              </div>
+
+              {/* Strip 2 - Simulations */}
+              <div style={{ 
+                width: '606px', 
+                height: '82px', 
+                borderRadius: '8px',
+                background: 'rgba(255, 255, 255, 0.9)',
+                display: 'flex',
+                alignItems: 'center',
+                padding: '16px 24px',
+                gap: '16px',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)'
+              }}>
+                <img 
+                  src="/img/Group 37829.svg" 
+                  alt="Simulations" 
+                  style={{ 
+                    width: '50px', 
+                    height: '50px',
+                    flexShrink: 0
+                  }} 
+                />
+                <span style={{ 
+                  fontSize: '18px',
+                  fontWeight: '500',
+                  color: '#6B7280',
+                  lineHeight: '1.4'
+                }}>
+                  Simulate real-world roles to sharpen your edge
+                </span>
+              </div>
+
+              {/* Strip 3 - Portfolio */}
+              <div style={{ 
+                width: '606px', 
+                height: '82px', 
+                borderRadius: '8px',
+                background: 'rgba(255, 255, 255, 0.9)',
+                display: 'flex',
+                alignItems: 'center',
+                padding: '16px 24px',
+                gap: '16px',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)'
+              }}>
+                <img 
+                  src="/img/Group 37830.svg" 
+                  alt="Portfolio" 
+                  style={{ 
+                    width: '50px', 
+                    height: '50px',
+                    flexShrink: 0
+                  }} 
+                />
+                <span style={{ 
+                  fontSize: '18px',
+                  fontWeight: '500',
+                  color: '#6B7280',
+                  lineHeight: '1.4'
+                }}>
+                  Build a portfolio that proves your potential
+                </span>
+              </div>
+            </div>
+
+            {/* Fourth set for seamless loop */}
+            <div style={{ display: 'flex', gap: '24px', paddingRight: '24px' }}>
+              {/* Strip 1 - Assessments */}
+              <div style={{ 
+                width: '606px', 
+                height: '82px', 
+                borderRadius: '8px',
+                background: 'rgba(255, 255, 255, 0.9)',
+                display: 'flex',
+                alignItems: 'center',
+                padding: '16px 24px',
+                gap: '16px',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)'
+              }}>
+                <img 
+                  src="/img/Group 37828.svg" 
+                  alt="Assessments" 
+                  style={{ 
+                    width: '50px', 
+                    height: '50px',
+                    flexShrink: 0
+                  }} 
+                />
+                <span style={{ 
+                  fontSize: '18px',
+                  fontWeight: '500',
+                  color: '#6B7280',
+                  lineHeight: '1.4'
+                }}>
+                  Discover your strengths through smart assessments
+                </span>
+              </div>
+
+              {/* Strip 2 - Simulations */}
+              <div style={{ 
+                width: '606px', 
+                height: '82px', 
+                borderRadius: '8px',
+                background: 'rgba(255, 255, 255, 0.9)',
+                display: 'flex',
+                alignItems: 'center',
+                padding: '16px 24px',
+                gap: '16px',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)'
+              }}>
+                <img 
+                  src="/img/Group 37829.svg" 
+                  alt="Simulations" 
+                  style={{ 
+                    width: '50px', 
+                    height: '50px',
+                    flexShrink: 0
+                  }} 
+                />
+                <span style={{ 
+                  fontSize: '18px',
+                  fontWeight: '500',
+                  color: '#6B7280',
+                  lineHeight: '1.4'
+                }}>
+                  Simulate real-world roles to sharpen your edge
+                </span>
+              </div>
+
+              {/* Strip 3 - Portfolio */}
+              <div style={{ 
+                width: '606px', 
+                height: '82px', 
+                borderRadius: '8px',
+                background: 'rgba(255, 255, 255, 0.9)',
+                display: 'flex',
+                alignItems: 'center',
+                padding: '16px 24px',
+                gap: '16px',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)'
+              }}>
+                <img 
+                  src="/img/Group 37830.svg" 
+                  alt="Portfolio" 
+                  style={{ 
+                    width: '50px', 
+                    height: '50px',
+                    flexShrink: 0
+                  }} 
+                />
+                <span style={{ 
+                  fontSize: '18px',
+                  fontWeight: '500',
+                  color: '#6B7280',
+                  lineHeight: '1.4'
+                }}>
+                  Build a portfolio that proves your potential
+                </span>
+              </div>
             </div>
           </div>
         </div>

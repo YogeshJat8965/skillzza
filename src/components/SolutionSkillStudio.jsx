@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 
 const SolutionSkillStudio = () => {
     const [activeTab, setActiveTab] = useState(0);
+    const [scaledButton, setScaledButton] = useState(0);
     const [isVisible, setIsVisible] = useState({
         title: false,
         tabs: false,
@@ -11,6 +12,15 @@ const SolutionSkillStudio = () => {
     const titleRef = useRef(null);
     const tabsRef = useRef(null);
     const contentRef = useRef(null);
+
+    // Auto-scale buttons one by one
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setScaledButton((prev) => (prev + 1) % 5);
+        }, 1500); // Change button every 1.5 seconds
+
+        return () => clearInterval(interval);
+    }, []);
 
     useEffect(() => {
         const observerOptions = {
@@ -167,6 +177,15 @@ const SolutionSkillStudio = () => {
                     }
                 }
                 
+                @keyframes buttonScale {
+                    0%, 100% {
+                        transform: scale(1);
+                    }
+                    50% {
+                        transform: scale(1.15);
+                    }
+                }
+                
                 .animate-fade-in-down {
                     animation: fadeInDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
                 }
@@ -178,40 +197,17 @@ const SolutionSkillStudio = () => {
                 .animate-slide-in-up {
                     animation: slideInUp 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
                 }
-                                .tab-btn {
+                
+                .tab-btn {
                     position: relative;
-                    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                    overflow: hidden;
+                    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                                box-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1);
                 }
                 
-                .tab-btn::before {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0));
-                    opacity: 0;
-                    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                    pointer-events: none;
-                }
-                
-                .tab-btn:hover {
-                    transform: translateY(-4px);
-                    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12), 
-                                0 6px 12px rgba(0, 0, 0, 0.08),
-                                0 0 0 1px rgba(113, 53, 147, 0.1);
-                    filter: brightness(1.05);
-                }
-                
-                .tab-btn:hover::before {
-                    opacity: 1;
-                }
-                
-                .tab-btn:active {
-                    transform: translateY(-2px);
-                    transition-duration: 0.1s;
+                .tab-btn-scaled {
+                    animation: buttonScale 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+                    box-shadow: 0 12px 28px rgba(113, 53, 147, 0.25), 
+                                0 6px 12px rgba(113, 53, 147, 0.15);
                 }
                 
                 .tab-btn-active {
@@ -243,7 +239,7 @@ const SolutionSkillStudio = () => {
                 className={`max-w-[1580px] mx-auto px-4 sm:px-8 lg:px-[173px] ${isVisible.tabs ? 'animate-scale-in-up' : 'opacity-0'}`}
             >
                 <div
-                    className="flex flex-wrap justify-center gap-3 sm:gap-4 py-4 px-4 sm:px-6"
+                    className="flex flex-wrap justify-center gap-5 sm:gap-6 py-4 px-4 sm:px-6"
                     style={{
                         background: '#F4F4F5',
                         mixBlendMode: 'multiply',
@@ -254,7 +250,7 @@ const SolutionSkillStudio = () => {
                         <button
                             key={index}
                             onClick={() => setActiveTab(index)}
-                            className={`tab-btn transition-all duration-300 ${activeTab === index ? 'tab-btn-active' : ''}`}
+                            className={`tab-btn transition-all duration-300 ${activeTab === index ? 'tab-btn-active' : ''} ${scaledButton === index ? 'tab-btn-scaled' : ''}`}
                             style={{
                                 fontFamily: "'DM Sans', sans-serif",
                                 fontSize: 'clamp(13px, 1.5vw, 16px)',
@@ -264,7 +260,7 @@ const SolutionSkillStudio = () => {
                                 border: 'none',
                                 background: activeTab === index ? activeTabColor : tabBgColors[index],
                                 color: activeTab === index ? '#FFFFFF' : '#4B5563',
-                                cursor: 'pointer',
+                                cursor: 'default',
                                 whiteSpace: 'nowrap',
                                 letterSpacing: '-0.025em',
                             }}
