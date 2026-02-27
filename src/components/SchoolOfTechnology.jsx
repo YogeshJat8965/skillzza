@@ -9,7 +9,7 @@ const SchoolOfTechnology = () => {
     expertiseHeading: false,
     tags: false,
   });
-  
+
   const imageRef = useRef(null);
   const headingRef = useRef(null);
   const subheadingRef = useRef(null);
@@ -26,7 +26,6 @@ const SchoolOfTechnology = () => {
     const observerCallback = (entries) => {
       entries.forEach(entry => {
         const elementType = entry.target.dataset.elementType;
-        // Toggle visibility - animations run every time element enters viewport
         setIsVisible(prev => ({ ...prev, [elementType]: entry.isIntersecting }));
       });
     };
@@ -120,162 +119,193 @@ const SchoolOfTechnology = () => {
         .delay-300 { animation-delay: 0.3s; }
         .delay-400 { animation-delay: 0.4s; }
         .delay-500 { animation-delay: 0.5s; }
+
+        @media (max-width: 767px) {
+          .sot-image {
+            width: 100% !important;
+            height: 300px !important;
+            background-size: cover !important;
+            background-position: center !important;
+          }
+          .sot-heading {
+            font-size: 28px !important;
+          }
+          .sot-subheading {
+            font-size: 18px !important;
+          }
+          .sot-description {
+            font-size: 15px !important;
+            margin-bottom: 24px !important;
+          }
+          .sot-expertise-heading {
+            font-size: 20px !important;
+          }
+          .sot-tag {
+            padding: 8px 16px !important;
+            font-size: 13px !important;
+          }
+        }
       `}</style>
-    <section className="w-full bg-white pt-0 pb-16 lg:pb-20">
-      <div className="max-w-[1920px] mx-auto">
-        <div className="flex items-center gap-12">
-          {/* Left Side - Image */}
-          <div 
-            ref={imageRef}
-            className={isVisible.image ? 'animate-slide-in-left' : 'opacity-0'}
-            style={{
-              left: '0px',
-              width: '650px',
-              height: '665px',
-              background: 'transparent url(/img/Group%2037833.png) 0% 0% no-repeat padding-box',
-              backgroundSize: 'contain',
-              opacity: 1,
-            }}
-          >
-          </div>
-
-          {/* Right Side - Content */}
-          <div className="flex-1 px-12 lg:px-24 xl:px-32">
-            {/* Main Heading */}
-            <h2 
-              ref={headingRef}
-              className={`mb-4 ${isVisible.heading ? 'animate-fade-in-right' : 'opacity-0'}`}
+      <section className="w-full bg-white pt-0 pb-16 lg:pb-20">
+        <div className="max-w-[1920px] mx-auto">
+          <div className="flex flex-col md:flex-row items-center gap-6 md:gap-12">
+            {/* Left Side - Image */}
+            <div
+              ref={imageRef}
+              className={`sot-image ${isVisible.image ? 'animate-slide-in-left' : 'opacity-0'}`}
               style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: '48px',
-                fontWeight: 700,
-                lineHeight: '1.2',
-                color: '#0F1114',
+                left: '0px',
+                width: '650px',
+                height: '665px',
+                background: 'transparent url(/img/Group%2037833.png) 0% 0% no-repeat padding-box',
+                backgroundSize: 'contain',
+                opacity: 1,
               }}
             >
-              School of Technology
-            </h2>
+            </div>
 
-            {/* Subheading */}
-            <h3 
-              ref={subheadingRef}
-              className={`mb-6 ${isVisible.subheading ? 'animate-fade-in-right delay-100' : 'opacity-0'}`}
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: '24px',
-                fontWeight: 600,
-                lineHeight: '1.2',
-                color: '#71717B',
-              }}
-            >
-              Elevate Your Expertise with Future-Ready Skills
-            </h3>
+            {/* Right Side - Content */}
+            <div className="flex-1 px-4 sm:px-6 md:px-8 lg:px-24 xl:px-32">
+              {/* Main Heading */}
+              <h2
+                ref={headingRef}
+                className={`sot-heading mb-4 ${isVisible.heading ? 'animate-fade-in-right' : 'opacity-0'}`}
+                style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: '48px',
+                  fontWeight: 700,
+                  lineHeight: '1.2',
+                  color: '#0F1114',
+                }}
+              >
+                School of Technology
+              </h2>
 
-            {/* Description */}
-            <p 
-              ref={descriptionRef}
-              className={`mb-12 ${isVisible.description ? 'animate-fade-in-up delay-200' : 'opacity-0'}`}
-              style={{
-                fontFamily: "'Lato', sans-serif",
-                fontSize: '18px',
-                fontWeight: 400,
-                lineHeight: '1.6',
-                color: '#71717B',
-              }}
-            >
-              Experience the perfect blend of theoretical knowledge and practical application. Our programs don't just teach you to adapt to change, they position you to lead transformation in your field.
-            </p>
+              {/* Subheading */}
+              <h3
+                ref={subheadingRef}
+                className={`sot-subheading mb-6 ${isVisible.subheading ? 'animate-fade-in-right delay-100' : 'opacity-0'}`}
+                style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: '24px',
+                  fontWeight: 600,
+                  lineHeight: '1.2',
+                  color: '#71717B',
+                }}
+              >
+                Elevate Your Expertise with Future-Ready Skills
+              </h3>
 
-            {/* Areas of Expertise */}
-            <h4 
-              ref={expertiseHeadingRef}
-              className={`mb-6 ${isVisible.expertiseHeading ? 'animate-fade-in-right delay-300' : 'opacity-0'}`}
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: '24px',
-                fontWeight: 700,
-                lineHeight: '1.2',
-                color: '#0F1114',
-              }}
-            >
-              Areas of Expertise
-            </h4>
+              {/* Description */}
+              <p
+                ref={descriptionRef}
+                className={`sot-description mb-12 ${isVisible.description ? 'animate-fade-in-up delay-200' : 'opacity-0'}`}
+                style={{
+                  fontFamily: "'Lato', sans-serif",
+                  fontSize: '18px',
+                  fontWeight: 400,
+                  lineHeight: '1.6',
+                  color: '#71717B',
+                }}
+              >
+                Experience the perfect blend of theoretical knowledge and practical application. Our programs don't just teach you to adapt to change, they position you to lead transformation in your field.
+              </p>
 
-            {/* Tags/Pills */}
-            <div 
-              ref={tagsRef}
-              className={`flex flex-wrap gap-4 ${isVisible.tags ? 'animate-pop-in delay-400' : 'opacity-0'}`}
-            >
-              <div 
+              {/* Areas of Expertise */}
+              <h4
+                ref={expertiseHeadingRef}
+                className={`sot-expertise-heading mb-6 ${isVisible.expertiseHeading ? 'animate-fade-in-right delay-300' : 'opacity-0'}`}
                 style={{
-                  background: '#D4EDFA',
-                  borderRadius: '25px',
-                  padding: '12px 24px',
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '16px',
-                  fontWeight: 500,
+                  fontSize: '24px',
+                  fontWeight: 700,
+                  lineHeight: '1.2',
                   color: '#0F1114',
                 }}
               >
-                AI & Quantum
-              </div>
-              <div 
-                style={{
-                  background: '#D4EDFA',
-                  borderRadius: '25px',
-                  padding: '12px 24px',
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '16px',
-                  fontWeight: 500,
-                  color: '#0F1114',
-                }}
+                Areas of Expertise
+              </h4>
+
+              {/* Tags/Pills */}
+              <div
+                ref={tagsRef}
+                className={`flex flex-wrap gap-3 md:gap-4 ${isVisible.tags ? 'animate-pop-in delay-400' : 'opacity-0'}`}
               >
-                Sustainability & Climate Action
-              </div>
-              <div 
-                style={{
-                  background: '#D4EDFA',
-                  borderRadius: '25px',
-                  padding: '12px 24px',
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '16px',
-                  fontWeight: 500,
-                  color: '#0F1114',
-                }}
-              >
-                Aerial Intelligence
-              </div>
-              <div 
-                style={{
-                  background: '#D4EDFA',
-                  borderRadius: '25px',
-                  padding: '12px 24px',
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '16px',
-                  fontWeight: 500,
-                  color: '#0F1114',
-                }}
-              >
-                Design Thinking
-              </div>
-              <div 
-                style={{
-                  background: '#D4EDFA',
-                  borderRadius: '25px',
-                  padding: '12px 24px',
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: '16px',
-                  fontWeight: 500,
-                  color: '#0F1114',
-                }}
-              >
-                EV & E-Mobility
+                <div
+                  className="sot-tag"
+                  style={{
+                    background: '#D4EDFA',
+                    borderRadius: '25px',
+                    padding: '12px 24px',
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: '16px',
+                    fontWeight: 500,
+                    color: '#0F1114',
+                  }}
+                >
+                  AI & Quantum
+                </div>
+                <div
+                  className="sot-tag"
+                  style={{
+                    background: '#D4EDFA',
+                    borderRadius: '25px',
+                    padding: '12px 24px',
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: '16px',
+                    fontWeight: 500,
+                    color: '#0F1114',
+                  }}
+                >
+                  Sustainability & Climate Action
+                </div>
+                <div
+                  className="sot-tag"
+                  style={{
+                    background: '#D4EDFA',
+                    borderRadius: '25px',
+                    padding: '12px 24px',
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: '16px',
+                    fontWeight: 500,
+                    color: '#0F1114',
+                  }}
+                >
+                  Aerial Intelligence
+                </div>
+                <div
+                  className="sot-tag"
+                  style={{
+                    background: '#D4EDFA',
+                    borderRadius: '25px',
+                    padding: '12px 24px',
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: '16px',
+                    fontWeight: 500,
+                    color: '#0F1114',
+                  }}
+                >
+                  Design Thinking
+                </div>
+                <div
+                  className="sot-tag"
+                  style={{
+                    background: '#D4EDFA',
+                    borderRadius: '25px',
+                    padding: '12px 24px',
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: '16px',
+                    fontWeight: 500,
+                    color: '#0F1114',
+                  }}
+                >
+                  EV & E-Mobility
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
     </>
   );
 };

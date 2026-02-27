@@ -8,7 +8,7 @@ const SolutionSkillStudio = () => {
         tabs: false,
         content: false,
     });
-    
+
     const titleRef = useRef(null);
     const tabsRef = useRef(null);
     const contentRef = useRef(null);
@@ -17,7 +17,7 @@ const SolutionSkillStudio = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setScaledButton((prev) => (prev + 1) % 5);
-        }, 1500); // Change button every 1.5 seconds
+        }, 1500);
 
         return () => clearInterval(interval);
     }, []);
@@ -31,7 +31,6 @@ const SolutionSkillStudio = () => {
         const observerCallback = (entries) => {
             entries.forEach(entry => {
                 const elementType = entry.target.dataset.elementType;
-                // Toggle visibility - animations run every time element enters viewport
                 setIsVisible(prev => ({ ...prev, [elementType]: entry.isIntersecting }));
             });
         };
@@ -131,20 +130,21 @@ const SolutionSkillStudio = () => {
 
     // Tab background colors (inactive state)
     const tabBgColors = [
-        '#F4E4CD',  // warm beige
-        '#F4E4CD',  // warm beige
-        '#D8D6D6',  // light gray
-        '#F7C9C9',  // light pink
-        '#B6DFF5',  // light blue
+        '#F4E4CD',
+        '#F4E4CD',
+        '#D8D6D6',
+        '#F7C9C9',
+        '#B6DFF5',
     ];
 
     // Active tab color
     const activeTabColor = '#713593';
 
     return (
-        <section className="w-full pt-24 lg:pt-32 pb-15" style={{ background: '#FFFFFF' }}>
+        <section className="w-full pt-16 md:pt-24 lg:pt-32 pb-15" style={{ background: '#FFFFFF' }}>
             {/* Hover style for tab buttons */}
-            <style>{`                @keyframes fadeInDown {
+            <style>{`
+                @keyframes fadeInDown {
                     from {
                         opacity: 0;
                         transform: translateY(-40px);
@@ -214,16 +214,39 @@ const SolutionSkillStudio = () => {
                     box-shadow: 0 8px 16px rgba(113, 53, 147, 0.25),
                                 0 4px 8px rgba(113, 53, 147, 0.15);
                 }
+
+                @media (max-width: 767px) {
+                  .sss-tab-btn {
+                    font-size: 12px !important;
+                    padding: 8px 14px !important;
+                  }
+                  .sss-content-box {
+                    padding: 20px 16px !important;
+                  }
+                  .sss-title {
+                    font-size: 24px !important;
+                  }
+                  .sss-subtitle {
+                    font-size: 14px !important;
+                  }
+                  .sss-bullet {
+                    font-size: 13px !important;
+                  }
+                  .sss-cta {
+                    font-size: 13px !important;
+                    padding: 10px 20px !important;
+                  }
+                }
             `}</style>
             {/* Section Title */}
-            <div 
+            <div
                 ref={titleRef}
-                className={`w-[1580px] mx-auto px-6 sm:px-12 lg:px-24 xl:px-32 text-center mb-12 lg:mb-16 ${isVisible.title ? 'animate-fade-in-down' : 'opacity-0'}`}
+                className={`max-w-[1580px] w-full mx-auto px-4 sm:px-6 md:px-12 lg:px-24 xl:px-32 text-center mb-8 md:mb-12 lg:mb-16 ${isVisible.title ? 'animate-fade-in-down' : 'opacity-0'}`}
             >
                 <h2
                     style={{
                         fontFamily: "'DM Sans', sans-serif",
-                        fontSize: 'clamp(32px, 4vw, 48px)',
+                        fontSize: 'clamp(26px, 4vw, 48px)',
                         fontWeight: 700,
                         lineHeight: 1.2,
                         color: '#0F1114',
@@ -239,7 +262,7 @@ const SolutionSkillStudio = () => {
                 className={`max-w-[1580px] mx-auto px-4 sm:px-8 lg:px-[173px] ${isVisible.tabs ? 'animate-scale-in-up' : 'opacity-0'}`}
             >
                 <div
-                    className="flex flex-wrap justify-center gap-5 sm:gap-6 py-4 px-4 sm:px-6"
+                    className="flex flex-wrap justify-center gap-3 sm:gap-5 md:gap-6 py-3 md:py-4 px-3 sm:px-6"
                     style={{
                         background: '#F4F4F5',
                         mixBlendMode: 'multiply',
@@ -250,7 +273,7 @@ const SolutionSkillStudio = () => {
                         <button
                             key={index}
                             onClick={() => setActiveTab(index)}
-                            className={`tab-btn transition-all duration-300 ${activeTab === index ? 'tab-btn-active' : ''} ${scaledButton === index ? 'tab-btn-scaled' : ''}`}
+                            className={`sss-tab-btn tab-btn transition-all duration-300 ${activeTab === index ? 'tab-btn-active' : ''} ${scaledButton === index ? 'tab-btn-scaled' : ''}`}
                             style={{
                                 fontFamily: "'DM Sans', sans-serif",
                                 fontSize: 'clamp(13px, 1.5vw, 16px)',
@@ -274,10 +297,10 @@ const SolutionSkillStudio = () => {
             {/* Tab Content - Box 2 */}
             <div
                 ref={contentRef}
-                className={`max-w-[1580px] mx-auto px-4 sm:px-8 lg:px-[173px] mt-8 ${isVisible.content ? 'animate-slide-in-up' : 'opacity-0'}`}
+                className={`max-w-[1580px] mx-auto px-4 sm:px-8 lg:px-[173px] mt-6 md:mt-8 ${isVisible.content ? 'animate-slide-in-up' : 'opacity-0'}`}
             >
                 <div
-                    className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16 p-12 sm:p-16 lg:p-20"
+                    className="sss-content-box flex flex-col lg:flex-row items-center gap-8 md:gap-10 lg:gap-16 p-6 sm:p-10 md:p-12 lg:p-16 xl:p-20"
                     style={{
                         background: '#F4F4F5',
                         mixBlendMode: 'multiply',
@@ -287,7 +310,7 @@ const SolutionSkillStudio = () => {
                     {/* Left Content */}
                     <div className="flex-1 min-w-0">
                         <h3
-                            className="mb-3"
+                            className="sss-title mb-3"
                             style={{
                                 fontFamily: "'DM Sans', sans-serif",
                                 fontSize: 'clamp(28px, 3.5vw, 40px)',
@@ -301,7 +324,7 @@ const SolutionSkillStudio = () => {
                         </h3>
 
                         <p
-                            className="mb-6"
+                            className="sss-subtitle mb-6"
                             style={{
                                 fontFamily: "'DM Sans', sans-serif",
                                 fontSize: 'clamp(14px, 1.6vw, 17px)',
@@ -317,7 +340,7 @@ const SolutionSkillStudio = () => {
                             {activeData.bullets.map((bullet, i) => (
                                 <li
                                     key={i}
-                                    className="flex items-start gap-3 mb-4"
+                                    className="sss-bullet flex items-start gap-3 mb-4"
                                     style={{
                                         fontFamily: "'DM Sans', sans-serif",
                                         fontSize: 'clamp(14px, 1.5vw, 16px)',
@@ -342,9 +365,9 @@ const SolutionSkillStudio = () => {
                         </ul>
 
                         {/* CTA Buttons */}
-                        <div className="flex flex-wrap gap-4">
+                        <div className="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4">
                             <button
-                                className="transition-all duration-300 hover:opacity-90"
+                                className="sss-cta transition-all duration-300 hover:opacity-90"
                                 style={{
                                     fontFamily: "'DM Sans', sans-serif",
                                     fontSize: '15px',
@@ -361,7 +384,7 @@ const SolutionSkillStudio = () => {
                                 {activeData.cta1}
                             </button>
                             <button
-                                className="transition-all duration-300 hover:bg-purple-50"
+                                className="sss-cta transition-all duration-300 hover:bg-purple-50"
                                 style={{
                                     fontFamily: "'DM Sans', sans-serif",
                                     fontSize: '15px',

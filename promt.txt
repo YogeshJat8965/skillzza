@@ -30,5 +30,20 @@ it should runs every time not for a single time
 see the ss in this see that both ends left + right are faded i want exact same fadness in this section 
 for both sliders
 
-all things are working correctly and perfectly now i want that make a proper in depth todos to make the 
-whole website responsive for the smaller screen (mobile)
+all things are working correctly and perfectly for the bigger screens (laptop) now i want that make a proper in depth todos to make the 
+whole website responsive for the smaller screen (mobile) also the main thing to keep in mind 
+that implementing this should not affects the bigger screens flow you have to fully work for the 
+smaller screens only do not disturb the bigger screens flow
+
+see the ss in this the hero section not looking mobile responsive the heading is overlapped
+by the navbar make it proper improve the image make its size, texts and all other things to get best look for the mobile screens
+also the navbar should be come in a good smooth animations when user click to the navbar then 
+hero section should remains in its fixed position and should not scroll down side make in depth todos
+to make the hero section best and make sure the desktop screens flow should not affected by doing this
+
+
+do whatever you want to change for the mobile screen the whole website is still not ni a mobile
+responsive you can add, edit make size of images, texts change decrease do whatever you want to do so that at the end we get mobile responsive website
+and make sure it should not affects the desktops responsive flow
+
+
