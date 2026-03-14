@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const SecondNavbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
+  
   const navLinks = ['Products', 'Use Cases', 'School of Technology', 'Explore', 'Insights', 'Company'];
+  
+  const productPages = [
+    { name: 'Xperience Platform', path: '/products/xperience-platform' },
+  ];
 
   const handleToggle = () => {
     if (mobileMenuOpen) {
@@ -76,23 +83,49 @@ const SecondNavbar = () => {
       <nav className="w-full bg-white border-b border-gray-200 sticky top-0 z-50 relative">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 md:px-8 lg:px-24 xl:px-32 h-[60px] md:h-[70px] lg:h-[80px] flex justify-between items-center">
           {/* Logo */}
-          <div className="flex-shrink-0">
+          <Link to="/" className="flex-shrink-0">
             <img src="/img/SKillzza Logo 123-01.png" alt="Skillzza Logo" className="h-10 sm:h-12 lg:h-16 w-auto" />
-          </div>
+          </Link>
 
           {/* Nav Links — Desktop (lg+) */}
           <div className="hidden lg:flex items-center gap-4 xl:gap-7">
             {navLinks.map((link) => (
-              <a
+              <div 
                 key={link}
-                href="#"
-                className="text-[#0F1114] text-sm xl:text-[15px] font-normal hover:opacity-70 transition-opacity flex items-center gap-1 font-[Lato]"
+                className="relative"
+                onMouseEnter={() => link === 'Products' && setProductsDropdownOpen(true)}
+                onMouseLeave={() => link === 'Products' && setProductsDropdownOpen(false)}
               >
-                {link}
-                <svg width="10" height="7" viewBox="0 0 12 8" fill="none" className="mt-0.5">
-                  <path d="M1 1L6 6L11 1" stroke="#0F1114" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </a>
+                <a
+                  href="#"
+                  className="text-[#0F1114] text-sm xl:text-[15px] font-normal hover:opacity-70 transition-opacity flex items-center gap-1 font-[Lato]"
+                >
+                  {link}
+                  <svg width="10" height="7" viewBox="0 0 12 8" fill="none" className="mt-0.5">
+                    <path d="M1 1L6 6L11 1" stroke="#0F1114" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </a>
+                
+                {/* Products Dropdown */}
+                {link === 'Products' && productsDropdownOpen && (
+                  <div 
+                    className="absolute top-full left-0 mt-2 bg-white shadow-xl rounded-lg border border-gray-100 py-2 min-w-[200px] z-50"
+                    onMouseEnter={() => setProductsDropdownOpen(true)}
+                    onMouseLeave={() => setProductsDropdownOpen(false)}
+                  >
+                    {productPages.map((product) => (
+                      <Link
+                        key={product.path}
+                        to={product.path}
+                        className="block px-6 py-3 text-[#0F1114] text-sm font-normal hover:bg-gray-50 transition-colors font-[Lato]"
+                        onClick={() => setProductsDropdownOpen(false)}
+                      >
+                        {product.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
           </div>
 

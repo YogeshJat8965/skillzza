@@ -1,33 +1,33 @@
 import React from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import SecondNavbar from './components/SecondNavbar'
-import Hero from './components/Hero'
-import Challenge from './components/Challenge'
-import SchoolOfTechnology from './components/SchoolOfTechnology'
-import Partnerships from './components/Partnerships'
-import OurPartners from './components/OurPartners'
-import PartnerForm from './components/PartnerForm'
-import Insights from './components/Insights'
-import SkillzzaEcosystem from './components/SkillzzaEcosystem'
-import SolutionSkillStudio from './components/SolutionSkillStudio'
 import Footer from './components/Footer'
+
+// Import Pages
+import HomePage from './pages/HomePage'
+import ProductsPage from './pages/ProductsPage'
+import XperiencePlatformPage from './pages/XperiencePlatformPage'
 
 function App() {
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar />
-      <SecondNavbar />
-      <Hero />
-      <Challenge />
-      <SkillzzaEcosystem />
-      <SolutionSkillStudio />
-      <SchoolOfTechnology />
-      <Partnerships />
-      <OurPartners />
-      <PartnerForm />
-      <Insights />
-      <Footer />
-    </div>
+    <Router>
+      <div className="min-h-screen bg-white">
+        {/* Navbar stays on all pages */}
+        <Navbar />
+        <SecondNavbar />
+        
+        {/* Routes - different pages show based on URL */}
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/products/xperience-platform" element={<XperiencePlatformPage />} />
+        </Routes>
+        
+        {/* Footer stays on all pages */}
+        <Footer />
+      </div>
+    </Router>
   )
 }
 
