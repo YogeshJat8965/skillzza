@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const SecondNavbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
+  const closeTimeoutRef = useRef(null);
   
   const navLinks = ['Products', 'Use Cases', 'School of Technology', 'Explore', 'Insights', 'Company'];
   
@@ -12,15 +14,39 @@ const SecondNavbar = () => {
     { name: 'Xperience Platform', path: '/products/xperience-platform' },
   ];
 
+  const clearProductsCloseTimeout = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+  };
+
+  const openProductsDropdown = () => {
+    clearProductsCloseTimeout();
+    setProductsDropdownOpen(true);
+  };
+
+  const closeProductsDropdownWithDelay = () => {
+    clearProductsCloseTimeout();
+    closeTimeoutRef.current = setTimeout(() => {
+      setProductsDropdownOpen(false);
+      closeTimeoutRef.current = null;
+    }, 220);
+  };
+
+  useEffect(() => () => clearProductsCloseTimeout(), []);
+
   const handleToggle = () => {
     if (mobileMenuOpen) {
       setIsAnimating(true);
       setTimeout(() => {
         setMobileMenuOpen(false);
+        setMobileProductsOpen(false);
         setIsAnimating(false);
       }, 300);
     } else {
       setMobileMenuOpen(true);
+      setMobileProductsOpen(false);
     }
   };
 
@@ -93,8 +119,8 @@ const SecondNavbar = () => {
               <div 
                 key={link}
                 className="relative"
-                onMouseEnter={() => link === 'Products' && setProductsDropdownOpen(true)}
-                onMouseLeave={() => link === 'Products' && setProductsDropdownOpen(false)}
+                onMouseEnter={() => link === 'Products' && openProductsDropdown()}
+                onMouseLeave={() => link === 'Products' && closeProductsDropdownWithDelay()}
               >
                 <a
                   href="#"
@@ -110,15 +136,18 @@ const SecondNavbar = () => {
                 {link === 'Products' && productsDropdownOpen && (
                   <div 
                     className="absolute top-full left-0 mt-2 bg-white shadow-xl rounded-lg border border-gray-100 py-2 min-w-[200px] z-50"
-                    onMouseEnter={() => setProductsDropdownOpen(true)}
-                    onMouseLeave={() => setProductsDropdownOpen(false)}
+                    onMouseEnter={openProductsDropdown}
+                    onMouseLeave={closeProductsDropdownWithDelay}
                   >
                     {productPages.map((product) => (
                       <Link
                         key={product.path}
                         to={product.path}
                         className="block px-6 py-3 text-[#0F1114] text-sm font-normal hover:bg-gray-50 transition-colors font-[Lato]"
-                        onClick={() => setProductsDropdownOpen(false)}
+                        onClick={() => {
+                          clearProductsCloseTimeout();
+                          setProductsDropdownOpen(false);
+                        }}
                       >
                         {product.name}
                       </Link>
@@ -174,15 +203,59 @@ const SecondNavbar = () => {
             <div className={`lg:hidden absolute left-0 right-0 top-full bg-white z-[49] shadow-2xl border-t border-gray-100 ${isAnimating ? 'nav2-dropdown-exit' : 'nav2-dropdown-enter'}`}>
               <div className="px-4 py-2">
                 {navLinks.map((link, index) => (
-                  <a
-                    key={link}
-                    href="#"
-                    className="nav2-link-stagger block py-3 text-[#0F1114] text-base font-normal border-b border-gray-100 hover:opacity-70 transition-opacity font-[Lato]"
-                    style={{ animationDelay: `${0.05 + index * 0.05}s` }}
-                    onClick={() => { setMobileMenuOpen(false); setIsAnimating(false); }}
-                  >
-                    {link}
-                  </a>
+                  link === 'Products' ? (
+                    <div
+                      key={link}
+                      className="nav2-link-stagger border-b border-gray-100"
+                      style={{ animationDelay: `${0.05 + index * 0.05}s` }}
+                    >
+                      <button
+                        type="button"
+                        className="w-full py-3 text-[#0F1114] text-base font-normal hover:opacity-70 transition-opacity font-[Lato] flex items-center justify-between"
+                        onClick={() => setMobileProductsOpen((prev) => !prev)}
+                        aria-expanded={mobileProductsOpen}
+                      >
+                        <span>{link}</span>
+                        <svg
+                          width="12"
+                          height="8"
+                          viewBox="0 0 12 8"
+                          fill="none"
+                          className={`transition-transform duration-200 ${mobileProductsOpen ? 'rotate-180' : ''}`}
+                        >
+                          <path d="M1 1L6 6L11 1" stroke="#0F1114" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </button>
+                      {mobileProductsOpen && (
+                        <div className="pb-2">
+                          {productPages.map((product) => (
+                            <Link
+                              key={product.path}
+                              to={product.path}
+                              className="block pl-4 pr-2 py-2 text-[#0F1114] text-sm font-normal hover:opacity-70 transition-opacity font-[Lato]"
+                              onClick={() => {
+                                setMobileProductsOpen(false);
+                                setMobileMenuOpen(false);
+                                setIsAnimating(false);
+                              }}
+                            >
+                              {product.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <a
+                      key={link}
+                      href="#"
+                      className="nav2-link-stagger block py-3 text-[#0F1114] text-base font-normal border-b border-gray-100 hover:opacity-70 transition-opacity font-[Lato]"
+                      style={{ animationDelay: `${0.05 + index * 0.05}s` }}
+                      onClick={() => { setMobileMenuOpen(false); setIsAnimating(false); }}
+                    >
+                      {link}
+                    </a>
+                  )
                 ))}
                 {/* Buttons in mobile menu */}
                 <div className="flex flex-col gap-3 pt-4 pb-3">
