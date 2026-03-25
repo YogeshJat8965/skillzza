@@ -6,12 +6,20 @@ const SecondNavbar = () => {
   const [isAnimating, setIsAnimating] = useState(false);
   const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
+  const [companyDropdownOpen, setCompanyDropdownOpen] = useState(false);
+  const [mobileCompanyOpen, setMobileCompanyOpen] = useState(false);
   const closeTimeoutRef = useRef(null);
+  const companyCloseTimeoutRef = useRef(null);
   
   const navLinks = ['Products', 'Use Cases', 'School of Technology', 'Explore', 'Insights', 'Company'];
   
   const productPages = [
     { name: 'Xperience Platform', path: '/products/xperience-platform' },
+    { name: 'AI HackNex', path: '/products/ai-hacknex' },
+  ];
+
+  const companyPages = [
+    { name: 'Our Pathway', path: '/company/our-pathway' },
   ];
 
   const clearProductsCloseTimeout = () => {
@@ -34,7 +42,27 @@ const SecondNavbar = () => {
     }, 220);
   };
 
-  useEffect(() => () => clearProductsCloseTimeout(), []);
+  const clearCompanyCloseTimeout = () => {
+    if (companyCloseTimeoutRef.current) {
+      clearTimeout(companyCloseTimeoutRef.current);
+      companyCloseTimeoutRef.current = null;
+    }
+  };
+
+  const openCompanyDropdown = () => {
+    clearCompanyCloseTimeout();
+    setCompanyDropdownOpen(true);
+  };
+
+  const closeCompanyDropdownWithDelay = () => {
+    clearCompanyCloseTimeout();
+    companyCloseTimeoutRef.current = setTimeout(() => {
+      setCompanyDropdownOpen(false);
+      companyCloseTimeoutRef.current = null;
+    }, 220);
+  };
+
+  useEffect(() => () => { clearProductsCloseTimeout(); clearCompanyCloseTimeout(); }, []);
 
   const handleToggle = () => {
     if (mobileMenuOpen) {
@@ -42,11 +70,13 @@ const SecondNavbar = () => {
       setTimeout(() => {
         setMobileMenuOpen(false);
         setMobileProductsOpen(false);
+        setMobileCompanyOpen(false);
         setIsAnimating(false);
       }, 300);
     } else {
       setMobileMenuOpen(true);
       setMobileProductsOpen(false);
+      setMobileCompanyOpen(false);
     }
   };
 
@@ -115,47 +145,81 @@ const SecondNavbar = () => {
 
           {/* Nav Links — Desktop (lg+) */}
           <div className="hidden lg:flex items-center gap-4 xl:gap-7">
-            {navLinks.map((link) => (
-              <div 
-                key={link}
-                className="relative"
-                onMouseEnter={() => link === 'Products' && openProductsDropdown()}
-                onMouseLeave={() => link === 'Products' && closeProductsDropdownWithDelay()}
-              >
-                <a
-                  href="#"
-                  className="text-[#0F1114] text-sm xl:text-[15px] font-normal hover:opacity-70 transition-opacity flex items-center gap-1 font-[Lato]"
+            {navLinks.map((link) => {
+              const isProducts = link === 'Products';
+              const isCompany = link === 'Company';
+              const hasDropdown = isProducts || isCompany;
+              return (
+                <div 
+                  key={link}
+                  className="relative"
+                  onMouseEnter={() => {
+                    if (isProducts) openProductsDropdown();
+                    if (isCompany) openCompanyDropdown();
+                  }}
+                  onMouseLeave={() => {
+                    if (isProducts) closeProductsDropdownWithDelay();
+                    if (isCompany) closeCompanyDropdownWithDelay();
+                  }}
                 >
-                  {link}
-                  <svg width="10" height="7" viewBox="0 0 12 8" fill="none" className="mt-0.5">
-                    <path d="M1 1L6 6L11 1" stroke="#0F1114" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </a>
-                
-                {/* Products Dropdown */}
-                {link === 'Products' && productsDropdownOpen && (
-                  <div 
-                    className="absolute top-full left-0 mt-2 bg-white shadow-xl rounded-lg border border-gray-100 py-2 min-w-[200px] z-50"
-                    onMouseEnter={openProductsDropdown}
-                    onMouseLeave={closeProductsDropdownWithDelay}
+                  <a
+                    href="#"
+                    className="text-[#0F1114] text-sm xl:text-[15px] font-normal hover:opacity-70 transition-opacity flex items-center gap-1 font-[Lato]"
                   >
-                    {productPages.map((product) => (
-                      <Link
-                        key={product.path}
-                        to={product.path}
-                        className="block px-6 py-3 text-[#0F1114] text-sm font-normal hover:bg-gray-50 transition-colors font-[Lato]"
-                        onClick={() => {
-                          clearProductsCloseTimeout();
-                          setProductsDropdownOpen(false);
-                        }}
-                      >
-                        {product.name}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
+                    {link}
+                    <svg width="10" height="7" viewBox="0 0 12 8" fill="none" className="mt-0.5">
+                      <path d="M1 1L6 6L11 1" stroke="#0F1114" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </a>
+                  
+                  {/* Products Dropdown */}
+                  {isProducts && productsDropdownOpen && (
+                    <div 
+                      className="absolute top-full left-0 mt-2 bg-white shadow-xl rounded-lg border border-gray-100 py-2 min-w-[200px] z-50"
+                      onMouseEnter={openProductsDropdown}
+                      onMouseLeave={closeProductsDropdownWithDelay}
+                    >
+                      {productPages.map((product) => (
+                        <Link
+                          key={product.path}
+                          to={product.path}
+                          className="block px-6 py-3 text-[#0F1114] text-sm font-normal hover:bg-gray-50 transition-colors font-[Lato]"
+                          onClick={() => {
+                            clearProductsCloseTimeout();
+                            setProductsDropdownOpen(false);
+                          }}
+                        >
+                          {product.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Company Dropdown */}
+                  {isCompany && companyDropdownOpen && (
+                    <div 
+                      className="absolute top-full left-0 mt-2 bg-white shadow-xl rounded-lg border border-gray-100 py-2 min-w-[200px] z-50"
+                      onMouseEnter={openCompanyDropdown}
+                      onMouseLeave={closeCompanyDropdownWithDelay}
+                    >
+                      {companyPages.map((page) => (
+                        <Link
+                          key={page.path}
+                          to={page.path}
+                          className="block px-6 py-3 text-[#0F1114] text-sm font-normal hover:bg-gray-50 transition-colors font-[Lato]"
+                          onClick={() => {
+                            clearCompanyCloseTimeout();
+                            setCompanyDropdownOpen(false);
+                          }}
+                        >
+                          {page.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
 
           {/* Right side — Buttons + Hamburger */}
@@ -202,50 +266,80 @@ const SecondNavbar = () => {
             {/* Dropdown */}
             <div className={`lg:hidden absolute left-0 right-0 top-full bg-white z-[49] shadow-2xl border-t border-gray-100 ${isAnimating ? 'nav2-dropdown-exit' : 'nav2-dropdown-enter'}`}>
               <div className="px-4 py-2">
-                {navLinks.map((link, index) => (
-                  link === 'Products' ? (
-                    <div
-                      key={link}
-                      className="nav2-link-stagger border-b border-gray-100"
-                      style={{ animationDelay: `${0.05 + index * 0.05}s` }}
-                    >
-                      <button
-                        type="button"
-                        className="w-full py-3 text-[#0F1114] text-base font-normal hover:opacity-70 transition-opacity font-[Lato] flex items-center justify-between"
-                        onClick={() => setMobileProductsOpen((prev) => !prev)}
-                        aria-expanded={mobileProductsOpen}
+                {navLinks.map((link, index) => {
+                  const isProducts = link === 'Products';
+                  const isCompany = link === 'Company';
+                  if (isProducts) {
+                    return (
+                      <div
+                        key={link}
+                        className="nav2-link-stagger border-b border-gray-100"
+                        style={{ animationDelay: `${0.05 + index * 0.05}s` }}
                       >
-                        <span>{link}</span>
-                        <svg
-                          width="12"
-                          height="8"
-                          viewBox="0 0 12 8"
-                          fill="none"
-                          className={`transition-transform duration-200 ${mobileProductsOpen ? 'rotate-180' : ''}`}
+                        <button
+                          type="button"
+                          className="w-full py-3 text-[#0F1114] text-base font-normal hover:opacity-70 transition-opacity font-[Lato] flex items-center justify-between"
+                          onClick={() => setMobileProductsOpen((prev) => !prev)}
+                          aria-expanded={mobileProductsOpen}
                         >
-                          <path d="M1 1L6 6L11 1" stroke="#0F1114" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </button>
-                      {mobileProductsOpen && (
-                        <div className="pb-2">
-                          {productPages.map((product) => (
-                            <Link
-                              key={product.path}
-                              to={product.path}
-                              className="block pl-4 pr-2 py-2 text-[#0F1114] text-sm font-normal hover:opacity-70 transition-opacity font-[Lato]"
-                              onClick={() => {
-                                setMobileProductsOpen(false);
-                                setMobileMenuOpen(false);
-                                setIsAnimating(false);
-                              }}
-                            >
-                              {product.name}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ) : (
+                          <span>{link}</span>
+                          <svg width="12" height="8" viewBox="0 0 12 8" fill="none" className={`transition-transform duration-200 ${mobileProductsOpen ? 'rotate-180' : ''}`}>
+                            <path d="M1 1L6 6L11 1" stroke="#0F1114" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </button>
+                        {mobileProductsOpen && (
+                          <div className="pb-2">
+                            {productPages.map((product) => (
+                              <Link
+                                key={product.path}
+                                to={product.path}
+                                className="block pl-4 pr-2 py-2 text-[#0F1114] text-sm font-normal hover:opacity-70 transition-opacity font-[Lato]"
+                                onClick={() => { setMobileProductsOpen(false); setMobileMenuOpen(false); setIsAnimating(false); }}
+                              >
+                                {product.name}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  }
+                  if (isCompany) {
+                    return (
+                      <div
+                        key={link}
+                        className="nav2-link-stagger border-b border-gray-100"
+                        style={{ animationDelay: `${0.05 + index * 0.05}s` }}
+                      >
+                        <button
+                          type="button"
+                          className="w-full py-3 text-[#0F1114] text-base font-normal hover:opacity-70 transition-opacity font-[Lato] flex items-center justify-between"
+                          onClick={() => setMobileCompanyOpen((prev) => !prev)}
+                          aria-expanded={mobileCompanyOpen}
+                        >
+                          <span>{link}</span>
+                          <svg width="12" height="8" viewBox="0 0 12 8" fill="none" className={`transition-transform duration-200 ${mobileCompanyOpen ? 'rotate-180' : ''}`}>
+                            <path d="M1 1L6 6L11 1" stroke="#0F1114" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </button>
+                        {mobileCompanyOpen && (
+                          <div className="pb-2">
+                            {companyPages.map((page) => (
+                              <Link
+                                key={page.path}
+                                to={page.path}
+                                className="block pl-4 pr-2 py-2 text-[#0F1114] text-sm font-normal hover:opacity-70 transition-opacity font-[Lato]"
+                                onClick={() => { setMobileCompanyOpen(false); setMobileMenuOpen(false); setIsAnimating(false); }}
+                              >
+                                {page.name}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  }
+                  return (
                     <a
                       key={link}
                       href="#"
@@ -255,8 +349,8 @@ const SecondNavbar = () => {
                     >
                       {link}
                     </a>
-                  )
-                ))}
+                  );
+                })}
                 {/* Buttons in mobile menu */}
                 <div className="flex flex-col gap-3 pt-4 pb-3">
                   <button
