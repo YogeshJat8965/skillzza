@@ -10,6 +10,7 @@ import ProductsPage from './pages/ProductsPage'
 import XperiencePlatformPage from './pages/XperiencePlatformPage'
 import AIHackNexPage from './pages/AIHackNexPage'
 import OurPathwayPage from './pages/OurPathwayPage'
+import AboutPage from './pages/AboutPage'
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/products/xperience-platform" element={<XperiencePlatformPage />} />
           <Route path="/products/ai-hacknex" element={<AIHackNexPage />} />
           <Route path="/company/our-pathway" element={<OurPathwayPage />} />
+          <Route path="/company/about" element={<AboutPage />} />
         </Routes>
         
         {/* Footer stays on all pages */}

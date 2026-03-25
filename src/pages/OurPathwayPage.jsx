@@ -1,49 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 function OurPathwayPage() {
-  const heroSectionRef = useRef(null)
   const [activeTab, setActiveTab] = useState('individuals')
-
-  // Hero Section Scroll Animation
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const heading = entry.target.querySelector('.pathway-hero-heading')
-          const subheading = entry.target.querySelector('.pathway-hero-subheading')
-          const description = entry.target.querySelector('.pathway-hero-description')
-          const buttons = entry.target.querySelector('.pathway-hero-buttons')
-          const image = entry.target.querySelector('.pathway-hero-image')
-
-          if (entry.isIntersecting) {
-            if (heading) heading.classList.add('active')
-            if (subheading) subheading.classList.add('active')
-            if (description) description.classList.add('active')
-            if (buttons) buttons.classList.add('active')
-            if (image) image.classList.add('active')
-          } else {
-            if (heading) heading.classList.remove('active')
-            if (subheading) subheading.classList.remove('active')
-            if (description) description.classList.remove('active')
-            if (buttons) buttons.classList.remove('active')
-            if (image) image.classList.remove('active')
-          }
-        })
-      },
-      { threshold: 0.1 }
-    )
-
-    if (heroSectionRef.current) {
-      observer.observe(heroSectionRef.current)
-    }
-
-    return () => {
-      if (heroSectionRef.current) {
-        observer.unobserve(heroSectionRef.current)
-      }
-    }
-  }, [])
 
   const tabOptions = [
     { id: 'individuals', label: 'For Individuals' },
@@ -91,77 +50,10 @@ function OurPathwayPage() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&display=swap');
-
-        .pathway-hero-heading {
-          opacity: 0;
-          transform: translateY(40px);
-          transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.05s;
-        }
-        .pathway-hero-heading.active {
-          opacity: 1;
-          transform: translateY(0);
-        }
-
-        .pathway-hero-subheading {
-          opacity: 0;
-          transform: translateY(30px);
-          transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
-        }
-        .pathway-hero-subheading.active {
-          opacity: 1;
-          transform: translateY(0);
-        }
-
-        .pathway-hero-description {
-          opacity: 0;
-          transform: translateY(20px);
-          transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.35s;
-        }
-        .pathway-hero-description.active {
-          opacity: 1;
-          transform: translateY(0);
-        }
-
-        .pathway-hero-buttons {
-          opacity: 0;
-          transform: translateY(20px);
-          transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
-        }
-        .pathway-hero-buttons.active {
-          opacity: 1;
-          transform: translateY(0);
-        }
-
-        .pathway-hero-image {
-          opacity: 0;
-          transform: translateY(60px) scale(0.96);
-          transition: all 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.35s;
-        }
-        .pathway-hero-image.active {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-        }
-
-        .pathway-hero-buttons button {
-          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-            box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .pathway-hero-buttons button:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 12px 30px rgba(225, 19, 19, 0.28);
-        }
-        .pathway-hero-buttons button:active {
-          transform: translateY(0);
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
-        }
       `}</style>
 
       {/* ── Hero Section ── */}
-      <section
-        ref={heroSectionRef}
-        className="w-full"
-        style={{ backgroundColor: '#F8F8F8' }}
-      >
+      <section className="w-full" style={{ backgroundColor: '#F8F8F8' }}>
         <div
           style={{
             width: '100%',
@@ -1252,15 +1144,6 @@ function OurPathwayPage() {
                     minWidth: '240px',
                     cursor: 'pointer',
                     boxShadow: '0px 15px 25px rgba(0, 0, 0, 0.2)',
-                    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-4px)';
-                    e.currentTarget.style.boxShadow = '0px 25px 35px rgba(0, 0, 0, 0.25)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = '0px 15px 25px rgba(0, 0, 0, 0.2)';
                   }}
                 >
                   {label}

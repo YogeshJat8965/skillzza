@@ -20,6 +20,7 @@ const SecondNavbar = () => {
 
   const companyPages = [
     { name: 'Our Pathway', path: '/company/our-pathway' },
+    { name: 'About', path: '/company/about' },
   ];
 
   const clearProductsCloseTimeout = () => {
