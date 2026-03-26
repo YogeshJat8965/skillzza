@@ -21,6 +21,7 @@ const SecondNavbar = () => {
   const companyPages = [
     { name: 'Our Pathway', path: '/company/our-pathway' },
     { name: 'About', path: '/company/about' },
+    { name: 'Partner Collaboration', path: '/company/partner-collaboration' },
   ];
 
   const clearProductsCloseTimeout = () => {

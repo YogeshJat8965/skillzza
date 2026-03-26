@@ -16,9 +16,9 @@ function AboutPage() {
           position: relative;
           width: 100%;
           min-height: clamp(320px, 50vh, 520px);
-          background-image: url('/Company/about/HeroSection.jpg');
-          background-size: 90% auto;
-          background-position: 95% center;
+          background-image: url('/Company/about/Post205-cover.jpg');
+          // background-size: 118% auto;
+          // background-position: 94% center;
           display: flex;
           align-items: center;
           color: #f1f5f9;
@@ -49,6 +49,17 @@ function AboutPage() {
         }
 
         @media (max-width: 768px) {
+          .about-banner {
+            min-height: 58vh;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+          }
+
+          .about-banner::after {
+            background: linear-gradient(90deg, rgba(2, 6, 23, 0.82) 0%, rgba(2, 6, 23, 0.38) 56%, rgba(2, 6, 23, 0.12) 100%);
+          }
+
           .about-banner__content {
             padding: 48px 24px;
           }
