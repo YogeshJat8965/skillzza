@@ -93,84 +93,73 @@ function PartnerCollaborationPage() {
           gap: 22px;
         }
 
-        .corporate-partnerships {
-          background: #f5f5f5;
-          padding: clamp(40px, 6vw, 72px) clamp(18px, 5vw, 60px) clamp(50px, 7vw, 80px);
+        .section-banner {
+          position: relative;
+          width: 100%;
+          min-height: clamp(260px, 28vw, 380px);
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
         }
 
-        .corporate-content {
-          max-width: 1040px;
+        .section-banner::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(135deg, rgba(7, 7, 12, 0.82) 0%, rgba(7, 7, 12, 0.68) 40%, rgba(7, 7, 12, 0.55) 100%);
+        }
+
+        .section-banner--corporate {
+          background-image: url('/Company/collaboration/corporate_banner.png');
+        }
+
+        .section-banner--govt {
+          background-image: url('/Company/collaboration/government_banner.png');
+        }
+
+        .section-banner--education {
+          background-image: url('/Company/collaboration/education_banner.png');
+        }
+
+        .section-banner__content {
+          position: relative;
+          z-index: 1;
+          max-width: 900px;
           margin: 0 auto;
+          padding: clamp(36px, 5vw, 64px) clamp(22px, 6vw, 72px);
           display: flex;
           flex-direction: column;
-          gap: 12px;
+          gap: 14px;
           text-align: center;
           align-items: center;
         }
 
-        .corporate-content__eyebrow {
+        .section-banner__title {
           margin: 0;
-          font-size: 15px;
-          text-transform: uppercase;
-          letter-spacing: 0.18em;
+          font-size: clamp(30px, 3.2vw, 46px);
+          font-weight: 700;
           color: #f3ad3a;
+          text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
         }
 
-        .corporate-content__title {
+        .section-banner__subtitle {
           margin: 0;
-          font-size: clamp(30px, 3vw, 46px);
-          font-weight: 600;
-          color: #121212;
-        }
-
-        .corporate-content__subtitle {
-          margin: 0;
-          font-size: clamp(20px, 2.1vw, 30px);
+          font-size: clamp(19px, 2vw, 28px);
           font-weight: 500;
-          color: #1f1f1f;
+          color: #ffffff;
+          text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
         }
 
-        .corporate-content__description {
-          margin: 6px 0 0;
-          font-size: clamp(16px, 1.6vw, 20px);
-          line-height: 1.55;
-          color: #374151;
-        }
-
-        .govt-overview {
-          background: #f5f5f5;
-          padding: clamp(10px, 2vw, 16px) clamp(18px, 5vw, 60px) clamp(40px, 6vw, 72px);
-        }
-
-        .govt-overview__content {
-          max-width: 1040px;
-          margin: 0 auto;
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-          text-align: center;
-          align-items: center;
-        }
-
-        .govt-overview__title {
-          margin: 0;
-          font-size: clamp(30px, 3vw, 46px);
-          font-weight: 600;
-          color: #121212;
-        }
-
-        .govt-overview__subtitle {
-          margin: 0;
-          font-size: clamp(20px, 2.1vw, 30px);
-          font-weight: 500;
-          color: #1f1f1f;
-        }
-
-        .govt-overview__description {
-          margin: 6px 0 0;
-          font-size: clamp(16px, 1.6vw, 20px);
-          line-height: 1.55;
-          color: #374151;
+        .section-banner__description {
+          margin: 4px 0 0;
+          font-size: clamp(15px, 1.5vw, 19px);
+          line-height: 1.6;
+          color: #e2e8f0;
+          text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
         }
 
         .corporate-proof {
@@ -592,11 +581,11 @@ function PartnerCollaborationPage() {
         </section>
 
         {/* ===== CORPORATE PARTNERSHIPS OVERVIEW ===== */}
-        <section className="corporate-partnerships">
-          <div className="corporate-content">
-            <h3 className="corporate-content__title">Corporate Partnerships</h3>
-            <h4 className="corporate-content__subtitle">Upskill Your Workforce. Empower Innovation.</h4>
-            <p className="corporate-content__description">
+        <section className="section-banner section-banner--corporate">
+          <div className="section-banner__content">
+            <h3 className="section-banner__title">Corporate Partnerships</h3>
+            <h4 className="section-banner__subtitle">Upskill Your Workforce. Empower Innovation.</h4>
+            <p className="section-banner__description">
               In today's rapidly evolving business landscape, organizations need agile, skilled talent to stay competitive.
               Skillzza partners with forward-thinking companies to create future-ready upskilling and reskilling programs that align with your strategic vision.
             </p>
@@ -694,11 +683,11 @@ function PartnerCollaborationPage() {
         </section>
 
         {/* ===== GOVERNMENT PARTNERSHIPS OVERVIEW ===== */}
-        <section className="govt-overview">
-          <div className="govt-overview__content">
-            <h3 className="govt-overview__title">Government Partnerships</h3>
-            <h4 className="govt-overview__subtitle">Building a Skilled Nation Together</h4>
-            <p className="govt-overview__description">
+        <section className="section-banner section-banner--govt">
+          <div className="section-banner__content">
+            <h3 className="section-banner__title">Government Partnerships</h3>
+            <h4 className="section-banner__subtitle">Building a Skilled Nation Together</h4>
+            <p className="section-banner__description">
               Skillzza collaborates with government bodies at every level to design scalable, sustainable skill
               development programs that bridge workforce gaps, accelerate economic growth, and promote social equity
               across communities.
@@ -842,11 +831,11 @@ function PartnerCollaborationPage() {
         </section>
 
         {/* ===== EDUCATIONAL PARTNERSHIPS OVERVIEW ===== */}
-        <section className="govt-overview">
-          <div className="govt-overview__content">
-            <h3 className="govt-overview__title">Educational Partnerships</h3>
-            <h4 className="govt-overview__subtitle">Empowering Students for Tomorrow's World</h4>
-            <p className="govt-overview__description">
+        <section className="section-banner section-banner--education">
+          <div className="section-banner__content">
+            <h3 className="section-banner__title">Educational Partnerships</h3>
+            <h4 className="section-banner__subtitle">Empowering Students for Tomorrow's World</h4>
+            <p className="section-banner__description">
               Skillzza partners with schools and educational institutions to equip young minds with
               essential 21st-century skills. Our programs go beyond traditional academics to inspire
               innovation, creativity, and leadership—preparing students to become tomorrow's
