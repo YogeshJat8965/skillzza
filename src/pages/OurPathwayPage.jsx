@@ -1,5 +1,26 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
+
+/* ── Custom hook for scroll-reveal animation ── */
+function useScrollReveal(options = {}) {
+  const ref = useRef(null)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add('pathway-revealed')
+          observer.unobserve(el)
+        }
+      },
+      { threshold: options.threshold || 0.15, rootMargin: options.rootMargin || '0px' }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+  return ref
+}
 
 function OurPathwayPage() {
   const [activeTab, setActiveTab] = useState('individuals')
@@ -45,13 +66,239 @@ function OurPathwayPage() {
 
   const activeTabContent = tabContent[activeTab]
 
+  // Scroll reveal refs for each section
+  const heroRef = useScrollReveal()
+  const commitmentRef = useScrollReveal()
+  const differenceRef = useScrollReveal()
+  const serveRef = useScrollReveal()
+  const partnershipRef = useScrollReveal()
+  const getStartedRef = useScrollReveal()
+  const ctaRef = useScrollReveal()
+
+  // Hover state for buttons
+  const [hoveredBtn, setHoveredBtn] = useState(null)
+
   return (
     <>
+      {/* ── Inline CSS for animations, hover, and responsive ── */}
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&display=swap');
-      `}</style>
+        /* Scroll reveal base */
+        .pathway-reveal {
+          opacity: 0;
+          transform: translateY(40px);
+          transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .pathway-revealed {
+          opacity: 1 !important;
+          transform: translateY(0) !important;
+        }
 
+        /* Staggered children animation */
+        .pathway-revealed .pathway-stagger > * {
+          opacity: 0;
+          transform: translateY(20px);
+          animation: pathway-fade-up 0.5s ease forwards;
+        }
+        .pathway-revealed .pathway-stagger > *:nth-child(1) { animation-delay: 0.1s; }
+        .pathway-revealed .pathway-stagger > *:nth-child(2) { animation-delay: 0.2s; }
+        .pathway-revealed .pathway-stagger > *:nth-child(3) { animation-delay: 0.3s; }
+        .pathway-revealed .pathway-stagger > *:nth-child(4) { animation-delay: 0.4s; }
+        .pathway-revealed .pathway-stagger > *:nth-child(5) { animation-delay: 0.5s; }
+        .pathway-revealed .pathway-stagger > *:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes pathway-fade-up {
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Button hover effects */
+        .pathway-btn {
+          transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease !important;
+        }
+        .pathway-btn:hover {
+          transform: translateY(-2px) scale(1.03) !important;
+          box-shadow: 0px 8px 24px rgba(207, 12, 12, 0.35) !important;
+          background-color: #B00A0A !important;
+        }
+        .pathway-btn:active {
+          transform: translateY(0) scale(0.98) !important;
+        }
+
+        /* Tab button hover */
+        .pathway-tab-btn {
+          transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease !important;
+        }
+        .pathway-tab-btn:hover {
+          transform: translateY(-1px) !important;
+          box-shadow: 0px 4px 12px rgba(137, 4, 4, 0.2) !important;
+        }
+
+        /* Card hover */
+        .pathway-card {
+          transition: transform 0.35s ease, box-shadow 0.35s ease !important;
+        }
+        .pathway-card:hover {
+          transform: translateY(-8px) !important;
+          box-shadow: 0px 24px 48px rgba(15, 16, 18, 0.14) !important;
+        }
+
+        /* Serve card hover */
+        .pathway-serve-card {
+          transition: transform 0.35s ease, box-shadow 0.35s ease !important;
+        }
+        .pathway-serve-card:hover {
+          transform: scale(1.03) !important;
+          box-shadow: 0px 28px 50px rgba(0, 0, 0, 0.25) !important;
+        }
+
+        /* Partnership pill hover */
+        .pathway-pill {
+          transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease !important;
+        }
+        .pathway-pill:hover {
+          transform: translateY(-3px) !important;
+          box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.3) !important;
+          background-color: #6D0303 !important;
+        }
+
+        /* Icon highlight row hover */
+        .pathway-highlight-row {
+          transition: transform 0.3s ease !important;
+        }
+        .pathway-highlight-row:hover {
+          transform: translateX(6px) !important;
+        }
+
+        /* ── Mobile Responsive (< 768px) ── */
+        @media (max-width: 768px) {
+          .pathway-hero-heading {
+            font-size: 32px !important;
+          }
+          .pathway-hero-subheading {
+            font-size: 20px !important;
+            white-space: normal !important;
+          }
+          .pathway-hero-description {
+            font-size: 18px !important;
+          }
+          .pathway-hero-buttons {
+            flex-direction: column !important;
+            gap: 14px !important;
+          }
+          .pathway-hero-buttons button {
+            min-width: unset !important;
+            width: 100% !important;
+            max-width: 320px !important;
+            padding: 14px 28px !important;
+            font-size: 17px !important;
+          }
+          .pathway-section-subtitle {
+            font-size: 22px !important;
+          }
+          .pathway-section-title {
+            font-size: 30px !important;
+          }
+          .pathway-section-desc {
+            font-size: 16px !important;
+          }
+          .pathway-section-desc span {
+            white-space: normal !important;
+          }
+          .pathway-cards-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .pathway-cards-grid > div {
+            width: 100% !important;
+            max-width: 380px !important;
+          }
+          .pathway-highlight-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .pathway-highlight-row {
+            gap: 20px !important;
+          }
+          .pathway-serve-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .pathway-serve-card {
+            width: 100% !important;
+            max-width: 380px !important;
+          }
+          .pathway-partnership-pills {
+            flex-direction: column !important;
+            align-items: center !important;
+          }
+          .pathway-pill {
+            width: 100% !important;
+            max-width: 300px !important;
+          }
+          .pathway-tab-bar {
+            flex-direction: column !important;
+            border-radius: 20px !important;
+            padding: 10px !important;
+          }
+          .pathway-tab-btn {
+            width: 100% !important;
+            height: 56px !important;
+            font-size: 20px !important;
+          }
+          .pathway-tab-content {
+            flex-direction: column !important;
+          }
+          .pathway-tab-content > div:first-child {
+            min-height: 260px !important;
+          }
+          .pathway-tab-content > div:last-child {
+            padding: 28px 20px !important;
+          }
+          .pathway-tab-content img {
+            border-radius: 25px 25px 0 0 !important;
+          }
+          .pathway-cta-inner {
+            flex-direction: column !important;
+            padding: 32px 20px 0 !important;
+            text-align: center !important;
+          }
+          .pathway-cta-inner h2 {
+            font-size: 28px !important;
+            text-align: center !important;
+          }
+          .pathway-cta-buttons {
+            flex-direction: column !important;
+            align-items: center !important;
+          }
+          .pathway-cta-image {
+            width: 100% !important;
+            flex: unset !important;
+            height: 280px !important;
+          }
+        }
+
+        /* ── Tablet (769px - 1024px) ── */
+        @media (min-width: 769px) and (max-width: 1024px) {
+          .pathway-hero-heading {
+            font-size: 42px !important;
+          }
+          .pathway-hero-subheading {
+            font-size: 26px !important;
+          }
+          .pathway-hero-description {
+            font-size: 22px !important;
+          }
+          .pathway-cards-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .pathway-serve-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .pathway-cta-image {
+            width: 400px !important;
+          }
+          .pathway-tab-btn {
+            font-size: 22px !important;
+            width: 240px !important;
+          }
+        }
+      `}</style>
       {/* ── Hero Section ── */}
       <section className="w-full" style={{ backgroundColor: '#F8F8F8' }}>
         <div
@@ -722,7 +969,75 @@ function OurPathwayPage() {
       </section>
 
       {/* ── Partnership Ecosystem Section ── */}
-     
+      <section
+        style={{
+          width: '100%',
+          backgroundColor: '#F5F5F5',
+          padding: '60px 24px 72px',
+        }}
+      >
+        <div
+          style={{ width: '100%', maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}
+        >
+          <p
+            style={{
+              fontFamily: 'League Spartan, sans-serif',
+              fontWeight: 400,
+              fontSize: '32px',
+              lineHeight: 1,
+              color: '#0F0F0F',
+              marginBottom: '10px',
+            }}
+          >
+            Partnership Ecosystem
+          </p>
+          <h2
+            style={{
+              fontFamily: 'League Spartan, sans-serif',
+              fontWeight: 700,
+              fontSize: '48px',
+              lineHeight: 1,
+              color: '#C00F0F',
+              textShadow: '0px 4px 0px rgba(0, 0, 0, 0.25)',
+              marginBottom: '42px',
+            }}
+          >
+            Collaborating for Greater Impact
+          </h2>
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '32px',
+              justifyContent: 'center',
+            }}
+          >
+            {[
+              'UN Partners',
+              'Government Collaborations',
+              'Industry Partners',
+              'Educational Institutions',
+            ].map((label) => (
+              <div
+                key={label}
+                style={{
+                  minWidth: '220px',
+                  padding: '18px 34px',
+                  borderRadius: '999px',
+                  backgroundColor: '#8B0404',
+                  boxShadow: '0px 8px 18px rgba(0, 0, 0, 0.25)',
+                  fontFamily: 'DM Sans, sans-serif',
+                  fontWeight: 600,
+                  fontSize: '20px',
+                  color: '#FFFFFF',
+                }}
+              >
+                {label}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section
         style={{
@@ -895,56 +1210,45 @@ function OurPathwayPage() {
       <section
         style={{
           width: '100%',
-          padding: '70px 24px 90px',
-          backgroundColor: '#FFFFFF',
+          backgroundColor: '#F6F6F6',
+          padding: '60px 24px 80px',
+          overflow: 'hidden',
         }}
       >
         <div
           style={{
-            position: 'relative',
             width: '100%',
-            maxWidth: '1573px',
+            maxWidth: '1200px',
             margin: '0 auto',
-            borderRadius: '0px',
+            backgroundColor: '#FFFFFF',
+            borderRadius: '16px 16px 0 0',
+            padding: '0 0 0 52px',
+            display: 'flex',
+            gap: '32px',
+            alignItems: 'center',
+            minHeight: '380px',
+            position: 'relative',
             overflow: 'hidden',
-            boxShadow: '0px 20px 40px rgba(0, 0, 0, 0.18)',
-            background: 'linear-gradient(0deg, #CF2C2E 0%, #B01111 100%)',
           }}
         >
           <div
-            aria-hidden="true"
             style={{
-              position: 'absolute',
-              inset: 0,
-              backgroundImage: "url('/Company/Ready to Transform Your LifeBacckgroundImage.png')",
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              opacity: 0.1,
-              pointerEvents: 'none',
-            }}
-          />
-          <div
-            style={{
-              position: 'relative',
-              width: '100%',
-              minHeight: '360px',
-              padding: '90px 24px',
+              flex: '1 1 420px',
               display: 'flex',
               flexDirection: 'column',
-              alignItems: 'center',
-              gap: '32px',
+              gap: '28px',
+              padding: '60px 0',
             }}
           >
             <h2
               style={{
                 fontFamily: 'League Spartan, sans-serif',
                 fontWeight: 700,
-                fontSize: '48px',
-                lineHeight: '1',
-                color: '#FBFAFA',
-                textAlign: 'center',
-                letterSpacing: '0%',
+                fontSize: '42px',
+                lineHeight: 1.1,
+                color: '#0B0B0B',
                 margin: 0,
+                textAlign: 'left',
               }}
             >
               Ready to Transform Your Life?
@@ -952,9 +1256,9 @@ function OurPathwayPage() {
             <div
               style={{
                 display: 'flex',
-                flexWrap: 'wrap',
-                gap: '24px',
-                justifyContent: 'center',
+                flexWrap: 'nowrap',
+                gap: '18px',
+                alignItems: 'center',
               }}
             >
               {[
@@ -966,21 +1270,66 @@ function OurPathwayPage() {
                   style={{
                     fontFamily: 'DM Sans, sans-serif',
                     fontWeight: 600,
-                    fontSize: '18px',
-                    color: '#0F0F0F',
-                    backgroundColor: '#FFFFFF',
+                    fontSize: '16px',
+                    color: '#FFFFFF',
+                    backgroundColor: '#CF0C0C',
                     borderRadius: '999px',
                     border: 'none',
-                    padding: '18px 42px',
-                    minWidth: '240px',
+                    padding: '14px 32px',
                     cursor: 'pointer',
-                    boxShadow: '0px 15px 25px rgba(0, 0, 0, 0.2)',
+                    boxShadow: '0px 6px 14px rgba(0, 0, 0, 0.15)',
+                    whiteSpace: 'nowrap',
                   }}
                 >
                   {label}
                 </button>
               ))}
             </div>
+          </div>
+          <div
+            style={{
+              flex: '0 0 520px',
+              height: '420px',
+              position: 'relative',
+              marginLeft: 'auto',
+              marginRight: '0',
+              alignSelf: 'flex-end',
+              marginBottom: '-30px',
+            }}
+          >
+            <img
+              src="/Company/ourPathwayLatImage.png"
+              alt="Colorful head silhouette with learning icons"
+              style={{
+                width: '82%',
+                height: '120%',
+                objectFit: 'cover',
+                objectPosition: 'top center',
+                marginLeft: 'auto',
+                display: 'block',
+              }}
+            />
+            {[
+              { src: '/Company/lastIcon3.png', top: '10%', left: '20%' },
+              { src: '/Company/lastIcon1.png', top: '4%', right: '14%' },
+              { src: '/Company/lastIcon2.png', top: '42%', right: '2%' },
+              { src: '/Company/lastIcon4.png', bottom: '18%', right: '18%' },
+            ].map((icon) => (
+              <img
+                key={icon.src}
+                src={icon.src}
+                alt="SDG icon"
+                style={{
+                  position: 'absolute',
+                  width: '52px',
+                  height: '52px',
+                  objectFit: 'contain',
+                  borderRadius: '10px',
+                  filter: 'drop-shadow(0px 8px 16px rgba(0, 0, 0, 0.18))',
+                  ...icon,
+                }}
+              />
+            ))}
           </div>
         </div>
       </section>

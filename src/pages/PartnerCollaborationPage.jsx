@@ -2,6 +2,20 @@ import React, { useEffect, useRef } from 'react'
 
 function PartnerCollaborationPage() {
   const pageRef = useRef(null)
+  const corporateSectionRef = useRef(null)
+  const governmentSectionRef = useRef(null)
+  const educationSectionRef = useRef(null)
+
+  const scrollToSection = (sectionRef) => {
+    sectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
+  const handleCardKeyDown = (event, sectionRef) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      scrollToSection(sectionRef)
+    }
+  }
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -118,6 +132,11 @@ function PartnerCollaborationPage() {
           text-shadow: 0 4px 24px rgba(0,0,0,0.35);
         }
 
+        .collab-hero__title-line {
+          display: block;
+          white-space: nowrap;
+        }
+
         .collab-hero__title-highlight {
           color: #f3ad3a;
         }
@@ -163,6 +182,7 @@ function PartnerCollaborationPage() {
           flex-direction: column;
           height: 100%;
           transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+          cursor: pointer;
         }
 
         .collab-partners__card:hover {
@@ -583,9 +603,10 @@ function PartnerCollaborationPage() {
         <section className="collab-hero">
           <div className="collab-hero__inner">
             <h1 className="collab-hero__title collab-animate anim-slide-left collab-visible">
-              <span className="collab-hero__title-highlight">Empowering</span> Futures
-              <br />
-              Together
+              <span className="collab-hero__title-line">
+                <span className="collab-hero__title-highlight">Empowering</span> Futures
+              </span>
+              <span className="collab-hero__title-line">Together</span>
             </h1>
           </div>
         </section>
@@ -597,15 +618,33 @@ function PartnerCollaborationPage() {
             Skillzza forges strategic alliances across sectors to drive meaningful skill development and innovation. Our collaborative approach delivers customized solutions that meet the unique needs of corporates, governments, and educational institutions creating shared value and sustainable impact.
           </p>
           <div className="collab-partners__grid">
-            <article className="collab-partners__card collab-animate anim-fade-up anim-delay-1">
+            <article
+              className="collab-partners__card collab-animate anim-fade-up anim-delay-1"
+              role="button"
+              tabIndex={0}
+              onClick={() => scrollToSection(corporateSectionRef)}
+              onKeyDown={(event) => handleCardKeyDown(event, corporateSectionRef)}
+            >
               <img className="collab-partners__card-image" src="/Company/collaboration/corporates.jpg" alt="Corporates" />
               <h3 className="collab-partners__card-title">Corporates</h3>
             </article>
-            <article className="collab-partners__card collab-animate anim-fade-up anim-delay-2">
+            <article
+              className="collab-partners__card collab-animate anim-fade-up anim-delay-2"
+              role="button"
+              tabIndex={0}
+              onClick={() => scrollToSection(governmentSectionRef)}
+              onKeyDown={(event) => handleCardKeyDown(event, governmentSectionRef)}
+            >
               <img className="collab-partners__card-image" src="/Company/collaboration/govtCardImg.jpg" alt="Government" />
               <h3 className="collab-partners__card-title">Government</h3>
             </article>
-            <article className="collab-partners__card collab-animate anim-fade-up anim-delay-3">
+            <article
+              className="collab-partners__card collab-animate anim-fade-up anim-delay-3"
+              role="button"
+              tabIndex={0}
+              onClick={() => scrollToSection(educationSectionRef)}
+              onKeyDown={(event) => handleCardKeyDown(event, educationSectionRef)}
+            >
               <img className="collab-partners__card-image" src="/Company/collaboration/school_unversity_img.jpeg" alt="Educational institutions" />
               <h3 className="collab-partners__card-title">Educational Institutions</h3>
             </article>
@@ -616,7 +655,7 @@ function PartnerCollaborationPage() {
         {/* ========= CORPORATE PARTNERSHIPS ========= */}
         {/* ========================================== */}
 
-        <section className="section-banner section-banner--corporate">
+        <section ref={corporateSectionRef} className="section-banner section-banner--corporate">
           <div className="section-banner__content collab-animate anim-fade-up">
             <h3 className="section-banner__title">Corporate Partnerships</h3>
             <h4 className="section-banner__subtitle">Upskill Your Workforce. Empower Innovation.</h4>
@@ -725,7 +764,7 @@ function PartnerCollaborationPage() {
         {/* ======= GOVERNMENT PARTNERSHIPS ========= */}
         {/* ========================================== */}
 
-        <section className="section-banner section-banner--govt">
+        <section ref={governmentSectionRef} className="section-banner section-banner--govt">
           <div className="section-banner__content collab-animate anim-fade-up">
             <h3 className="section-banner__title">Government Partnerships</h3>
             <h4 className="section-banner__subtitle">Building a Skilled Nation Together</h4>
@@ -880,7 +919,7 @@ function PartnerCollaborationPage() {
         {/* ====== EDUCATIONAL PARTNERSHIPS ========== */}
         {/* ========================================== */}
 
-        <section className="section-banner section-banner--education">
+        <section ref={educationSectionRef} className="section-banner section-banner--education">
           <div className="section-banner__content collab-animate anim-fade-up">
             <h3 className="section-banner__title">Educational Partnerships</h3>
             <h4 className="section-banner__subtitle">Empowering Students for Tomorrow's World</h4>
