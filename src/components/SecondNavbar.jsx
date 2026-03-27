@@ -8,8 +8,11 @@ const SecondNavbar = () => {
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const [companyDropdownOpen, setCompanyDropdownOpen] = useState(false);
   const [mobileCompanyOpen, setMobileCompanyOpen] = useState(false);
+  const [exploreDropdownOpen, setExploreDropdownOpen] = useState(false);
+  const [mobileExploreOpen, setMobileExploreOpen] = useState(false);
   const closeTimeoutRef = useRef(null);
   const companyCloseTimeoutRef = useRef(null);
+  const exploreCloseTimeoutRef = useRef(null);
   
   const navLinks = ['Products', 'Use Cases', 'School of Technology', 'Explore', 'Insights', 'Company'];
   
@@ -22,6 +25,10 @@ const SecondNavbar = () => {
     { name: 'Our Pathway', path: '/company/our-pathway' },
     { name: 'About', path: '/company/about' },
     { name: 'Partner Collaboration', path: '/company/partner-collaboration' },
+  ];
+
+  const explorePages = [
+    { name: 'Job Simulation', path: '/explore/job-simulation' },
   ];
 
   const clearProductsCloseTimeout = () => {
@@ -64,7 +71,27 @@ const SecondNavbar = () => {
     }, 220);
   };
 
-  useEffect(() => () => { clearProductsCloseTimeout(); clearCompanyCloseTimeout(); }, []);
+  const clearExploreCloseTimeout = () => {
+    if (exploreCloseTimeoutRef.current) {
+      clearTimeout(exploreCloseTimeoutRef.current);
+      exploreCloseTimeoutRef.current = null;
+    }
+  };
+
+  const openExploreDropdown = () => {
+    clearExploreCloseTimeout();
+    setExploreDropdownOpen(true);
+  };
+
+  const closeExploreDropdownWithDelay = () => {
+    clearExploreCloseTimeout();
+    exploreCloseTimeoutRef.current = setTimeout(() => {
+      setExploreDropdownOpen(false);
+      exploreCloseTimeoutRef.current = null;
+    }, 220);
+  };
+
+  useEffect(() => () => { clearProductsCloseTimeout(); clearCompanyCloseTimeout(); clearExploreCloseTimeout(); }, []);
 
   const handleToggle = () => {
     if (mobileMenuOpen) {
@@ -73,12 +100,14 @@ const SecondNavbar = () => {
         setMobileMenuOpen(false);
         setMobileProductsOpen(false);
         setMobileCompanyOpen(false);
+        setMobileExploreOpen(false);
         setIsAnimating(false);
       }, 300);
     } else {
       setMobileMenuOpen(true);
       setMobileProductsOpen(false);
       setMobileCompanyOpen(false);
+      setMobileExploreOpen(false);
     }
   };
 
@@ -150,7 +179,8 @@ const SecondNavbar = () => {
             {navLinks.map((link) => {
               const isProducts = link === 'Products';
               const isCompany = link === 'Company';
-              const hasDropdown = isProducts || isCompany;
+              const isExplore = link === 'Explore';
+              const hasDropdown = isProducts || isCompany || isExplore;
               return (
                 <div 
                   key={link}
@@ -158,10 +188,12 @@ const SecondNavbar = () => {
                   onMouseEnter={() => {
                     if (isProducts) openProductsDropdown();
                     if (isCompany) openCompanyDropdown();
+                    if (isExplore) openExploreDropdown();
                   }}
                   onMouseLeave={() => {
                     if (isProducts) closeProductsDropdownWithDelay();
                     if (isCompany) closeCompanyDropdownWithDelay();
+                    if (isExplore) closeExploreDropdownWithDelay();
                   }}
                 >
                   <a
@@ -212,6 +244,29 @@ const SecondNavbar = () => {
                           onClick={() => {
                             clearCompanyCloseTimeout();
                             setCompanyDropdownOpen(false);
+                          }}
+                        >
+                          {page.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Explore Dropdown */}
+                  {isExplore && exploreDropdownOpen && (
+                    <div 
+                      className="absolute top-full left-0 mt-2 bg-white shadow-xl rounded-lg border border-gray-100 py-2 min-w-[200px] z-50"
+                      onMouseEnter={openExploreDropdown}
+                      onMouseLeave={closeExploreDropdownWithDelay}
+                    >
+                      {explorePages.map((page) => (
+                        <Link
+                          key={page.path}
+                          to={page.path}
+                          className="block px-6 py-3 text-[#0F1114] text-sm font-normal hover:bg-gray-50 transition-colors font-[Lato]"
+                          onClick={() => {
+                            clearExploreCloseTimeout();
+                            setExploreDropdownOpen(false);
                           }}
                         >
                           {page.name}
@@ -271,6 +326,7 @@ const SecondNavbar = () => {
                 {navLinks.map((link, index) => {
                   const isProducts = link === 'Products';
                   const isCompany = link === 'Company';
+                  const isExplore = link === 'Explore';
                   if (isProducts) {
                     return (
                       <div
@@ -332,6 +388,41 @@ const SecondNavbar = () => {
                                 to={page.path}
                                 className="block pl-4 pr-2 py-2 text-[#0F1114] text-sm font-normal hover:opacity-70 transition-opacity font-[Lato]"
                                 onClick={() => { setMobileCompanyOpen(false); setMobileMenuOpen(false); setIsAnimating(false); }}
+                              >
+                                {page.name}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  }
+                  if (isExplore) {
+                    return (
+                      <div
+                        key={link}
+                        className="nav2-link-stagger border-b border-gray-100"
+                        style={{ animationDelay: `${0.05 + index * 0.05}s` }}
+                      >
+                        <button
+                          type="button"
+                          className="w-full py-3 text-[#0F1114] text-base font-normal hover:opacity-70 transition-opacity font-[Lato] flex items-center justify-between"
+                          onClick={() => setMobileExploreOpen((prev) => !prev)}
+                          aria-expanded={mobileExploreOpen}
+                        >
+                          <span>{link}</span>
+                          <svg width="12" height="8" viewBox="0 0 12 8" fill="none" className={`transition-transform duration-200 ${mobileExploreOpen ? 'rotate-180' : ''}`}>
+                            <path d="M1 1L6 6L11 1" stroke="#0F1114" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </button>
+                        {mobileExploreOpen && (
+                          <div className="pb-2">
+                            {explorePages.map((page) => (
+                              <Link
+                                key={page.path}
+                                to={page.path}
+                                className="block pl-4 pr-2 py-2 text-[#0F1114] text-sm font-normal hover:opacity-70 transition-opacity font-[Lato]"
+                                onClick={() => { setMobileExploreOpen(false); setMobileMenuOpen(false); setIsAnimating(false); }}
                               >
                                 {page.name}
                               </Link>

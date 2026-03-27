@@ -1039,6 +1039,147 @@ function OurPathwayPage() {
         </div>
       </section>
 
+      {/* ── Journey of Launching Your Career Section ── */}
+      <section
+        style={{
+          width: '100%',
+          color: '#FFFFFF',
+          padding: '100px 24px 120px',
+          backgroundImage: "url('/Company/AI Hacknex/Group 1.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          position: 'relative',
+        }}
+      >
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundColor: 'rgba(15, 15, 15, 0.45)',
+            pointerEvents: 'none',
+          }}
+        />
+        <div
+          style={{
+            width: '100%',
+            maxWidth: '1200px',
+            margin: '0 auto',
+            position: 'relative',
+            zIndex: 1,
+            textAlign: 'center',
+          }}
+        >
+          <h2
+            style={{
+              fontFamily: 'League Spartan, sans-serif',
+              fontWeight: 700,
+              fontSize: '48px',
+              lineHeight: 1.15,
+              color: '#1E1E1E',
+              marginBottom: '18px',
+            }}
+          >
+            The Journey of Launching<br />Your Career
+          </h2>
+          <p
+            style={{
+              fontFamily: 'DM Sans, sans-serif',
+              fontWeight: 400,
+              fontSize: '18px',
+              lineHeight: 1.6,
+              color: '#4A4A4A',
+              maxWidth: '900px',
+              margin: '0 auto 60px',
+            }}
+          >
+            The significance of work experience cannot be overstated, but securing your first job can be challenging. Experience is the foundation, yet gaining it can be a formidable task. Ascend to a higher plane of pure excellence through our Job Simulation Program.
+          </p>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+              gap: '32px',
+              justifyContent: 'center',
+            }}
+          >
+            {[
+              {
+                number: '10X',
+                label: 'more',
+                description: 'likely to land a job',
+              },
+              {
+                number: '10',
+                label: 'million',
+                description: 'students expected to meet their career aspirations!',
+              },
+              {
+                number: '70+',
+                label: 'career program',
+                description: '& Industry Fields to choose from',
+              },
+              {
+                number: '115+',
+                label: 'years',
+                description: 'of collective industry expertise',
+              },
+            ].map((stat, idx) => (
+              <div
+                key={idx}
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  borderRadius: '16px',
+                  padding: '40px 32px',
+                  boxShadow: '0px 16px 40px rgba(0, 0, 0, 0.15)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '12px',
+                  alignItems: 'center',
+                  textAlign: 'center',
+                }}
+              >
+                <div
+                  style={{
+                    fontFamily: 'League Spartan, sans-serif',
+                    fontWeight: 700,
+                    fontSize: '56px',
+                    lineHeight: 1,
+                    color: '#2974C9',
+                    margin: 0,
+                  }}
+                >
+                  {stat.number}
+                </div>
+                <div
+                  style={{
+                    fontFamily: 'DM Sans, sans-serif',
+                    fontWeight: 600,
+                    fontSize: '16px',
+                    color: '#DFEAF7',
+                    margin: 0,
+                  }}
+                >
+                  {stat.label}
+                </div>
+                <p
+                  style={{
+                    fontFamily: 'DM Sans, sans-serif',
+                    fontWeight: 400,
+                    fontSize: '14px',
+                    lineHeight: 1.5,
+                    color: '#4A4A4A',
+                    margin: '8px 0 0',
+                  }}
+                >
+                  {stat.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section
         style={{
           width: '100%',
