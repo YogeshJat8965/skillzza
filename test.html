@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.wrapper {
+  opacity: 0.99; /* creates stacking context */
+  padding: 50px;
+  background: red;
+}
+.card {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background: white;
+}
+.card::after {
+  content: '';
+  position: absolute;
+  top: 10px; left: 10px; width: 100px; height: 100px;
+  background: blue;
+  z-index: -1;
+}
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="card">Text</div>
+  </div>
+</body>
+</html>

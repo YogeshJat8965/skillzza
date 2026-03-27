@@ -1,54 +1,146 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
+
+const AnimatedCounter = ({ value }) => {
+  const [count, setCount] = useState(0);
+  const target = parseInt(value, 10);
+  const suffix = value.replace(/[0-9]/g, '');
+  const ref = useRef(null);
+
+  useEffect(() => {
+    let observer;
+    let frame;
+    let startTime;
+    const duration = 2000; // 2 seconds
+
+    if (ref.current) {
+      observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          startTime = null;
+          const animate = (timestamp) => {
+            if (!startTime) startTime = timestamp;
+            const progress = timestamp - startTime;
+            const percentage = Math.min(progress / duration, 1);
+            setCount(Math.floor(target * percentage));
+            if (percentage < 1) {
+              frame = requestAnimationFrame(animate);
+            } else {
+              setCount(target);
+            }
+          };
+          frame = requestAnimationFrame(animate);
+        } else {
+            setCount(0);
+        }
+      }, { threshold: 0.1 });
+      observer.observe(ref.current);
+    }
+    return () => {
+      if (observer) observer.disconnect();
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, [target]);
+
+  return <span ref={ref}>{count}{suffix}</span>;
+};
+
+const ScrollReveal = ({ children, className = '', threshold = 0.1, delay = 0, style = {} }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    let observer;
+    if (ref.current) {
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          } else {
+            setIsVisible(false);
+          }
+        },
+        { threshold }
+      );
+      observer.observe(ref.current);
+    }
+    return () => {
+      if (observer) observer.disconnect();
+    };
+  }, [threshold]);
+
+  const revealStyle = {
+    opacity: isVisible ? 1 : 0,
+    transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
+    transition: `opacity 0.8s ease-out ${delay}ms, transform 0.8s ease-out ${delay}ms`,
+    willChange: 'opacity, transform',
+    ...style
+  };
+
+  return (
+    <div ref={ref} className={className} style={revealStyle}>
+      {children}
+    </div>
+  );
+};
 
 const stats = [
   {
     number: '10X',
     label: 'more',
-    description: 'likely to land\na job',
+    description: 'likely to land\nyour first job',
   },
   {
     number: '10',
-    label: 'million',
-    description: 'students expected to meet\ntheir career aspirations!',
+    label: 'million +',
+    description: 'learners projected \nto achieve career success',
   },
   {
     number: '70+',
-    label: 'career program',
-    description: '& Industry Fields to\nchoose from',
+    label: 'programs',
+    description: 'spanning high-growth \ncareer fields',
   },
   {
     number: '115+',
     label: 'years',
-    description: 'of collective Industry\nExpertise',
+    description: 'of collective Industry\nleadership & guidance',
     accent: true,
   },
 ]
 
 const solutionCards = [
   {
-    title: 'Empowering the students\nworldwide',
-    desc: 'An AI-powered Platform that\nmakes you job-ready\nglobally'
+    title: 'Prestigious Certification',
+    desc: ' Validate your skills and boost your resume with recognized certifications aligned with top-tier company standards.'
   },
   {
-    title: 'Global Experience',
-    desc: 'Gain Worldwide Professional\nSkills and Practical Exposure\nthrough Authentic Virtual\nExperiences'
+    title: 'Global Readiness',
+    desc: 'Acquire cross-border competencies and practical exposure with virtual experiences modeled on global workplace environments.'
+  },   
+
+  {
+    title: 'Mentorship from Industry Experts',
+    desc: 'Receive guidance from professional sherpas dedicated to helping you succeed.'
   },
   {
-    title: 'Championing Equity In\nEducation',
-    desc: 'Shattering barriers to Attain\nYour Dream Career with no\ngeographic and logistic\nconstraints'
+    title: 'Career Clarity & Direction',
+    desc: ' Identify your strengths, discover your interests, and match them with real career paths.'
   },
   {
-    title: 'Expert Guidance & Support',
-    desc: 'Our team of sherpas is\ndedicated to steering you\ntowards a successful career\npath'
+    title: 'Real-World Problem Solving',
+    desc: 'Engage in scenario-based learning built by real companies, tackling real challenges.'
   },
   {
-    title: 'Hands-On Learning',
-    desc: 'Collaborate remotely with our\nnetwork of forward-thinking\ncompanies actively seeking\naspiring talent'
+    title: 'Flexible & Immersive Learning',
+    desc: 'Simulate authentic workplace tasks at your own pace, wherever you are.'
   },
   {
-    title: 'Learning Transformation',
-    desc: 'Explore in-depth knowledge\nwith full flexibility through\nvirtual learning, offering a truly\nimmersive experience.'
+    title: 'Visibility to Employers',
+    desc: ' Stand out by showcasing your simulation work and competencies to prospective employers actively scouting for emerging talent.'
+  },
+  {
+    title: 'Real-Time Role Play & Situational Dynamics',
+    desc: ' Experience dynamic, role-specific simulations that replicate real job functions, team collaboration, and strategic decision-making delivering high-impact, experiential learning under real-world conditions.'
   }
+
 ]
 
 const simulationCards = [
@@ -424,6 +516,7 @@ function JobSimulationPage() {
         /* ── Individual card ── */
         .jsim-card {
           flex: 1;
+          width: 100%;
           min-width: 0;
           background: #ffffff;
           border: 1px solid #dde3f0;
@@ -575,14 +668,14 @@ function JobSimulationPage() {
           flex: 1;
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 28px;
+          gap: 20px;
         }
 
         .sol-card {
           background: #ffffff;
           border-radius: 12px;
           box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.08);
-          padding: 40px 32px;
+          padding: 24px 20px;
           text-align: center;
           display: flex;
           flex-direction: column;
@@ -600,18 +693,18 @@ function JobSimulationPage() {
         .sol-card-title {
           font-family: 'Inter', sans-serif;
           font-weight: 700;
-          font-size: 16px;
+          font-size: 15px;
           line-height: 1.4;
           color: #2974c9;
-          margin: 0 0 16px 0;
+          margin: 0 0 12px 0;
           white-space: pre-line;
         }
 
         .sol-card-desc {
           font-family: 'Inter', sans-serif;
           font-weight: 500;
-          font-size: 14px;
-          line-height: 1.6;
+          font-size: 13px;
+          line-height: 1.5;
           color: #71717a;
           white-space: pre-line;
           margin: 0;
@@ -1067,6 +1160,159 @@ function JobSimulationPage() {
             max-height: 300px;
           }
         }
+
+        /* ── Feature Rows Section ── */
+        .jsim-feature-section {
+          width: 100%;
+          background-color: #ffffff;
+          padding: 80px 24px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .jsim-feature-container {
+          max-width: 1200px;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 100px;
+        }
+
+        .jsim-feature-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 60px;
+        }
+
+        .jsim-feature-row.reverse {
+          flex-direction: row-reverse;
+        }
+
+        .jsim-feature-text {
+          flex: 1;
+        }
+
+        .jsim-feature-text h2 {
+          font-family: 'Inter', sans-serif;
+          font-size: 36px;
+          font-weight: 600;
+          color: #333333;
+          margin-bottom: 24px;
+        }
+
+        .jsim-feature-text p {
+          font-family: 'Inter', sans-serif;
+          font-size: 16px;
+          color: #555555;
+          line-height: 1.6;
+          margin-bottom: 16px;
+        }
+
+        .jsim-feature-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        .jsim-feature-list li {
+          font-family: 'Inter', sans-serif;
+          font-size: 16px;
+          color: #555555;
+          line-height: 1.6;
+          margin-bottom: 20px;
+          display: flex;
+          align-items: flex-start;
+          gap: 12px;
+        }
+
+        .jsim-feature-list li svg {
+          flex-shrink: 0;
+          margin-top: 4px; /* Align top of SVG with top of text */
+        }
+
+        .jsim-feature-image {
+          flex: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .jsim-feature-image img {
+          width: 100%;
+          max-width: 500px;
+          border-radius: 0;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Slight shadow for modern look */
+          object-fit: cover;
+        }
+
+        /* Specific styles for images */
+        .jsim-feature-image-1 img {
+          border-radius: 0;
+        }
+        
+        .jsim-feature-image-2 img {
+          border-radius: 0;
+          box-shadow: none;
+        }
+
+        @media (max-width: 900px) {
+          .jsim-feature-row, .jsim-feature-row.reverse {
+            flex-direction: column;
+            gap: 40px;
+          }
+          .jsim-feature-image img {
+            max-width: 100%;
+          }
+          .jsim-feature-container {
+            gap: 60px;
+          }
+        }
+
+        /* ── Bottom CTA Banner ── */
+        .jsim-cta-banner {
+          background-color: #8c0912;
+          background: linear-gradient(135deg, #7c0a02 0%, #a61217 50%, #6b0700 100%);
+          width: 100%;
+          padding: 40px 24px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          gap: 16px;
+          position: relative;
+        }
+
+        .jsim-cta-text {
+          color: #ffffff;
+          font-family: 'Inter', sans-serif;
+          font-size: 20px;
+          font-weight: 400;
+          position: relative;
+          z-index: 1;
+        }
+
+        .jsim-cta-btn {
+          background-color: #f7a930;
+          color: #1a1a1a;
+          border: none;
+          border-radius: 6px;
+          padding: 14px 32px;
+          font-family: 'Inter', sans-serif;
+          font-size: 16px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: background-color 0.3s, transform 0.2s;
+          position: relative;
+          z-index: 1;
+        }
+
+        .jsim-cta-btn:hover {
+          background-color: #e59929;
+          transform: translateY(-2px);
+        }
       `}</style>
 
       <section className="jsim-section">
@@ -1082,28 +1328,35 @@ function JobSimulationPage() {
         <div className="jsim-inner">
 
           {/* Title */}
-          <h1 className="jsim-heading">
-            The Journey of Launching<br />Your Career
-          </h1>
+          <ScrollReveal>
+            <h1 className="jsim-heading">
+              The Journey of Launching<br />Your Career
+            </h1>
+          </ScrollReveal>
 
           {/* Description */}
-          <p className="jsim-description">
-            The significance of work experience cannot be overstated, but securing your first job can be
-            challenging. Experience is the foundation, yet gaining it can be a formidable task. Ascend to a
-            higher plane of pure excellence through our Job Simulation Program.
-          </p>
+          <ScrollReveal delay={100}>
+            <p className="jsim-description">
+              The significance of work experience cannot be overstated, but securing your first job can be
+              challenging. Experience is the foundation, yet gaining it can be a formidable task. Ascend to a
+              higher plane of pure excellence through our Job Simulation Program.
+            </p>
+          </ScrollReveal>
 
           {/* Stat Cards */}
           <div className="jsim-cards-row">
             {stats.map((stat, index) => (
-              <div
-                key={index}
-                className={`jsim-card${stat.accent ? ' jsim-card-accent' : ''}`}
+              <ScrollReveal 
+                key={index} 
+                delay={index * 150} 
+                style={{ display: 'flex', flex: 1, minWidth: 0 }}
               >
-                <span className="jsim-stat-number">{stat.number}</span>
-                <span className="jsim-stat-label">{stat.label}</span>
-                <p className="jsim-stat-desc">{stat.description}</p>
-              </div>
+                <div className={`jsim-card${stat.accent ? ' jsim-card-accent' : ''}`}>
+                  <span className="jsim-stat-number"><AnimatedCounter value={stat.number} /></span>
+                  <span className="jsim-stat-label">{stat.label}</span>
+                  <p className="jsim-stat-desc">{stat.description}</p>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
 
@@ -1117,29 +1370,28 @@ function JobSimulationPage() {
 
         <div className="sol-inner">
           {/* Header */}
-          <div className="sol-header">
-            <h2 className="sol-title">The Solution..</h2>
+          <ScrollReveal className="sol-header">
+            <h2 className="sol-title">The Solution...</h2>
             <p className="sol-subtitle">
-              Gain virtual professional experience in any Industry through job simulation opportunities, 
-              bridging the gap between learning and real-world application - anytime, anywhere.
+              Gain virtual professional experience in any industry through job simulation opportunities, bridging the gap between learning and real-world application anytime, anywhere.
             </p>
-          </div>
+          </ScrollReveal>
 
           {/* Two Columns Content */}
           <div className="sol-content">
             {/* Left: Cards Grid */}
             <div className="sol-cards-grid">
               {solutionCards.map((card, index) => (
-                <div key={index} className="sol-card">
+                <ScrollReveal key={index} delay={index * 100} className="sol-card">
                   <h3 className="sol-card-title">{card.title}</h3>
                   <p className="sol-card-desc">{card.desc}</p>
-                </div>
+                </ScrollReveal>
               ))}
             </div>
 
             {/* Right: Woman Image & Decorations */}
             <div className="sol-image-col">
-              <div className="sol-image-wrapper">
+              <ScrollReveal delay={300} className="sol-image-wrapper">
                 {/* Decorative Elements */}
                 <div className="sol-decor-tl"></div>
                 <div className="sol-decor-dots-l"></div>
@@ -1152,7 +1404,7 @@ function JobSimulationPage() {
                   alt="Woman with laptop" 
                   className="sol-woman-img" 
                 />
-              </div>
+              </ScrollReveal>
             </div>
           </div>
         </div>
@@ -1161,11 +1413,13 @@ function JobSimulationPage() {
       {/* ── DISCOVER THE JOB SIMULATIONS SECTION ── */}
       <section className="discover-section">
         <div className="discover-inner">
-          <h2 className="discover-title">Discover the Job Simulations</h2>
-          <p className="discover-subtitle-blue">Identify the perfect Job Simulation for you</p>
-          <p className="discover-subtitle-body">All Job Simulations are thoughtfully curated, allowing you to navigate them at your own pace.</p>
+          <ScrollReveal>
+            <h2 className="discover-title">Discover the Job Simulations</h2>
+            <p className="discover-subtitle-blue">Identify the perfect Job Simulation for you</p>
+            <p className="discover-subtitle-body">All Job Simulations are thoughtfully curated, allowing you to navigate them at your own pace.</p>
+          </ScrollReveal>
 
-          <div className="discover-filters">
+          <ScrollReveal delay={150} className="discover-filters">
             <select className="discover-select">
               <optgroup label="CAREER FIELDS">
                 <option value="ai-data">AI & Data</option>
@@ -1221,12 +1475,12 @@ function JobSimulationPage() {
                 <option value="advanced">Advanced</option>
               </optgroup>
             </select>
-          </div>
+          </ScrollReveal>
 
           {/* Job Simulation Cards */}
           <div className="sim-cards-grid">
             {visibleCards.map((card, index) => (
-              <div key={index} className="sim-card">
+              <ScrollReveal key={index} delay={(index % 4) * 100} className="sim-card">
                 <div className="sim-card-image-wrap">
                   <img src={card.image} alt={card.title} className="sim-card-image" />
                   <div className="sim-card-logo-box">
@@ -1254,33 +1508,125 @@ function JobSimulationPage() {
                     </span>
                   </div>
                 </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
 
-          <div className="explore-btn-container">
+          <ScrollReveal delay={200} className="explore-btn-container">
             <button 
               className="explore-more-btn" 
               onClick={() => setShowAll(!showAll)}
             >
               {showAll ? 'Explore Less' : 'Explore More'}
             </button>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* ── BANNER SECTION ── */}
       <section className="jsim-banner">
-        <div className="jsim-banner-content">
+        <ScrollReveal className="jsim-banner-content">
           <div className="jsim-banner-text">
-            <h2>Ready to unlock your true potential?</h2>
-            <p>Let Our <span className="highlight-yellow">AI expert</span> help you to understand more about you..</p>
-            <p>Take your one step Ahead.. <a href="#" className="highlight-yellow-link">just a click away!!</a></p>
+            <h2>Ready to Accelerate Your Career?</h2>
+            <p>Let Our <span className="highlight-yellow">AI career assistant</span>  help you identify the best simulation to match your aspirations.</p>
+            <p>Just one click can move you one step closer to a future-ready profession.</p>
           </div>
           <div className="jsim-banner-image-wrapper">
             <img src="/simulation/HappyMan.png" alt="Happy Man" className="jsim-banner-img" />
           </div>
+        </ScrollReveal>
+      </section>
+
+      {/* ── SHOWCASE & APART SECTION ── */}
+      <section className="jsim-feature-section">
+        <div className="jsim-feature-container">
+          
+          {/* Row 1: Text Left, Image Right */}
+          <ScrollReveal className="jsim-feature-row">
+            <div className="jsim-feature-text">
+              <h2>Showcase your expertise</h2>
+              <p style={{ marginBottom: '20px', fontSize: '18px', fontWeight: '500', color: '#333' }}>Job simulations empower you to</p>
+              <ul className="jsim-feature-list">
+                <li>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 6L9 17L4 12" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <span>Execute real industry tasks in a risk-free environment</span>
+                </li>
+                <li>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 6L9 17L4 12" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <span>Develop practical, transferable skills that employers demand</span>
+                </li>
+                <li>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 6L9 17L4 12" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <span>Earn industry-recognized certifications aligned with global standards</span>
+                </li>
+                <li>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 6L9 17L4 12" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <span>Add weight to your resume and professional portfolio</span>
+                </li>
+              </ul>
+            </div>
+            <div className="jsim-feature-image jsim-feature-image-1">
+              <img src="https://skillzza.com/assets/img/showcaseyourexpertise.jpg" alt="Showcase expertise" />
+            </div>
+          </ScrollReveal>
+
+          {/* Row 2: Image Left, Text Right (reverse) */}
+          <ScrollReveal className="jsim-feature-row reverse">
+            <div className="jsim-feature-text">
+              <h2>What Makes Skillzza Stand Out</h2>
+              <ul className="jsim-feature-list">
+                <li>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 6L9 17L4 12" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <span>Engage with insightful video briefings and deep-dive resources curated by industry veterans</span>
+                </li>
+                <li>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 6L9 17L4 12" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <span>Learn directly from seasoned professionals through step-by-step guidance</span>
+                </li>
+                <li>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 6L9 17L4 12" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <span>Earn certifications that validate your proficiency and prepare you for global opportunities</span>
+                </li>
+                <li>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 6L9 17L4 12" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <span>Join a talent network of future-focused learners and employers looking for next-gen professionals</span>
+                </li>
+              </ul>
+            </div>
+            <div className="jsim-feature-image jsim-feature-image-2">
+              <img src="https://skillzza.com/assets/img/hereHowitiswork.jpg" alt="Here's what sets us apart" />
+            </div>
+          </ScrollReveal>
+
         </div>
+      </section>
+
+      {/* ── BOTTOM CTA BANNER ── */}
+      <section className="jsim-cta-banner">
+        <ScrollReveal className="jsim-cta-text">
+          Join Skillzza And Transcend Traditional Learning <br />Start your simulation today. Step confidently into the future with skills that matter.
+        </ScrollReveal>
+        <ScrollReveal delay={150}>
+          <button className="jsim-cta-btn">
+            Get Started Now!
+          </button>
+        </ScrollReveal>
       </section>
     </>
   )
