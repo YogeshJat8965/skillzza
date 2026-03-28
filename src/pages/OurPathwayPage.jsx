@@ -1093,7 +1093,8 @@ function OurPathwayPage() {
               margin: '0 auto 60px',
             }}
           >
-            The significance of work experience cannot be overstated, but securing your first job can be challenging. Experience is the foundation, yet gaining it can be a formidable task. Ascend to a higher plane of pure excellence through our Job Simulation Program.
+            In today’s competitive job market, experience isn’t just an advantage, it's a prerequisite. Yet, gaining meaningful, industry-relevant experience before your first job remains a challenge for many.<br/><br/>
+            Skillzza’s AI-Powered Job Simulation Program eliminates that barrier, offering a transformative journey from classroom learning to real-world application. With our immersive, on-demand job simulations, you don’t just prepare for the workforce, you step directly into it.
           </p>
           <div
             style={{
