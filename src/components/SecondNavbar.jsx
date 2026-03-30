@@ -196,15 +196,29 @@ const SecondNavbar = () => {
                     if (isExplore) closeExploreDropdownWithDelay();
                   }}
                 >
-                  <a
-                    href="#"
-                    className="text-[#0F1114] text-sm xl:text-[15px] font-normal hover:opacity-70 transition-opacity flex items-center gap-1 font-[Lato]"
-                  >
-                    {link}
-                    <svg width="10" height="7" viewBox="0 0 12 8" fill="none" className="mt-0.5">
-                      <path d="M1 1L6 6L11 1" stroke="#0F1114" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </a>
+                  {link === 'Insights' ? (
+                    <Link
+                      to="/insights"
+                      className="text-[#0F1114] text-sm xl:text-[15px] font-normal hover:opacity-70 transition-opacity flex items-center gap-1 font-[Lato]"
+                    >
+                      {link}
+                    </Link>
+                  ) : (
+                    <a
+                      href="#"
+                      className="text-[#0F1114] text-sm xl:text-[15px] font-normal hover:opacity-70 transition-opacity flex items-center gap-1 font-[Lato]"
+                      onClick={(e) => {
+                        if (hasDropdown) e.preventDefault();
+                      }}
+                    >
+                      {link}
+                      {hasDropdown && (
+                        <svg width="10" height="7" viewBox="0 0 12 8" fill="none" className="mt-0.5">
+                          <path d="M1 1L6 6L11 1" stroke="#0F1114" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      )}
+                    </a>
+                  )}
                   
                   {/* Products Dropdown */}
                   {isProducts && productsDropdownOpen && (
@@ -432,13 +446,35 @@ const SecondNavbar = () => {
                       </div>
                     );
                   }
+                  if (link === 'Insights') {
+                    return (
+                      <Link
+                        key={link}
+                        to="/insights"
+                        className="nav2-link-stagger block py-3 text-[#0F1114] text-base font-normal border-b border-gray-100 hover:opacity-70 transition-opacity font-[Lato]"
+                        style={{ animationDelay: `${0.05 + index * 0.05}s` }}
+                        onClick={() => { setMobileMenuOpen(false); setIsAnimating(false); }}
+                      >
+                        {link}
+                      </Link>
+                    )
+                  }
+                  
+                  const hasDropdown = isProducts || isCompany || isExplore;
                   return (
                     <a
                       key={link}
                       href="#"
                       className="nav2-link-stagger block py-3 text-[#0F1114] text-base font-normal border-b border-gray-100 hover:opacity-70 transition-opacity font-[Lato]"
                       style={{ animationDelay: `${0.05 + index * 0.05}s` }}
-                      onClick={() => { setMobileMenuOpen(false); setIsAnimating(false); }}
+                      onClick={(e) => { 
+                        if (!hasDropdown) {
+                          setMobileMenuOpen(false); 
+                          setIsAnimating(false);
+                        } else {
+                          e.preventDefault();
+                        }
+                      }}
                     >
                       {link}
                     </a>

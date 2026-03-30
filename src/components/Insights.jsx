@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const Insights = () => {
+const Insights = ({ showHero = false, showContent = true }) => {
   const [isVisible, setIsVisible] = useState({
     heading: false,
     button: false,
@@ -246,6 +246,43 @@ const Insights = () => {
           }
         }
       `}</style>
+      
+      {/* Hero Banner Section */}
+      {showHero && (
+        <section 
+          className="w-full relative flex items-center justify-center overflow-hidden" 
+          style={{ minHeight: '280px', height: '35vh', maxHeight: '350px' }}
+        >
+          <div 
+            className="absolute inset-0 w-full h-full"
+            style={{
+              backgroundImage: "url('/Company/premium_photo-1661486479651-09063e9671dd.avif')",
+              backgroundSize: 'cover',
+              backgroundPosition: 'center 35%',
+              filter: 'brightness(0.65)'
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+          
+          <div className="relative z-10 text-center px-4 w-full animate-fade-in-up">
+            <h1 
+              style={{ 
+                fontFamily: "'League Spartan', sans-serif", 
+                fontWeight: 700, 
+                fontSize: 'clamp(48px, 6vw, 72px)',
+                letterSpacing: '2px',
+                color: '#FFFFFF',
+                margin: 0,
+                textShadow: '0 4px 12px rgba(0,0,0,0.5)'
+              }}
+            >
+              Insights
+            </h1>
+          </div>
+        </section>
+      )}
+
+      {showContent && (
       <section className="w-full bg-white py-12 md:py-20">
         <div className="max-w-[1920px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-24 2xl:px-32">
           {/* Main Content - 2 Columns on desktop, 1 column on mobile */}
@@ -702,6 +739,7 @@ const Insights = () => {
           </div>
         </div>
       </section>
+      )}
     </>
   );
 };

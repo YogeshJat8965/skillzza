@@ -13,6 +13,7 @@ import OurPathwayPage from './pages/OurPathwayPage'
 import AboutPage from './pages/AboutPage'
 import PartnerCollaborationPage from './pages/PartnerCollaborationPage'
 import JobSimulationPage from './pages/JobSimulationPage'
+import InsightsPage from './pages/InsightsPage'
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/company/about" element={<AboutPage />} />
           <Route path="/company/partner-collaboration" element={<PartnerCollaborationPage />} />
           <Route path="/explore/job-simulation" element={<JobSimulationPage />} />
+          <Route path="/insights" element={<InsightsPage />} />
         </Routes>
         
         {/* Footer stays on all pages */}
