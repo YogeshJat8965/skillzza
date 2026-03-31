@@ -207,6 +207,21 @@ function OurPathwayPage() {
             padding: 14px 28px !important;
             font-size: 17px !important;
           }
+          /* page scoped mobile typography fixes */
+          section h2, section h3, section h2 *, section h3 * {
+            white-space: normal !important;
+          }
+          section h2 {
+            font-size: 36px !important;
+            line-height: 1.15 !important;
+          }
+          section h3 {
+            font-size: 28px !important;
+            line-height: 1.15 !important;
+          }
+          section span {
+            white-space: normal !important;
+          }
           .pathway-section-subtitle {
             font-size: 22px !important;
           }
@@ -278,14 +293,33 @@ function OurPathwayPage() {
             font-size: 28px !important;
             text-align: center !important;
           }
+          .pathway-cta-inner > div:first-child {
+            flex: unset !important;
+            padding: 20px 0 !important;
+          }
           .pathway-cta-buttons {
             flex-direction: column !important;
             align-items: center !important;
+            width: 100% !important;
+          }
+          .pathway-cta-buttons button {
+            width: 100% !important;
+            max-width: 320px !important;
+            white-space: normal !important;
           }
           .pathway-cta-image {
             width: 100% !important;
             flex: unset !important;
-            height: 280px !important;
+            height: 300px !important;
+            margin: 0 auto !important;
+            margin-bottom: -50px !important; /* Move image down to crop text */
+          }
+          .pathway-cta-image > img:first-child {
+            width: 100% !important;
+            height: 125% !important;
+            object-fit: cover !important;
+            object-position: center top !important; /* Force zoom to crop bottom */
+            margin: 0 auto !important;
           }
         }
 
@@ -533,7 +567,7 @@ function OurPathwayPage() {
 
           {/* Cards Grid */}
           <div
-            className="pathway-stagger"
+            className="pathway-stagger pathway-cards-grid"
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(309px, 1fr))',
@@ -741,7 +775,7 @@ function OurPathwayPage() {
 
           {/* Icons highlight grid */}
           <div
-            className="pathway-stagger"
+            className="pathway-stagger pathway-highlight-grid"
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(420px, 1fr))',
@@ -875,7 +909,7 @@ function OurPathwayPage() {
           </div>
 
           <div
-            className="pathway-stagger"
+            className="pathway-stagger pathway-serve-grid"
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))',
@@ -1036,7 +1070,7 @@ function OurPathwayPage() {
             Collaborating for Greater Impact
           </h2>
           <div
-            className="pathway-stagger"
+            className="pathway-stagger pathway-partnership-pills"
             style={{
               display: 'flex',
               flexWrap: 'wrap',
@@ -1116,6 +1150,7 @@ function OurPathwayPage() {
           </div>
 
           <div
+            className="pathway-tab-bar"
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -1257,6 +1292,7 @@ function OurPathwayPage() {
         }}
       >
         <div
+          className="pathway-cta-inner"
           style={{
             width: '100%',
             maxWidth: '1200px',
@@ -1295,6 +1331,7 @@ function OurPathwayPage() {
               Ready to Transform Your Life?
             </h2>
             <div
+              className="pathway-cta-buttons"
               style={{
                 display: 'flex',
                 flexWrap: 'nowrap',
@@ -1329,6 +1366,7 @@ function OurPathwayPage() {
             </div>
           </div>
           <div
+            className="pathway-cta-image"
             style={{
               flex: '0 0 520px',
               height: '420px',

@@ -413,6 +413,13 @@ function AboutPage() {
         }
 
         @media (max-width: 992px) {
+          .about-cta-strip {
+            margin-top: 0;
+            height: auto;
+            min-height: 120px;
+            padding: 24px clamp(20px, 6vw, 56px);
+          }
+
           .about-cta-strip__inner {
             gap: 10px;
           }
@@ -437,17 +444,13 @@ function AboutPage() {
 
           .about-mv__chip,
           .about-mv__chip--yellow {
-            width: 82px;
-            height: 44px;
-          }
-
-          .about-mv__chip--yellow {
-            margin-left: 0;
+            display: none;
           }
 
           .about-mv__card--mission,
           .about-mv__card--vision {
             min-height: auto;
+            margin-top: 0;
           }
         }
 
