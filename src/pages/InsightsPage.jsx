@@ -36,26 +36,22 @@ function InsightsPage() {
           {/* Main Heading */}
           
 
-          {/* 5 Buttons in a Single Row (horizontally scrolls on small mobile instead of breaking apart entirely, avoiding ugly wraps) */}
+          {/* 5 Buttons wrapped for mobile and big screens alike */}
           <div 
-            className="w-full flex lg:justify-center overflow-x-auto pt-8 pb-12 -mx-4 px-8 lg:mx-0 lg:px-0 lg:overflow-visible no-scrollbar insight-btn-container"
-            style={{ scrollSnapType: 'x mandatory' }}
+            className="w-full flex justify-center pt-8 pb-12 px-2 md:px-4 lg:px-0 insight-btn-container"
           >
-            <div className="flex flex-nowrap lg:flex-wrap gap-4 md:gap-5 mx-auto w-max lg:w-auto justify-center items-center">
+            <div className="flex flex-wrap gap-3 md:gap-5 mx-auto w-full lg:w-auto justify-center items-center">
               {insightTabs.map((tab) => {
                 const isActive = activeTab === tab;
                 return (
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
-                    className={`insight-category-btn ${isActive ? 'active' : ''}`}
+                    className={`insight-category-btn whitespace-normal md:whitespace-nowrap text-[14px] md:text-[17px] px-[16px] md:px-[36px] py-[10px] md:py-[18px] ${isActive ? 'active' : ''}`}
                     style={{
-                      scrollSnapAlign: 'start',
                       fontFamily: "'DM Sans', sans-serif",
                       fontWeight: 600,
-                      fontSize: '17px',
-                      whiteSpace: 'nowrap',
-                      padding: '18px 36px',
+                      textAlign: 'center',
                       borderRadius: '999px',
                       backgroundColor: isActive ? '#E11313' : '#FFFFFF',
                       color: isActive ? '#FFFFFF' : '#475569',

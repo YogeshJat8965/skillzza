@@ -188,17 +188,28 @@ function OurPathwayPage() {
         @media (max-width: 768px) {
           .pathway-hero-heading {
             font-size: 32px !important;
+            line-height: 1.2 !important;
+            -webkit-line-clamp: unset !important;
+            overflow: visible !important;
+            display: block !important;
           }
           .pathway-hero-subheading {
             font-size: 20px !important;
+            line-height: 1.3 !important;
             white-space: normal !important;
+            margin-top: 12px !important;
           }
           .pathway-hero-description {
-            font-size: 18px !important;
+            font-size: 16px !important;
+            line-height: 1.4 !important;
+            -webkit-line-clamp: unset !important;
+            overflow: visible !important;
+            display: block !important;
           }
           .pathway-hero-buttons {
             flex-direction: column !important;
-            gap: 14px !important;
+            gap: 16px !important;
+            margin-top: 24px !important;
           }
           .pathway-hero-buttons button {
             min-width: unset !important;
@@ -206,46 +217,68 @@ function OurPathwayPage() {
             max-width: 320px !important;
             padding: 14px 28px !important;
             font-size: 17px !important;
+            white-space: normal !important;
+          }
+          .pathway-hero-image {
+            margin-top: 24px !important;
           }
           /* page scoped mobile typography fixes */
           section h2, section h3, section h2 *, section h3 * {
             white-space: normal !important;
           }
           section h2 {
-            font-size: 36px !important;
-            line-height: 1.15 !important;
+            font-size: 28px !important;
+            line-height: 1.25 !important;
+            margin-bottom: 12px !important;
           }
           section h3 {
-            font-size: 28px !important;
-            line-height: 1.15 !important;
+            font-size: 24px !important;
+            line-height: 1.25 !important;
+          }
+          section p {
+            font-size: 16px !important;
+            line-height: 1.5 !important;
           }
           section span {
             white-space: normal !important;
+            display: inline !important;
           }
           .pathway-section-subtitle {
-            font-size: 22px !important;
+            font-size: 20px !important;
           }
           .pathway-section-title {
-            font-size: 30px !important;
+            font-size: 28px !important;
           }
           .pathway-section-desc {
             font-size: 16px !important;
+            margin-top: 10px !important;
           }
           .pathway-section-desc span {
             white-space: normal !important;
           }
           .pathway-cards-grid {
             grid-template-columns: 1fr !important;
+            gap: 20px !important;
           }
           .pathway-cards-grid > div {
             width: 100% !important;
             max-width: 380px !important;
+            height: auto !important;
+            min-height: 480px !important;
           }
           .pathway-highlight-grid {
             grid-template-columns: 1fr !important;
+            gap: 24px !important;
           }
           .pathway-highlight-row {
-            gap: 20px !important;
+            gap: 16px !important;
+          }
+          .pathway-highlight-row h3 {
+            font-size: 22px !important;
+            margin-bottom: 8px !important;
+          }
+          .pathway-highlight-row p {
+            font-size: 15px !important;
           }
           .pathway-serve-grid {
             grid-template-columns: 1fr !important;
@@ -256,33 +289,37 @@ function OurPathwayPage() {
           }
           .pathway-partnership-pills {
             flex-direction: column !important;
-            align-items: center !important;
+            align-items: stretch !important;
+            gap: 12px !important;
           }
           .pathway-pill {
             width: 100% !important;
-            max-width: 300px !important;
+            max-width: none !important;
+            text-align: center !important;
+            justify-content: center !important;
+            padding: 16px !important;
           }
           .pathway-tab-bar {
             flex-direction: column !important;
-            border-radius: 20px !important;
-            padding: 10px !important;
+            border-radius: 16px !important;
+            padding: 12px !important;
+            gap: 10px !important;
           }
           .pathway-tab-btn {
             width: 100% !important;
-            height: 56px !important;
-            font-size: 20px !important;
+            height: auto !important;
+            padding: 14px !important;
+            font-size: 18px !important;
+            border-radius: 12px !important;
           }
           .pathway-tab-content {
             flex-direction: column !important;
           }
           .pathway-tab-content > div:first-child {
-            min-height: 260px !important;
+            min-height: 220px !important;
           }
           .pathway-tab-content > div:last-child {
-            padding: 28px 20px !important;
-          }
-          .pathway-tab-content img {
-            border-radius: 25px 25px 0 0 !important;
+            padding: 24px 20px !important;
           }
           .pathway-cta-inner {
             flex-direction: column !important;
@@ -290,7 +327,7 @@ function OurPathwayPage() {
             text-align: center !important;
           }
           .pathway-cta-inner h2 {
-            font-size: 28px !important;
+            font-size: 26px !important;
             text-align: center !important;
           }
           .pathway-cta-inner > div:first-child {
@@ -300,25 +337,27 @@ function OurPathwayPage() {
           .pathway-cta-buttons {
             flex-direction: column !important;
             align-items: center !important;
+            gap: 14px !important;
             width: 100% !important;
           }
           .pathway-cta-buttons button {
             width: 100% !important;
             max-width: 320px !important;
             white-space: normal !important;
+            font-size: 16px !important;
+            padding: 14px 20px !important;
           }
           .pathway-cta-image {
             width: 100% !important;
             flex: unset !important;
-            height: 300px !important;
-            margin: 0 auto !important;
-            margin-bottom: -50px !important; /* Move image down to crop text */
+            height: 280px !important;
+            margin: -30px auto -40px auto !important;
           }
           .pathway-cta-image > img:first-child {
             width: 100% !important;
             height: 125% !important;
             object-fit: cover !important;
-            object-position: center top !important; /* Force zoom to crop bottom */
+            object-position: center top !important;
             margin: 0 auto !important;
           }
         }
