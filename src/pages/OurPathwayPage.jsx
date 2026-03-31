@@ -959,7 +959,7 @@ function OurPathwayPage() {
                       gap: '12px',
                     }}
                   >
-                    <div
+                    {/* <div
                       style={{
                         width: '64px',
                         height: '64px',
@@ -977,7 +977,7 @@ function OurPathwayPage() {
                         alt={`${segment.title} icon`}
                         style={{ width: '32px', height: '32px', objectFit: 'contain' }}
                       />
-                    </div>
+                    </div> */}
                     <div
                       style={{
                           color: '#FFFFFF',

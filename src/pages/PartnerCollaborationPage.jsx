@@ -780,7 +780,7 @@ function PartnerCollaborationPage() {
         <section className="detail-section">
           <div className="detail-section__inner">
             <div className="detail-section__content collab-animate anim-slide-left">
-              <h3 className="detail-section__heading">How We Empower Governments:</h3>
+              <h3 className="detail-section__heading">How We Empower Governments</h3>
               <div className="detail-section__block">
                 <h4 className="detail-section__subheading">Policy-Integrated Programs</h4>
                 <ul className="detail-section__list">
@@ -843,7 +843,7 @@ function PartnerCollaborationPage() {
         <section className="detail-section">
           <div className="detail-section__inner">
             <div className="detail-section__content collab-animate anim-slide-left">
-              <h3 className="detail-section__heading">Priority Focus Areas:</h3>
+              <h3 className="detail-section__heading">Priority Focus Areas</h3>
               <div className="detail-section__block">
                 <h4 className="detail-section__subheading">Youth Empowerment</h4>
                 <ul className="detail-section__list">
@@ -888,7 +888,7 @@ function PartnerCollaborationPage() {
         {/* Our Proven Engagement Process Cards */}
         <section className="cards-section">
           <div className="cards-section__inner">
-            <h3 className="cards-section__heading collab-animate anim-fade-up">Our Proven Engagement Process:</h3>
+            <h3 className="cards-section__heading collab-animate anim-fade-up">Our Proven Engagement Process</h3>
             <div className="cards-section__grid">
               <article className="cards-section__card collab-animate anim-scale-in anim-delay-1">
                 <span className="cards-section__card-number">1</span>
@@ -936,7 +936,7 @@ function PartnerCollaborationPage() {
         <section className="detail-section">
           <div className="detail-section__inner detail-section__inner--reverse">
             <div className="detail-section__content collab-animate anim-slide-right">
-              <h3 className="detail-section__heading">Why Educational Institutions Choose Skillzza:</h3>
+              <h3 className="detail-section__heading">Why Educational Institutions Choose Skillzza</h3>
               <div className="detail-section__block">
                 <h4 className="detail-section__subheading">Holistic Skill Development</h4>
                 <ul className="detail-section__list">
@@ -1008,15 +1008,15 @@ function PartnerCollaborationPage() {
         <section className="detail-section">
           <div className="detail-section__inner detail-section__inner--reverse">
             <div className="detail-section__content collab-animate anim-slide-right">
-              <h3 className="detail-section__heading">Comprehensive Program Offerings:</h3>
+              <h3 className="detail-section__heading">Comprehensive Program Offerings</h3>
               <div className="detail-section__block">
                 <ul className="detail-section__list">
-                  <li><strong>Skill Development Bootcamps:</strong> Intensive programs in technology, creativity, and leadership</li>
-                  <li><strong>STEM Innovation Labs:</strong> Hands-on science, technology, engineering, and math experiences</li>
-                  <li><strong>Sustainability Champions:</strong> Environmental leadership and climate action programs</li>
-                  <li><strong>Creative Arts Integration:</strong> Design thinking, media, and artistic expression workshops</li>
+                  <li><strong>Skill Development Bootcamps</strong> Intensive programs in technology, creativity, and leadership</li>
+                  <li><strong>STEM Innovation Labs</strong> Hands-on science, technology, engineering, and math experiences</li>
+                  <li><strong>Sustainability Champions</strong> Environmental leadership and climate action programs</li>
+                  <li><strong>Creative Arts Integration</strong> Design thinking, media, and artistic expression workshops</li>
                   <li><strong>Career Exploration:</strong> Industry mentorship and professional skill development</li>
-                  <li><strong>Teacher Excellence Programs:</strong> Educator training and curriculum enhancement</li>
+                  <li><strong>Teacher Excellence Programs</strong> Educator training and curriculum enhancement</li>
                 </ul>
               </div>
             </div>
@@ -1033,7 +1033,7 @@ function PartnerCollaborationPage() {
         {/* Our Impact Commitment Cards */}
         <section className="cards-section">
           <div className="cards-section__inner">
-            <h3 className="cards-section__heading collab-animate anim-fade-up">Our Impact Commitment:</h3>
+            <h3 className="cards-section__heading collab-animate anim-fade-up">Our Impact Commitment</h3>
             <div className="cards-section__grid">
               <article className="cards-section__card collab-animate anim-scale-in anim-delay-1">
                 <span className="cards-section__card-number">1</span>

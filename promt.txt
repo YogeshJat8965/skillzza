@@ -47,3 +47,5 @@ responsive you can add, edit make size of images, texts change decrease do whate
 and make sure it should not affects the desktops responsive flow
 
 
+
+
