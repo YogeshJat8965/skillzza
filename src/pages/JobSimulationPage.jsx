@@ -434,6 +434,381 @@ const simulationCards = [
   }
 ];
 
+const newDesignCards = [
+  {
+    image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?q=80&w=1000&auto=format&fit=crop',
+    logo: 'https://portal.skillzza.com/ailifebot_logo_no_bg.png',
+    title: 'Architecting Enterprise-Grade B2B Sales Leadership & Deal Strategy Systems',
+    category: 'Marketing',
+    level: 'Advanced',
+    duration: '5-8 hours',
+    hiring: true
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=80',
+    logo: 'https://portal.skillzza.com/ailifebot_logo_no_bg.png',
+    title: 'Engineering and Orchestrating Serverless (FaaS) Architectures',
+    category: 'Development',
+    level: 'Advanced',
+    duration: '5-8 hours'
+  },
+  {
+    image: 'https://plus.unsplash.com/premium_photo-1673379368734-fdf78575bc3d?q=80&w=1170&auto=format&fit=crop',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/250px-Amazon_Web_Services_Logo.svg.png',
+    title: 'Building Retrieval-Augmented Generation (RAG) Systems',
+    category: 'Development',
+    level: 'Advanced',
+    duration: '5-8 hours'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80',
+    logo: 'https://portal.skillzza.com/ailifebot_logo_no_bg.png',
+    title: 'Applying Data Science Techniques for Predictive Insights',
+    category: 'Data Science',
+    level: 'Intermediate',
+    duration: '5-8 hours'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1000&q=80',
+    logo: 'https://portal.skillzza.com/ailifebot_logo_no_bg.png',
+    title: 'Architecting and Automating Enterprise Solutions with Microsoft Power Platform',
+    category: 'Development',
+    level: 'Intermediate',
+    duration: '5-8 hours',
+    hiring: true
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=1000&q=80',
+    logo: 'https://portal.skillzza.com/as-removebg-preview-no-bg.png',
+    title: 'Engineering and Deploying Federated Learning Systems',
+    category: 'Data Science',
+    level: 'Advanced',
+    duration: '5-8 hours',
+    hiring: true
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80',
+    logo: 'https://portal.skillzza.com/ailifebot_logo_no_bg.png',
+    title: 'Architecting and Orchestrating Secure Application Life Cycles',
+    category: 'Cybersecurity',
+    level: 'Advanced',
+    duration: '5-8 hours',
+    hiring: true
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1000&auto=format&fit=crop',
+    logo: 'https://portal.skillzza.com/ailifebot_logo_no_bg.png',
+    title: 'Architecting and Implementing Privacy-Engineered Data Clean Room',
+    category: 'Cybersecurity',
+    level: 'Advanced',
+    duration: '5-8 hours',
+    hiring: true
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1000&auto=format&fit=crop',
+    logo: 'https://portal.skillzza.com/ailifebot_logo_no_bg.png',
+    title: 'Designing Cloud-Native Data Governance Control Frameworks',
+    category: 'Cybersecurity',
+    level: 'Advanced',
+    duration: '5-8 hours',
+    hiring: true
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000&auto=format&fit=crop',
+    logo: 'https://portal.skillzza.com/ailifebot_logo_no_bg.png',
+    title: 'Pioneering Quantitative Cybersecurity Posture Assessment Strategies',
+    category: 'Cybersecurity',
+    level: 'Advanced',
+    duration: '5-8 hours',
+    hiring: true
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=1000&q=80',
+    logo: 'https://portal.skillzza.com/ailifebot_logo_no_bg.png',
+    title: 'Constructing Threat Intelligence Knowledge Graph Taxonomies',
+    category: 'Cybersecurity',
+    level: 'Advanced',
+    duration: '5-8 hours',
+    hiring: true
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1000&auto=format&fit=crop',
+    logo: 'https://portal.skillzza.com/ailifebot_logo_no_bg.png',
+    title: 'Prototyping Privacy-Preserving GenAI Governance Protocols',
+    category: 'Cybersecurity',
+    level: 'Advanced',
+    duration: '5-8 hours',
+    hiring: true
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=1000&q=80',
+    logo: 'https://portal.skillzza.com/ailifebot_logo_no_bg.png',
+    title: 'Designing and Building Scalable Oracle Enterprise Application Architectures',
+    category: 'Development',
+    level: 'Advanced',
+    duration: '5-8 hours',
+    hiring: true
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1000&q=80',
+    logo: 'https://portal.skillzza.com/ailifebot_logo_no_bg.png',
+    title: 'Architecting Enterprise-Grade Pega Case Management & Intelligent Automation Systems',
+    category: 'Development',
+    level: 'Advanced',
+    duration: '5-8 hours',
+    hiring: true
+  },
+  {
+    image: 'https://plus.unsplash.com/premium_photo-1733306493254-52b143296396?q=80&w=1393&auto=format&fit=crop',
+    logo: 'https://portal.skillzza.com/Google_logo.png',
+    title: 'Designing Cloud Infrastructure on AWS, Azure, and GCP',
+    category: 'Development',
+    level: 'Intermediate',
+    duration: '5-8 hours'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80',
+    logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ30NifBSiFy5OEVciQeZBpIMsmIh5T9UdsQw&s',
+    title: 'Designing and Implementing Advanced Graphics and Shaders with WebGPU',
+    category: 'Design',
+    level: 'Advanced',
+    duration: '5-8 hours'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80',
+    logo: 'https://portal.skillzza.com/ailifebot_logo_no_bg.png',
+    title: 'Advanced Salesforce Enterprise Architecture & DevOps Engineering',
+    category: 'Development',
+    level: 'Advanced',
+    duration: '5-8 hours',
+    hiring: true
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?auto=format&fit=crop&w=1000&q=80',
+    logo: 'https://skillzza.com/assets/img/meta_logo.png',
+    title: 'Designing and Building Immersive AR/VR & Spatial Computing Platforms',
+    category: 'Development',
+    level: 'Advanced',
+    duration: '5-8 hours',
+    hiring: true
+  },
+  {
+    image: 'https://plus.unsplash.com/premium_photo-1726079247110-5e593660c7b2?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    logo: 'https://portal.skillzza.com/ailifebot_logo_no_bg.png',
+    title: 'Building Autonomous AI Agents for Real-World Use Cases',
+    category: 'Data Science',
+    level: 'Advanced',
+    duration: '5-8 hours',
+    hiring: true
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1590212151175-e58edd96185b?auto=format&fit=crop&w=1000&q=80',
+    logo: 'https://portal.skillzza.com/ailifebot_logo_no_bg.png',
+    title: 'Engineering & Deploying Voice Bot & AI Agent Systems',
+    category: 'Development',
+    level: 'Advanced',
+    duration: '5-8 hours',
+    hiring: true
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1000&q=80',
+    logo: 'https://portal.skillzza.com/ailifebot_logo_no_bg.png',
+    title: 'Architecting and Implementing Digital Forensics and Cyber Investigation Systems',
+    category: 'Cybersecurity',
+    level: 'Advanced',
+    duration: '5-8 hours'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80',
+    logo: 'https://portal.skillzza.com/ailifebot_logo_no_bg.png',
+    title: 'Oracle Cloud ERP Technical Internship',
+    category: 'Development',
+    level: 'Advanced',
+    duration: '5-8 hours',
+    hiring: true
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1000&q=80',
+    logo: 'https://portal.skillzza.com/ailifebot_logo_no_bg.png',
+    title: 'Engineering & Deploying Agentic AI Systems',
+    category: 'Development',
+    level: 'Advanced',
+    duration: '5-8 hours',
+    hiring: true
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1587620962725-abab7fe55159?auto=format&fit=crop&w=1000&q=80',
+    logo: 'https://img.icons8.com/?size=100&id=22989&format=png&color=000000',
+    title: 'Multi-Agent Systems and Enterprise GenAI Applications Internship',
+    category: 'Data Science',
+    level: 'Advanced',
+    duration: '5-8 hours'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1000&auto=format&fit=crop',
+    logo: 'https://portal.skillzza.com/ailifebot_logo_no_bg.png',
+    title: 'Designing and Developing Advanced Motion and Interactive UX Frameworks',
+    category: 'Design',
+    level: 'Advanced',
+    duration: '5-8 hours',
+    hiring: true
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1000&auto=format&fit=crop',
+    logo: 'https://portal.skillzza.com/ailifebot_logo_no_bg.png',
+    title: 'Architecting and Developing Advanced Feature Stores for Machine Learning',
+    category: 'Data Science',
+    level: 'Advanced',
+    duration: '5-8 hours',
+    hiring: true
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=1000&q=80',
+    logo: 'https://portal.skillzza.com/IBM_logo.png',
+    title: 'Designing and Orchestrating Agentic AI Workflows',
+    category: 'Data Science',
+    level: 'Advanced',
+    duration: '5-8 hours'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=1000&q=80',
+    logo: 'https://portal.skillzza.com/Amazon_logo.png',
+    title: 'Blockchain & Web3 Technical Internship',
+    category: 'Development',
+    level: 'Advanced',
+    duration: '5-8 hours'
+  },
+  {
+    image: 'https://plus.unsplash.com/premium_photo-1768374180121-f86dc6a506e3?q=80&w=1170&auto=format&fit=crop',
+    logo: 'https://portal.skillzza.com/Google_logo.png',
+    title: 'Defending Systems Against Cyber Threats and Security Risks',
+    category: 'Cybersecurity',
+    level: 'Intermediate',
+    duration: '5-8 hours'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1000&q=80',
+    logo: '/simulation/nvidia-logo-horiz-blk-16x9 1.png',
+    title: 'Engineering Autonomous Robotics & Industrial Control Systems',
+    category: 'Development',
+    level: 'Advanced',
+    duration: '5-8 hours'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1765194240514-201bcff232c5?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    logo: 'https://portal.skillzza.com/ailifebot_logo_no_bg.png',
+    title: 'Designing and Building Technical Solutions for AgriTech Automation',
+    category: 'Development',
+    level: 'Intermediate',
+    duration: '5-8 hours',
+    hiring: true
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=80',
+    logo: 'https://portal.skillzza.com/ailifebot_logo_no_bg.png',
+    title: 'Designing & Implementing MarTech Systems and Sales Automation Architectures',
+    category: 'Marketing',
+    level: 'Intermediate',
+    duration: '5-8 hours'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1631499792544-3c313e2a2511?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    logo: 'https://portal.skillzza.com/ailifebot_logo_no_bg.png',
+    title: 'Engineering and Optimizing Multiplayer Game Server Architectures',
+    category: 'Development',
+    level: 'Advanced',
+    duration: '5-8 hours',
+    hiring: true
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1547023717-d4a4e04021e5?q=80&w=1487&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    logo: 'https://portal.skillzza.com/as-removebg-preview-no-bg.png',
+    title: 'Engineering High-Performance Native Mobile Applications (iOS & Android)',
+    category: 'Development',
+    level: 'Advanced',
+    duration: '5-8 hours',
+    hiring: true
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop',
+    logo: 'https://portal.skillzza.com/ailifebot_logo_no_bg.png',
+    title: 'Engineering and Automating Resilient Business Process Workflows',
+    category: 'Development',
+    level: 'Intermediate',
+    duration: '5-8 hours',
+    hiring: true
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000&auto=format&fit=crop',
+    logo: 'https://portal.skillzza.com/ailifebot_logo_no_bg.png',
+    title: 'Architecting Cloud-Native Pega DevOps & Scalable Platform Engineering',
+    category: 'Development',
+    level: 'Advanced',
+    duration: '5-8 hours',
+    hiring: true
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=1000&q=80',
+    logo: 'https://img.icons8.com/?size=100&id=95qv31JyMb9Y&format=png&color=000000',
+    title: 'Engineering Large Language Model-Powered Systems',
+    category: 'Data Science',
+    level: 'Advanced',
+    duration: '5-8 hours'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1000&q=80',
+    logo: 'https://portal.skillzza.com/ailifebot_logo_no_bg.png',
+    title: 'Designing and Building Enterprise Technical Solutions Platforms',
+    category: 'Development',
+    level: 'Advanced',
+    duration: '5-8 hours',
+    hiring: true
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1611162616475-46b635cb6868?auto=format&fit=crop&w=1000&q=80',
+    logo: '/simulation/pngwing.com.png',
+    title: 'Architecting Secure and Scalable Digital Payment Platforms',
+    category: 'Development',
+    level: 'Advanced',
+    duration: '5-8 hours',
+    hiring: true
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1000&q=80',
+    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Salesforce.com_logo.svg/512px-Salesforce.com_logo.svg.png',
+    title: 'Architecting and Implementing Custom Salesforce Technical Solutions',
+    category: 'Development',
+    level: 'Advanced',
+    duration: '5-8 hours'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=1000&auto=format&fit=crop',
+    logo: 'https://portal.skillzza.com/ailifebot_logo_no_bg.png',
+    title: 'Engineering and Automating Enterprise ServiceNow Platform Workflows',
+    category: 'Development',
+    level: 'Advanced',
+    duration: '5-8 hours',
+    hiring: true
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1611162616475-46b635cb6868?auto=format&fit=crop&w=1000&q=80',
+    logo: '/simulation/pngwing.com.png',
+    title: 'Architecting Secure and Scalable FinTech Payment Infrastructure',
+    category: 'Development',
+    level: 'Advanced',
+    duration: '5-8 hours',
+    hiring: true
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1000&auto=format&fit=crop',
+    logo: 'https://portal.skillzza.com/ailifebot_logo_no_bg.png',
+    title: 'Advanced ServiceNow ITOM & CMDB Engineering',
+    category: 'Development',
+    level: 'Advanced',
+    duration: '5-8 hours',
+    hiring: true
+  }
+];
 
 function JobSimulationPage() {
   const [showAll, setShowAll] = useState(false);
@@ -908,18 +1283,23 @@ function JobSimulationPage() {
 
         .sim-card {
           background: #ffffff;
-          border-radius: 16px;
-          box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.06);
+          border-radius: 12px;
+          box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
           overflow: hidden;
           display: flex;
           flex-direction: column;
           transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-          border: 1px solid #eaeaea;
+          border: 1px solid #f0f0f0;
+          cursor: pointer;
         }
 
         .sim-card:hover {
-          transform: translateY(-6px) scale(1.03);
-          box-shadow: 0px 12px 28px rgba(0, 0, 0, 0.12);
+          transform: translateY(-6px);
+          box-shadow: 0px 12px 28px rgba(0, 0, 0, 0.08);
+        }
+
+        .sim-card:hover .sim-card-image {
+          transform: scale(1.05);
         }
 
         .explore-btn-container {
@@ -953,28 +1333,29 @@ function JobSimulationPage() {
         .sim-card-image-wrap {
           position: relative;
           width: 100%;
-          height: 185px;
+          height: 180px;
+          overflow: hidden;
         }
 
         .sim-card-image {
           width: 100%;
           height: 100%;
           object-fit: cover;
+          transition: transform 0.5s ease;
         }
 
         .sim-card-logo-box {
           position: absolute;
-          bottom: 12px;
+          bottom: 0;
           left: 16px;
           background: #ffffff;
-          border-radius: 8px;
-          padding: 8px;
-          width: 108px;
-          height: 56px;
+          border-radius: 12px 12px 0 0;
+          padding: 10px 16px;
+          width: 140px;
+          height: 60px;
           display: flex;
           align-items: center;
           justify-content: center;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
         .sim-card-logo-box img {
@@ -984,64 +1365,80 @@ function JobSimulationPage() {
         }
 
         .sim-card-body {
-          padding: 16px 16px 20px;
+          padding: 20px;
           display: flex;
           flex-direction: column;
           flex: 1;
-        }
-
-        .sim-card-company {
-          font-family: 'Inter', sans-serif;
-          font-size: 13px;
-          color: #71717a;
-          margin: 0 0 8px 0;
-          font-weight: 500;
+          background: #ffffff;
         }
 
         .sim-card-title {
           font-family: 'Inter', sans-serif;
           font-size: 16px;
-          color: #111827;
-          font-weight: 600;
-          line-height: 1.4;
-          margin: 0 0 16px 0;
+          color: #1f2937;
+          font-weight: 500;
+          line-height: 1.5;
+          margin: 0 0 20px 0;
+          min-height: 72px;
           display: -webkit-box;
-          -webkit-line-clamp: 2;
+          -webkit-line-clamp: 3;
           -webkit-box-orient: vertical;
           overflow: hidden;
-          height: 44px;
         }
 
         .sim-card-tags {
           margin-top: auto;
-          margin-bottom: 12px;
+          margin-bottom: 20px;
           display: flex;
           align-items: center;
+          justify-content: space-between;
         }
 
         .sim-tag-category {
           display: flex;
           align-items: center;
-          gap: 8px;
+          gap: 6px;
           font-family: 'Inter', sans-serif;
           font-size: 13px;
-          font-weight: 600;
-          color: #0b5c9c;
+          font-weight: 500;
+          color: #3b82f6;
         }
 
         .sim-tag-icon {
           width: 14px;
           height: 14px;
-          object-fit: contain;
+          stroke: currentColor;
+          fill: none;
+          stroke-width: 2;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+          transition: transform 0.3s ease;
+        }
+
+        .sim-card:hover .sim-tag-icon {
+          transform: rotate(12deg);
+        }
+
+        .sim-hiring-badge {
+          background-color: #10b981;
+          color: #ffffff;
+          padding: 4px 10px;
+          border-radius: 4px;
+          font-size: 11px;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
         }
 
         .sim-card-footer {
           display: flex;
           justify-content: space-between;
           align-items: center;
+          padding-top: 16px;
+          border-top: 1px solid #f3f4f6;
           font-family: 'Inter', sans-serif;
           font-size: 13px;
-          color: #374151;
+          color: #4b5563;
           font-weight: 500;
         }
 
@@ -1478,30 +1875,34 @@ function JobSimulationPage() {
 
           {/* Job Simulation Cards */}
           <div className="sim-cards-grid">
-            {visibleCards.map((card, index) => (
+            {newDesignCards.map((card, index) => (
               <ScrollReveal key={index} delay={(index % 4) * 100} className="sim-card">
                 <div className="sim-card-image-wrap">
                   <img src={card.image} alt={card.title} className="sim-card-image" />
                   <div className="sim-card-logo-box">
-                    <img src={card.logo} alt={card.company} />
+                    <img src={card.logo} alt="Company logo" />
                   </div>
                 </div>
                 <div className="sim-card-body">
-                  <p className="sim-card-company">{card.company}</p>
                   <h3 className="sim-card-title">{card.title}</h3>
                   <div className="sim-card-tags">
                     <span className="sim-tag-category">
-                      <img src="/simulation/logo.png" alt="tag" className="sim-tag-icon" />
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="sim-tag-icon">
+                        <path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path>
+                        <path d="M7 7h.01"></path>
+                      </svg>
                       {card.category}
                     </span>
+                    {card.hiring && (
+                      <span className="sim-hiring-badge">HIRING NOW</span>
+                    )}
                   </div>
                   <div className="sim-card-footer">
                     <span className="sim-level">{card.level}</span>
                     <span className="sim-duration">
                       <svg className="sim-clock-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
-                        <path d="M3 3v5h5"/>
-                        <path d="M12 7v5l4 2"/>
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
                       </svg>
                       {card.duration}
                     </span>
