@@ -1,9 +1,66 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
+
+/* ── Custom hook for scroll-reveal animation ── */
+function useScrollReveal(options = {}) {
+  const ref = useRef(null)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add('about-revealed')
+          observer.unobserve(el)
+        }
+      },
+      { threshold: options.threshold || 0.12, rootMargin: options.rootMargin || '0px' }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+  return ref
+}
 
 function AboutPage() {
+  const bannerRef = useScrollReveal()
+  const overviewRef = useScrollReveal()
+  const commitmentRef = useScrollReveal()
+  const ctaRef = useScrollReveal()
+  const mvRef = useScrollReveal()
+  const valuesRef = useScrollReveal()
+
   return (
     <>
       <style>{`
+        /* 3D scrolling animation classes */
+        .about-reveal {
+          opacity: 0;
+          transform: perspective(1200px) rotateX(-10deg) translateY(60px) translateZ(-40px);
+          transform-origin: top center;
+          transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+          will-change: transform, opacity;
+        }
+        .about-revealed {
+          opacity: 1 !important;
+          transform: perspective(1200px) rotateX(0deg) translateY(0) translateZ(0) !important;
+        }
+
+        .about-revealed.about-stagger > *, .about-revealed .about-stagger > * {
+          opacity: 0;
+          transform: perspective(1200px) rotateX(-10deg) translateY(40px) translateZ(-40px);
+          transform-origin: top center;
+          animation: about-fade-up-3d 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          will-change: transform, opacity;
+        }
+        .about-revealed.about-stagger > *:nth-child(1), .about-revealed .about-stagger > *:nth-child(1) { animation-delay: 0.1s; }
+        .about-revealed.about-stagger > *:nth-child(2), .about-revealed .about-stagger > *:nth-child(2) { animation-delay: 0.2s; }
+        .about-revealed.about-stagger > *:nth-child(3), .about-revealed .about-stagger > *:nth-child(3) { animation-delay: 0.3s; }
+        .about-revealed.about-stagger > *:nth-child(4), .about-revealed .about-stagger > *:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes about-fade-up-3d {
+          to { opacity: 1; transform: perspective(1200px) rotateX(0deg) translateY(0) translateZ(0); }
+        }
+
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
         .about-banner-page {
@@ -72,7 +129,7 @@ function AboutPage() {
 
         .about-overview {
           background: #f5f5f5;
-          padding: clamp(48px, 9vw, 120px) clamp(24px, 8vw, 120px);
+          padding: clamp(48px, 9vw, 120px) clamp(24px, 8vw, 120px) clamp(24px, 4vw, 40px);
         }
 
         .about-overview__grid {
@@ -128,7 +185,7 @@ function AboutPage() {
           --about-side-pad: clamp(24px, 8vw, 120px);
           --about-grid-max: 1100px;
           background: #ffffff;
-          padding: clamp(48px, 9vw, 120px) var(--about-side-pad);
+          padding: clamp(24px, 4vw, 48px) var(--about-side-pad) clamp(48px, 9vw, 120px);
         }
 
         .about-commitment__grid {
@@ -192,7 +249,7 @@ function AboutPage() {
           }
 
           .about-commitment {
-            padding: clamp(40px, 11vw, 100px) clamp(24px, 8vw, 60px);
+            padding: clamp(24px, 4vw, 40px) clamp(24px, 8vw, 60px) clamp(40px, 11vw, 100px);
           }
         }
 
@@ -229,6 +286,17 @@ function AboutPage() {
           line-height: 1;
           padding: 8px 14px;
           cursor: pointer;
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+          will-change: transform, box-shadow;
+        }
+
+        .about-cta-strip__button:hover {
+          transform: translateY(-4px) scale(1.03);
+          box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.25);
+        }
+        
+        .about-cta-strip__button:active {
+          transform: translateY(0) scale(0.98);
         }
 
         .about-cta-strip__text {
@@ -261,6 +329,15 @@ function AboutPage() {
           border-top-left-radius: 34px;
           border-bottom-right-radius: 34px;
           padding: clamp(24px, 3.2vw, 36px);
+          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+          will-change: transform, box-shadow;
+        }
+
+        .about-mv__card:hover {
+          // transform: translateY(-10px) ;
+          box-shadow: 0px 32px 64px rgba(0, 0, 0, 0.28), 0px 12px 24px rgba(0, 0, 0, 0.14);
+          position: relative;
+          z-index: 10;
         }
 
         .about-mv__card--mission {
@@ -388,10 +465,17 @@ function AboutPage() {
           width: min(1300px, 100vw);
           height: auto;
           display: block;
+          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+          will-change: transform, filter;
+        }
+
+        .about-core-values__image:hover {
+          transform: scale(1.02);
+          filter: drop-shadow(0px 20px 40px rgba(0,0,0,0.15));
         }
       `}</style>
       <main className="about-banner-page">
-        <section className="about-banner">
+        <section ref={bannerRef} className="about-banner about-reveal">
           <div className="about-banner__content">
             <p className="about-banner__headline">
               A pioneering Skill Development
@@ -404,7 +488,7 @@ function AboutPage() {
             </p>
           </div>
         </section>
-        <section className="about-overview">
+        <section ref={overviewRef} className="about-overview about-reveal about-stagger">
           <div className="about-overview__grid">
             <div>
               <p className="about-overview__eyebrow">Know About</p>
@@ -427,7 +511,7 @@ function AboutPage() {
             </div>
           </div>
         </section>
-        <section className="about-commitment">
+        <section ref={commitmentRef} className="about-commitment about-reveal about-stagger">
           <div className="about-commitment__grid">
             <div className="about-commitment__text">
               <p>
@@ -445,14 +529,14 @@ function AboutPage() {
             </div>
           </div>
         </section>
-        <section className="about-cta-strip">
-          <div className="about-cta-strip__inner">
+        <section ref={ctaRef} className="about-cta-strip about-reveal">
+          <div className="about-cta-strip__inner about-stagger">
             <button type="button" className="about-cta-strip__button">Join</button>
             <p className="about-cta-strip__text">Skillzza Today And Gain The Skills You Need To Shape The Future You Aspire To.</p>
           </div>
         </section>
-        <section className="about-mv">
-          <div className="about-mv__container">
+        <section ref={mvRef} className="about-mv about-reveal">
+          <div className="about-mv__container about-stagger">
             <article className="about-mv__card about-mv__card--mission">
               <div className="about-mv__line">
                 <h2 className="about-mv__heading">Our MISSION</h2>
@@ -488,7 +572,7 @@ function AboutPage() {
             </div>
           </div>
         </section>
-        <section className="about-core-values">
+        <section ref={valuesRef} className="about-core-values about-reveal">
           <img
             className="about-core-values__image"
             src="/Company/about/core value.png"

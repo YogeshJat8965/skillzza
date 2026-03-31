@@ -16,6 +16,14 @@ function InsightsPage() {
     "Skillzza Live"
   ];
 
+  const tabDescriptions = {
+    "Skill Blueprint": "Solutions & Case Studies Real-World Success Stories in Skill Development",
+    "The Skill Digest": "The Skillzza Digest Insights, Trends & Game-changers shaping the Future of Skills",
+    "AI Talent Research Hub": "Reports & Whitepapers Data-Driven Insights on AI & Workforce Transformation.",
+    "The Skill Unplugged Podcast Series (3R )": "Talks on the Future of Skills.",
+    "Skillzza Live": "Knowledge in Action Interactive Sessions Bringing Learning to Life."
+  };
+
   return (
     <div style={{ backgroundColor: '#F8F9FA', minHeight: '100vh', paddingBottom: '100px' }}>
       {/* Banner */}
@@ -26,32 +34,7 @@ function InsightsPage() {
         <div className="max-w-[1440px] mx-auto flex flex-col items-center">
           
           {/* Main Heading */}
-          <h2
-            style={{
-              fontFamily: "'League Spartan', sans-serif",
-              fontWeight: 700,
-              fontSize: 'clamp(38px, 5vw, 64px)',
-              lineHeight: '1.2',
-              color: '#0F1114',
-              textAlign: 'center',
-              marginBottom: '56px',
-            }}
-          >
-            Social and Sustainability <span style={{ color: '#E11313', position: 'relative' }}>
-              insights
-              {/* Fancy underline squiggle */}
-              <svg 
-                width="100%" 
-                height="14" 
-                viewBox="0 0 200 14" 
-                fill="none" 
-                preserveAspectRatio="none" 
-                style={{ position: 'absolute', bottom: '-8px', left: 0, opacity: 0.4 }}
-              >
-                <path d="M2 12C50 2 150 2 198 12" stroke="#E11313" strokeWidth="4" strokeLinecap="round" />
-              </svg>
-            </span>
-          </h2>
+          
 
           {/* 5 Buttons in a Single Row (horizontally scrolls on small mobile instead of breaking apart entirely, avoiding ugly wraps) */}
           <div 
@@ -92,6 +75,12 @@ function InsightsPage() {
                 )
               })}
             </div>
+          </div>
+          
+          <div className="mt-6 text-center transistion-all duration-300">
+            <p className="font-['DM_Sans',sans-serif] text-[18px] md:text-[20px] font-medium text-[#475569] px-4">
+              {tabDescriptions[activeTab]}
+            </p>
           </div>
         </div>
       </section>
@@ -325,7 +314,7 @@ function InsightsPage() {
                   id: 1,
                   tag: "PODCAST",
                   title: "From AI Awareness to AI Mastery",
-                  desc: "Tune in as we discuss moving past the AI hype cycle and taking actionable steps to deeply integrate AI tools into professional workflows.",
+                  // desc: "Tune in as we discuss moving past the AI hype cycle and taking actionable steps to deeply integrate AI tools into professional workflows.",
                   image: "https://images.unsplash.com/photo-1589903308904-1010c2294adc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 },
                 {
@@ -382,7 +371,7 @@ function InsightsPage() {
                     </h3>
                     
                     <p className="font-['DM_Sans',sans-serif] font-medium text-[16px] leading-[1.6] text-[#475569] mb-6 mt-auto">
-                      {card.desc}
+                      {/* {card.desc} */}
                     </p>
                   </div>
                 </div>
@@ -397,36 +386,36 @@ function InsightsPage() {
                   id: 1,
                   tag: "SKILLZZA LIVE",
                   title: "How to Build a High-Income Skill Using AI",
-                  desc: "Learn actionable strategies in this comprehensive live session to monetize AI tools and rapidly build high-value freelance or corporate skills.",
-                  image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  // desc: "Learn actionable strategies in this comprehensive live session to monetize AI tools and rapidly build high-value freelance or corporate skills.",
+                  image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 },
                 {
                   id: 2,
                   tag: "SKILLZZA LIVE",
                   title: "Live Workshop",
                   desc: "Automate Your Daily Work with AI",
-                  image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 },
                 {
                   id: 3,
                   tag: "SKILLZZA LIVE",
                   title: "Top AI Career Paths You Can Start Without Coding",
                   desc: "Discover the fast-growing non-technical roles in the AI industry and the exact roadmap to transition into them today.",
-                  image: "https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  image: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 },
                 {
                   id: 4,
                   tag: "SKILLZZA LIVE",
                   title: "Create Content, Designs & Presentations Using AI (Live)",
                   desc: "Watch our experts build marketing campaigns, graphics, and slide decks from scratch in real-time leveraging the latest generative models.",
-                  image: "https://images.unsplash.com/photo-1542744094-3a31f272c490?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  image: "https://images.unsplash.com/photo-1591115765373-5207764f72e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 },
                 {
                   id: 5,
                   tag: "SKILLZZA LIVE",
                   title: "AI for Students & Professionals",
                   desc: "Learn Smarter, Work Faster",
-                  image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  image: "https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 }
               ].map((card) => (
                 <div 
@@ -454,7 +443,7 @@ function InsightsPage() {
                     </h3>
                     
                     <p className="font-['DM_Sans',sans-serif] font-medium text-[16px] leading-[1.6] text-[#475569] mb-6 mt-auto">
-                      {card.desc}
+                      {/* {card.desc} */}
                     </p>
                   </div>
                 </div>

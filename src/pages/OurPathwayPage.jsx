@@ -82,41 +82,45 @@ function OurPathwayPage() {
     <>
       {/* ── Inline CSS for animations, hover, and responsive ── */}
       <style>{`
-        /* Scroll reveal base */
+        /* Scroll reveal base - 3D smooth scrolling effect */
         .pathway-reveal {
           opacity: 0;
-          transform: translateY(40px);
-          transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+          transform: perspective(1200px) rotateX(-10deg) translateY(60px) translateZ(-40px);
+          transform-origin: top center;
+          transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+          will-change: transform, opacity;
         }
         .pathway-revealed {
           opacity: 1 !important;
-          transform: translateY(0) !important;
+          transform: perspective(1200px) rotateX(0deg) translateY(0) translateZ(0) !important;
         }
 
-        /* Staggered children animation */
-        .pathway-revealed .pathway-stagger > * {
+        /* Staggered children animation - 3D */
+        .pathway-revealed.pathway-stagger > *, .pathway-revealed .pathway-stagger > * {
           opacity: 0;
-          transform: translateY(20px);
-          animation: pathway-fade-up 0.5s ease forwards;
+          transform: perspective(1200px) rotateX(-10deg) translateY(40px) translateZ(-40px);
+          transform-origin: top center;
+          animation: pathway-fade-up-3d 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          will-change: transform, opacity;
         }
-        .pathway-revealed .pathway-stagger > *:nth-child(1) { animation-delay: 0.1s; }
-        .pathway-revealed .pathway-stagger > *:nth-child(2) { animation-delay: 0.2s; }
-        .pathway-revealed .pathway-stagger > *:nth-child(3) { animation-delay: 0.3s; }
-        .pathway-revealed .pathway-stagger > *:nth-child(4) { animation-delay: 0.4s; }
-        .pathway-revealed .pathway-stagger > *:nth-child(5) { animation-delay: 0.5s; }
-        .pathway-revealed .pathway-stagger > *:nth-child(6) { animation-delay: 0.6s; }
+        .pathway-revealed.pathway-stagger > *:nth-child(1), .pathway-revealed .pathway-stagger > *:nth-child(1) { animation-delay: 0.1s; }
+        .pathway-revealed.pathway-stagger > *:nth-child(2), .pathway-revealed .pathway-stagger > *:nth-child(2) { animation-delay: 0.2s; }
+        .pathway-revealed.pathway-stagger > *:nth-child(3), .pathway-revealed .pathway-stagger > *:nth-child(3) { animation-delay: 0.3s; }
+        .pathway-revealed.pathway-stagger > *:nth-child(4), .pathway-revealed .pathway-stagger > *:nth-child(4) { animation-delay: 0.4s; }
+        .pathway-revealed.pathway-stagger > *:nth-child(5), .pathway-revealed .pathway-stagger > *:nth-child(5) { animation-delay: 0.5s; }
+        .pathway-revealed.pathway-stagger > *:nth-child(6), .pathway-revealed .pathway-stagger > *:nth-child(6) { animation-delay: 0.6s; }
 
-        @keyframes pathway-fade-up {
-          to { opacity: 1; transform: translateY(0); }
+        @keyframes pathway-fade-up-3d {
+          to { opacity: 1; transform: perspective(1200px) rotateX(0deg) translateY(0) translateZ(0); }
         }
 
         /* Button hover effects */
         .pathway-btn {
-          transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease !important;
+          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, background-color 0.3s ease !important;
         }
         .pathway-btn:hover {
-          transform: translateY(-2px) scale(1.03) !important;
-          box-shadow: 0px 8px 24px rgba(207, 12, 12, 0.35) !important;
+          transform: translateY(-3px) scale(1.02) !important;
+          box-shadow: 0px 10px 25px rgba(207, 12, 12, 0.25) !important;
           background-color: #B00A0A !important;
         }
         .pathway-btn:active {
@@ -125,47 +129,59 @@ function OurPathwayPage() {
 
         /* Tab button hover */
         .pathway-tab-btn {
-          transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease !important;
+          transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
         .pathway-tab-btn:hover {
-          transform: translateY(-1px) !important;
-          box-shadow: 0px 4px 12px rgba(137, 4, 4, 0.2) !important;
+          transform: translateY(-2px) !important;
+          box-shadow: 0px 6px 16px rgba(137, 4, 4, 0.15) !important;
         }
 
-        /* Card hover */
+        /* Card hover - normal and soft */
         .pathway-card {
-          transition: transform 0.35s ease, box-shadow 0.35s ease !important;
+          transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease !important;
+          will-change: transform, box-shadow;
         }
         .pathway-card:hover {
-          transform: translateY(-8px) !important;
-          box-shadow: 0px 24px 48px rgba(15, 16, 18, 0.14) !important;
+          transform: translateY(-8px) scale(1.01) !important;
+          box-shadow: 0px 24px 48px rgba(15, 16, 18, 0.12) !important;
+          z-index: 10;
         }
 
-        /* Serve card hover */
+        /* Serve card hover - Smooth Hover Effect */
         .pathway-serve-card {
-          transition: transform 0.35s ease, box-shadow 0.35s ease !important;
+          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+          will-change: transform, box-shadow;
         }
         .pathway-serve-card:hover {
+          transform: translateY(-10px) scale(1.02) !important;
+          box-shadow: 0px 32px 64px rgba(0, 0, 0, 0.28), 0px 12px 24px rgba(0, 0, 0, 0.14) !important;
+          z-index: 10;
+        }
+
+        /* Image hover effects */
+        img, .pathway-tab-content > div:first-child {
+          transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+        img:hover, .pathway-tab-content > div:first-child:hover {
           transform: scale(1.03) !important;
-          box-shadow: 0px 28px 50px rgba(0, 0, 0, 0.25) !important;
         }
 
         /* Partnership pill hover */
         .pathway-pill {
-          transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease !important;
+          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, background-color 0.3s ease !important;
         }
         .pathway-pill:hover {
-          transform: translateY(-3px) !important;
-          box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.3) !important;
+          transform: translateY(-3px) scale(1.03) !important;
+          box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2) !important;
           background-color: #6D0303 !important;
         }
 
         /* Icon highlight row hover */
         .pathway-highlight-row {
-          transition: transform 0.3s ease !important;
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
         .pathway-highlight-row:hover {
-          transform: translateX(6px) !important;
+          transform: translateX(8px) !important;
         }
 
         /* ── Mobile Responsive (< 768px) ── */
@@ -300,8 +316,9 @@ function OurPathwayPage() {
         }
       `}</style>
       {/* ── Hero Section ── */}
-      <section className="w-full" style={{ backgroundColor: '#F8F8F8' }}>
+      <section ref={heroRef} className="w-full pathway-reveal" style={{ backgroundColor: '#F8F8F8' }}>
         <div
+          className="pathway-stagger"
           style={{
             width: '100%',
             maxWidth: '1320px',
@@ -397,6 +414,7 @@ function OurPathwayPage() {
               ].map((label) => (
                 <button
                   key={label}
+                  className="pathway-btn"
                   style={{
                     fontFamily: 'DM Sans, sans-serif',
                     padding: '16px 52px',
@@ -445,6 +463,8 @@ function OurPathwayPage() {
 
       {/* ── Our Commitment Section ── */}
       <section
+        ref={commitmentRef}
+        className="pathway-reveal pathway-stagger"
         style={{
           width: '100%',
           backgroundColor: '#F8F8F8',
@@ -513,6 +533,7 @@ function OurPathwayPage() {
 
           {/* Cards Grid */}
           <div
+            className="pathway-stagger"
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(309px, 1fr))',
@@ -569,6 +590,7 @@ function OurPathwayPage() {
             ].map((card, index) => (
               <div
                 key={index}
+                className="pathway-card"
                 style={{
                   width: '309px',
                     height: '500px',
@@ -580,7 +602,6 @@ function OurPathwayPage() {
                   display: 'flex',
                   flexDirection: 'column',
                   position: 'relative',
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
                 }}
               >
                 {/* Card Image */}
@@ -679,6 +700,8 @@ function OurPathwayPage() {
 
       {/* ── Pathway Difference Icons Section ── */}
       <section
+        ref={differenceRef}
+        className="pathway-reveal pathway-stagger"
         style={{
           width: '100%',
           backgroundColor: '#F8F7F6',
@@ -718,6 +741,7 @@ function OurPathwayPage() {
 
           {/* Icons highlight grid */}
           <div
+            className="pathway-stagger"
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(420px, 1fr))',
@@ -753,6 +777,7 @@ function OurPathwayPage() {
             ].map((item, index) => (
               <div
                 key={index}
+                className="pathway-highlight-row"
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -811,6 +836,8 @@ function OurPathwayPage() {
 
       {/* ── Who We Serve Section ── */}
       <section
+        ref={serveRef}
+        className="pathway-reveal pathway-stagger"
         style={{
           width: '100%',
           backgroundColor: '#F8F8F8',
@@ -848,6 +875,7 @@ function OurPathwayPage() {
           </div>
 
           <div
+            className="pathway-stagger"
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))',
@@ -890,6 +918,7 @@ function OurPathwayPage() {
             ].map((segment, index) => (
                 <div
                   key={index}
+                  className="pathway-serve-card"
                   style={{
                     width: '399px',
                     maxWidth: '100%',
@@ -970,6 +999,8 @@ function OurPathwayPage() {
 
       {/* ── Partnership Ecosystem Section ── */}
       <section
+        ref={partnershipRef}
+        className="pathway-reveal pathway-stagger"
         style={{
           width: '100%',
           backgroundColor: '#F5F5F5',
@@ -1005,6 +1036,7 @@ function OurPathwayPage() {
             Collaborating for Greater Impact
           </h2>
           <div
+            className="pathway-stagger"
             style={{
               display: 'flex',
               flexWrap: 'wrap',
@@ -1020,6 +1052,7 @@ function OurPathwayPage() {
             ].map((label) => (
               <div
                 key={label}
+                className="pathway-pill"
                 style={{
                   minWidth: '220px',
                   padding: '18px 34px',
@@ -1040,155 +1073,18 @@ function OurPathwayPage() {
       </section>
 
       {/* ── Journey of Launching Your Career Section ── */}
-      <section
-        style={{
-          width: '100%',
-          color: '#FFFFFF',
-          padding: '100px 24px 120px',
-          backgroundImage: "url('/Company/AI Hacknex/Group 1.png')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          position: 'relative',
-        }}
-      >
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            backgroundColor: 'rgba(15, 15, 15, 0.45)',
-            pointerEvents: 'none',
-          }}
-        />
-        <div
-          style={{
-            width: '100%',
-            maxWidth: '1200px',
-            margin: '0 auto',
-            position: 'relative',
-            zIndex: 1,
-            textAlign: 'center',
-          }}
-        >
-          <h2
-            style={{
-              fontFamily: 'League Spartan, sans-serif',
-              fontWeight: 700,
-              fontSize: '48px',
-              lineHeight: 1.15,
-              color: '#1E1E1E',
-              marginBottom: '18px',
-            }}
-          >
-            The Journey of Launching<br />Your Career
-          </h2>
-          <p
-            style={{
-              fontFamily: 'DM Sans, sans-serif',
-              fontWeight: 400,
-              fontSize: '18px',
-              lineHeight: 1.6,
-              color: '#4A4A4A',
-              maxWidth: '900px',
-              margin: '0 auto 60px',
-            }}
-          >
-            In today’s competitive job market, experience isn’t just an advantage, it's a prerequisite. Yet, gaining meaningful, industry-relevant experience before your first job remains a challenge for many.<br/><br/>
-            Skillzza’s AI-Powered Job Simulation Program eliminates that barrier, offering a transformative journey from classroom learning to real-world application. With our immersive, on-demand job simulations, you don’t just prepare for the workforce, you step directly into it.
-          </p>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-              gap: '32px',
-              justifyContent: 'center',
-            }}
-          >
-            {[
-              {
-                number: '10X',
-                label: 'more',
-                description: 'likely to land a job',
-              },
-              {
-                number: '10',
-                label: 'million',
-                description: 'students expected to meet their career aspirations!',
-              },
-              {
-                number: '70+',
-                label: 'career program',
-                description: '& Industry Fields to choose from',
-              },
-              {
-                number: '115+',
-                label: 'years',
-                description: 'of collective industry expertise',
-              },
-            ].map((stat, idx) => (
-              <div
-                key={idx}
-                style={{
-                  backgroundColor: '#FFFFFF',
-                  borderRadius: '16px',
-                  padding: '40px 32px',
-                  boxShadow: '0px 16px 40px rgba(0, 0, 0, 0.15)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '12px',
-                  alignItems: 'center',
-                  textAlign: 'center',
-                }}
-              >
-                <div
-                  style={{
-                    fontFamily: 'League Spartan, sans-serif',
-                    fontWeight: 700,
-                    fontSize: '56px',
-                    lineHeight: 1,
-                    color: '#2974C9',
-                    margin: 0,
-                  }}
-                >
-                  {stat.number}
-                </div>
-                <div
-                  style={{
-                    fontFamily: 'DM Sans, sans-serif',
-                    fontWeight: 600,
-                    fontSize: '16px',
-                    color: '#DFEAF7',
-                    margin: 0,
-                  }}
-                >
-                  {stat.label}
-                </div>
-                <p
-                  style={{
-                    fontFamily: 'DM Sans, sans-serif',
-                    fontWeight: 400,
-                    fontSize: '14px',
-                    lineHeight: 1.5,
-                    color: '#4A4A4A',
-                    margin: '8px 0 0',
-                  }}
-                >
-                  {stat.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+     
 
       <section
+        ref={getStartedRef}
+        className="pathway-reveal"
         style={{
           width: '100%',
           backgroundColor: '#F6F6F6',
           padding: '80px 24px 110px',
         }}
       >
-        <div style={{ width: '100%', maxWidth: '1320px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '32px' }}>
+        <div className="pathway-stagger" style={{ width: '100%', maxWidth: '1320px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '32px' }}>
           <div style={{ textAlign: 'center' }}>
             <p
               style={{
@@ -1242,6 +1138,7 @@ function OurPathwayPage() {
                 <button
                   key={tab.id}
                   type="button"
+                  className="pathway-tab-btn"
                   onClick={() => setActiveTab(tab.id)}
                   style={{
                     width: '307px',
@@ -1350,6 +1247,8 @@ function OurPathwayPage() {
       </section>
 
       <section
+        ref={ctaRef}
+        className="pathway-reveal"
         style={{
           width: '100%',
           backgroundColor: '#F6F6F6',
@@ -1409,6 +1308,7 @@ function OurPathwayPage() {
               ].map((label) => (
                 <button
                   key={label}
+                  className="pathway-btn"
                   style={{
                     fontFamily: 'DM Sans, sans-serif',
                     fontWeight: 600,
