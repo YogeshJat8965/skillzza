@@ -105,36 +105,36 @@ function InsightsPage() {
                 {
                   id: 1,
                   tag: "SKILL BLUEPRINT",
-                  title: "Redefining Student Success: How AI-Based Potential Mapping Helped a University Identify Hidden Talent Beyond Grades",
-                  desc: "Discover how moving beyond traditional grading systems allowed higher education institutions to map true potential and unlock new opportunities for students.",
+                  title: "Redefining Student Success",
+                  desc: "How AI-Based Potential Mapping Helped a University Identify Hidden Talent Beyond Grades",
                   image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 },
                 {
                   id: 2,
                   tag: "SKILL BLUEPRINT",
-                  title: "From Scores to Skills: A Case Study on AI-Powered Assessments Driving Inclusive Hiring",
-                  desc: "Learn how forward-thinking companies are replacing biased score-based hiring with skill-centric AI assessments to build diverse, capable teams.",
+                  title: "From Scores to Skills",
+                  desc: "A Case Study on AI-Powered Assessments Driving Inclusive Hiring",
                   image: "https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 },
                 {
                   id: 3,
                   tag: "SKILL BLUEPRINT",
-                  title: "Unlocking Career Pathways: How AI Potential Meters Are Guiding Students Toward Future-Ready Professions",
-                  desc: "An in-depth look at how AI potential meters match students with career trajectories that align with their innate strengths and the future of work.",
+                  title: "Unlocking Career Pathways",
+                  desc: "How AI Potential Meters Are Guiding Students Toward Future-Ready Professions",
                   image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 },
                 {
                   id: 4,
                   tag: "SKILL BLUEPRINT",
-                  title: "Learning by Doing: How an AI Xperience Platform Transformed Internship Readiness in 8 Weeks",
-                  desc: "Explore the impact of experiential learning platforms in bridging the gap between classroom theory and day-one internship readiness.",
+                  title: "Learning by Doing",
+                  desc: "How an AI Xperience Platform Transformed Internship Readiness in 8 Weeks",
                   image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 },
                 {
                   id: 5,
                   tag: "SKILL BLUEPRINT",
-                  title: "From Theory to Simulation: Building Industry-Ready Talent Through AI-Powered Role-Play Labs",
-                  desc: "See how interactive role-play simulations are providing safe, scalable environments for candidates to practice and perfect critical workplace skills.",
+                  title: "From Theory to Simulation",
+                  desc: "Building Industry-Ready Talent Through AI-Powered Role-Play Labs",
                   image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 }
               ].map((card) => (
@@ -180,36 +180,36 @@ function InsightsPage() {
                 {
                   id: 1,
                   tag: "THE SKILL DIGEST",
-                  title: "Beyond Grades: How AI-Powered Potential Meters are Redefining Talent Discovery",
-                  desc: "Explore how organizations and educational institutions are leveraging AI to look beyond traditional academic metrics and uncover true human potential.",
+                  title: "Beyond Grades",
+                  desc: "How AI-Powered Potential Meters are Redefining Talent Discovery",
                   image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 },
                 {
                   id: 2,
                   tag: "THE SKILL DIGEST",
-                  title: "From Skill Gaps to Skill Maps: The Future of Adaptive Career Assessment with AI",
-                  desc: "Discover the evolution from identifying skill deficiencies to creating comprehensive, AI-driven pathways for continuous career development.",
+                  title: "From Skill Gaps to Skill Maps",
+                  desc: "The Future of Adaptive Career Assessment with AI",
                   image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 },
                 {
                   id: 3,
                   tag: "THE SKILL DIGEST",
-                  title: "Immersive Learning: How AI-Powered Experience Platforms are Shaping Future-Ready Talent",
-                  desc: "Learn how experiential platforms and simulated environments are accelerating skill acquisition and closing the readiness gap.",
+                  title: "Immersive Learning",
+                  desc: "How AI-Powered Experience Platforms are Shaping Future-Ready Talent",
                   image: "https://images.unsplash.com/photo-1535905557558-afc4877a26fc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 },
                 {
                   id: 4,
                   tag: "THE SKILL DIGEST",
-                  title: "Campus Hiring 2.0: How AI Marketplaces are Matching Job-Ready Talent with Employers",
-                  desc: "An inside look at how AI-driven talent marketplaces are connecting pre-assessed candidates with the right corporate opportunities seamlessly.",
+                  title: "Campus Hiring 2.0",
+                  desc: "How AI Marketplaces are Matching Job-Ready Talent with Employers",
                   image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 },
                 {
                   id: 5,
                   tag: "THE SKILL DIGEST",
-                  title: "Talent Transformation 2030: Preparing Human Potential for an AI-Driven Future",
-                  desc: "A visionary outlook on how we must adapt our workforce and talent models today to meet the profound shifts of an AI-integrated tomorrow.",
+                  title: "Talent Transformation 2030",
+                  desc: "Preparing Human Potential for an AI-Driven Future",
                   image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 }
               ].map((card) => (
@@ -268,7 +268,7 @@ function InsightsPage() {
                   tag: "RESEARCH HUB",
                   title: "Agentic AI & Autonomous Workflows",
                   desc: "Understand the shift from basic automation to agentic AI, where self-governing systems manage complex workflows to accelerate productivity.",
-                  image: "https://images.unsplash.com/photo-1620712948343-008423671cd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 },
                 {
                   id: 4,
@@ -345,8 +345,8 @@ function InsightsPage() {
                 {
                   id: 4,
                   tag: "PODCAST",
-                  title: "Reskilling at Scale: How Organizations Are Preparing for AI",
-                  desc: "Enterprise leaders share their playbooks for transforming entire departments and protecting their workforce from technological obsolescence.",
+                  title: "Reskilling at Scale",
+                  desc: "How Organizations Are Preparing for AI",
                   image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 },
                 {
@@ -403,8 +403,8 @@ function InsightsPage() {
                 {
                   id: 2,
                   tag: "SKILLZZA LIVE",
-                  title: "Live Workshop: Automate Your Daily Work with AI",
-                  desc: "A hands-on, step-by-step masterclass demonstrating how to cut hours of tedious work by setting up custom AI automations.",
+                  title: "Live Workshop",
+                  desc: "Automate Your Daily Work with AI",
                   image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 },
                 {
@@ -424,8 +424,8 @@ function InsightsPage() {
                 {
                   id: 5,
                   tag: "SKILLZZA LIVE",
-                  title: "AI for Students & Professionals: Learn Smarter, Work Faster",
-                  desc: "An interactive Q&A session focused on optimizing study habits, accelerating research, and enhancing workplace productivity using AI.",
+                  title: "AI for Students & Professionals",
+                  desc: "Learn Smarter, Work Faster",
                   image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                 }
               ].map((card) => (
