@@ -38,7 +38,7 @@ function InsightsPage() {
 
           {/* 5 Buttons in a Single Row (horizontally scrolls on small mobile instead of breaking apart entirely, avoiding ugly wraps) */}
           <div 
-            className="w-full flex lg:justify-center overflow-x-auto pb-8 -mx-4 px-4 lg:mx-0 lg:px-0 lg:overflow-visible no-scrollbar insight-btn-container"
+            className="w-full flex lg:justify-center overflow-x-auto pt-8 pb-12 -mx-4 px-8 lg:mx-0 lg:px-0 lg:overflow-visible no-scrollbar insight-btn-container"
             style={{ scrollSnapType: 'x mandatory' }}
           >
             <div className="flex flex-nowrap lg:flex-wrap gap-4 md:gap-5 mx-auto w-max lg:w-auto justify-center items-center">

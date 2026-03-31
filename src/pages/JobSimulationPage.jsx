@@ -814,7 +814,7 @@ function JobSimulationPage() {
   const [showAll, setShowAll] = useState(false);
 
   // Default to showing 2 rows (8 items if 4 columns)
-  const visibleCards = showAll ? simulationCards : simulationCards.slice(0, 8);
+  const visibleCards = showAll ? newDesignCards : newDesignCards.slice(0, 8);
 
   return (
     <>
@@ -957,12 +957,23 @@ function JobSimulationPage() {
           .jsim-cards-row {
             flex-direction: column;
             align-items: center;
+            gap: 24px;
           }
           .jsim-card {
-            width: 100%;
-            max-width: 340px;
+            width: 320px;
+            max-width: 100%;
+            height: 280px;
+            box-sizing: border-box;
+            margin: 0 auto;
+            padding: 32px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
           }
-          .jsim-stat-number { font-size: 48px; }
+          .jsim-stat-number { font-size: 56px; }
+          .jsim-stat-desc {
+            white-space: normal; /* Removes hard line breaks on mobile for better text flow */
+          }
           .jsim-card-accent::after { right: -8px; bottom: -8px; }
         }
 
@@ -1158,6 +1169,61 @@ function JobSimulationPage() {
           display: block;
         }
 
+        /* ── Mobile for Solution Section ── */
+        @media (max-width: 768px) {
+          .sol-section {
+            padding: 50px 16px;
+          }
+          .sol-header {
+            margin-bottom: 40px;
+          }
+          .sol-title {
+            font-size: 28px;
+          }
+          .sol-content {
+            flex-direction: column;
+            gap: 40px;
+          }
+          .sol-cards-grid {
+            grid-template-columns: 1fr; /* Switch to 1 column on mobile to prevent squeezing */
+            justify-items: center;
+            gap: 20px;
+          }
+          .sol-card {
+            width: 320px;
+            max-width: 100%;
+            height: 280px;
+            box-sizing: border-box;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          }
+          .sol-image-col {
+            justify-content: center;
+          }
+          .sol-image-wrapper {
+            width: 100%;
+            margin-right: 0;
+            max-width: 400px;
+          }
+        }
+
+        /* ── Tablet for Solution Section ── */
+        @media (min-width: 769px) and (max-width: 1024px) {
+          .sol-content {
+            flex-direction: column;
+            gap: 50px;
+          }
+          .sol-image-wrapper {
+            width: 80vw;
+            margin-right: 0;
+          }
+          .sol-image-col {
+            justify-content: center;
+          }
+        }
+
         /* ── Discover Section ── */
         .discover-section {
           width: 100%;
@@ -1283,23 +1349,24 @@ function JobSimulationPage() {
 
         .sim-card {
           background: #ffffff;
-          border-radius: 12px;
-          box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+          border-radius: 16px;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
           overflow: hidden;
           display: flex;
           flex-direction: column;
-          transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-          border: 1px solid #f0f0f0;
+          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.6s ease;
+          border: 1px solid rgba(0,0,0,0.05);
           cursor: pointer;
         }
 
         .sim-card:hover {
-          transform: translateY(-6px);
-          box-shadow: 0px 12px 28px rgba(0, 0, 0, 0.08);
+          transform: translateY(-6px) scale(1.035);
+          box-shadow: 0 30px 50px -12px rgba(0, 0, 0, 0.15), 0 15px 25px -8px rgba(0, 0, 0, 0.1);
+          border-color: rgba(0,0,0,0.1);
         }
 
         .sim-card:hover .sim-card-image {
-          transform: scale(1.05);
+          transform: scale(1.08);
         }
 
         .explore-btn-container {
@@ -1341,7 +1408,7 @@ function JobSimulationPage() {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          transition: transform 0.5s ease;
+          transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .sim-card-logo-box {
@@ -1875,7 +1942,7 @@ function JobSimulationPage() {
 
           {/* Job Simulation Cards */}
           <div className="sim-cards-grid">
-            {newDesignCards.map((card, index) => (
+            {visibleCards.map((card, index) => (
               <ScrollReveal key={index} delay={(index % 4) * 100} className="sim-card">
                 <div className="sim-card-image-wrap">
                   <img src={card.image} alt={card.title} className="sim-card-image" />
