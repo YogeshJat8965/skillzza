@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
   const [scrollY, setScrollY] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const navigate = useNavigate();
 
   // Detect mobile screen
   useEffect(() => {
@@ -150,10 +152,10 @@ const Hero = () => {
         
         @keyframes scrollLeft {
           0% {
-            transform: translateX(100%);
+            transform: translateX(0);
           }
           100% {
-            transform: translateX(-100%);
+            transform: translateX(-50%);
           }
         }
         
@@ -165,8 +167,8 @@ const Hero = () => {
         
         .scroll-content {
           display: flex;
-          animation: scrollLeft 30s linear infinite;
-          animation-delay: -15s;
+          width: max-content;
+          animation: scrollLeft 25s linear infinite;
         }
         
         .scroll-content:hover {
@@ -287,6 +289,7 @@ const Hero = () => {
               >
                 {/* Start Your Journey Button */}
                 <button
+                  onClick={() => navigate('/login')}
                   className="hover-lift"
                   style={{
                     background: 'linear-gradient(90deg, #CF2C2E 0%, #C72C2E 54.7%, #FBA93E 100%)',
